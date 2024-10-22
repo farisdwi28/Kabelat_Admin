@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-
+{{-- 
 <div class="row justify-content-center">
     <div class="col-12">
         <div class="card">
@@ -172,7 +172,7 @@
             </div><!--end card-body-->
         </div><!--end card-->
     </div> <!--end col-->
-</div><!--end row-->
+</div><!--end row--> --}}
 
 <div class="row justify-content-center">
     <div class="col-12">
@@ -180,7 +180,7 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h4 class="card-title">Export Table</h4>
+                        <h4 class="card-title">Kelola Member</h4>
                     </div><!--end col-->
                 </div> <!--end row-->
             </div><!--end card-header-->
@@ -194,13 +194,23 @@
                                         <input type="checkbox" class="form-check-input" name="select-all" id="select-all">
                                     </div>
                                 </th>
-                                <th>Name</th>
-                                <th>Ext.</th>
-                                <th>City</th>
-                                <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                                <th>Completion</th>
+                                <th>Nama Member</th>
+                                <th>
+                                    <div class="d-flex align-items-center">
+                                        <span>Status</span>
+                                        <select class="form-select form-select-sm ms-2" id="status-filter">
+                                            <option value="all">Semua</option>
+                                            <option value="active">Aktif</option>
+                                            <option value="inactive">Tidak Aktif</option>
+                                        </select>
+                                    </div>
+                                </th>
+                                <th>Tanggal Bergabung</th>
+                                <th>Kelurahan, Kecamatan, RT, RW</th>
+                                <th>Posisi Jabatan</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             <tr>
                                 <td style="width: 16px;">
@@ -208,140 +218,134 @@
                                         <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
                                     </div>
                                 </td>
-                                <td>Unity Pugh</td>
-                                <td>9958</td>
-                                <td>Curicó</td>
-                                <td>2005/02/11</td>
-                                <td>37%</td>
+                                <td>Wawan Setiawan</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Ketua</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck2">
                                     </div>
                                 </td>
-                                <td>Theodore Duran</td>
-                                <td>8971</td>
-                                <td>Dhanbad</td>
-                                <td>1999/04/07</td>
-                                <td>97%</td>
+                                <td>Mamiek</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.02</td>
+                                <td>Anggota</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck3">
                                     </div>
                                 </td>
-                                <td>Kylie Bishop</td>
-                                <td>3147</td>
-                                <td>Norman</td>
-                                <td>2005/09/08</td>
-                                <td>63%</td>
+                                <td>Harryawan</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Anggota</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck4">
                                     </div>
                                 </td>
-                                <td>Willow Gilliam</td>
-                                <td>3497</td>
-                                <td>Amqui</td>
-                                <td>2009/29/11</td>
-                                <td>30%</td>
+                                <td>Fernando</td>
+                                <td>Nonaktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>anggota</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck5">
                                     </div>
                                 </td>
-                                <td>Blossom Dickerson</td>
-                                <td>5018</td>
-                                <td>Kempten</td>
-                                <td>2006/11/09</td>
-                                <td>17%</td>
+                                <td>Edwin</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Anggota</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck6">
                                     </div>
                                 </td>
-                                <td>Elliott Snyder</td>
-                                <td>3925</td>
-                                <td>Enines</td>
-                                <td>2006/03/08</td>
-                                <td>57%</td>
+                                <td>Tato</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Bendahara</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck7">
                                     </div>
                                 </td>
-                                <td>Castor Pugh</td>
-                                <td>9488</td>
-                                <td>Neath</td>
-                                <td>2014/23/12</td>
-                                <td>93%</td>
+                                <td>Haryanto</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Anggota</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck8">
                                     </div>
                                 </td>
-                                <td>Pearl Carlson</td>
-                                <td>6231</td>
-                                <td>Cobourg</td>
-                                <td>2014/31/08</td>
-                                <td>100%</td>
+                                <td>To Ganjelto</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Anggota</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck9">
                                     </div>
                                 </td>
-                                <td>Deirdre Bridges</td>
-                                <td>1579</td>
-                                <td>Eberswalde-Finow</td>
-                                <td>2014/26/08</td>
-                                <td>44%</td>
+                                <td>Dewi</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Wakil Ketua</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck10">
                                     </div>
                                 </td>
-                                <td>Daniel Baldwin</td>
-                                <td>6095</td>
-                                <td>Moircy</td>
-                                <td>2000/11/01</td>
-                                <td>33%</td>
+                                <td>Yulian</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Anggota</td>
                             </tr>
                             <tr>
                                 <td style="width: 16px;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck1">
+                                        <input type="checkbox" class="form-check-input" name="check" id="customCheck11">
                                     </div>
                                 </td>
-                                <td>Pearl Carlson</td>
-                                <td>6231</td>
-                                <td>Cobourg</td>
-                                <td>2014/31/08</td>
-                                <td>100%</td>
+                                <td>Joko</td>
+                                <td>Aktif</td>
+                                <td>12/01/2023</td>
+                                <td>Ajasari, Soreang, 04.01</td>
+                                <td>Sekretaris</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="d-flex flex-wrap gap-2 mt-2">
-                        <button type="button" class="btn btn-sm btn-primary csv">Export CSV</button>
-                        <button type="button" class="btn btn-sm btn-primary sql">Export SQL</button>
-                        <button type="button" class="btn btn-sm btn-primary txt">Export TXT</button>
-                        <button type="button" class="btn btn-sm btn-primary json">Export JSON</button>
-                    </div>
                 </div>
             </div><!--end card-body-->
         </div><!--end card-->
@@ -349,7 +353,12 @@
 </div><!--end row-->
 
 @endsection
-
+{{-- <div class="d-flex flex-wrap gap-2 mt-2">
+                        <button type="button" class="btn btn-sm btn-primary csv">Export CSV</button>
+                        <button type="button" class="btn btn-sm btn-primary sql">Export SQL</button>
+                        <button type="button" class="btn btn-sm btn-primary txt">Export TXT</button>
+                        <button type="button" class="btn btn-sm btn-primary json">Export JSON</button>
+                    </div> --}}
 @section('script')
 @vite(['resources/js/pages/datatable.init.js'])
 @endsection

@@ -3,107 +3,47 @@
 @section('content')
 
 <div class="row justify-content-center">
-    <div class="col-md-6 col-lg-6">
+    <div class="col-md-10 col-lg-10">
         <div class="card">
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h4 class="card-title">Basic Example</h4>
+                        <h4 class="card-title">Kelola Komunitas</h4>
                     </div><!--end col-->
                 </div> <!--end row-->
             </div><!--end card-header-->
             <div class="card-body pt-0">
                 <div class="table-responsive">
-                    <table class="table  mb-0 table-centered">
+                    <table class="table mb-0 table-centered">
                         <thead class="table-light">
                             <tr>
-                                <th>Compny</th>
-                                <th>Bill</th>
-                                <th>Average Bill</th>
-                                <th>Paid Bill</th>
+                                <th>Nama Komunitas</th>
+                                <th>
+                                    <div class="d-flex align-items-center">
+                                        <span>Status</span>
+                                        <select class="form-select form-select-sm ms-2" id="status-filter">
+                                            <option value="all">    Semua</option>
+                                            <option value="active">Aktif</option>
+                                            <option value="inactive">Tidak Aktif</option>
+                                        </select>
+                                    </div>
+                                </th>
+                                <th>Tanggal Dibuat</th>
+                                <th>Nama Ketua Komunitas</th>
                                 <th class="text-end">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><img src="/images/logos/lang-logo/chatgpt.png" alt="" class="rounded-circle thumb-md me-1 d-inline">
-                                    Micromin
+                                <td><img src="/images/logos/bundaliterasi.png" alt="" class="rounded-circle thumb-md me-1 d-inline">
+                                    Bunda Literasi
                                 </td>
-                                <td>4</td>
-                                <td>$250</td>
-                                <td>$800</td>
-                                <td class="text-end">
-                                    <div class="dropdown d-inline-block">
-                                        <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                            <i class="las la-ellipsis-v fs-20 text-muted"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
-                                            <a class="dropdown-item" href="#">Creat Project</a>
-                                            <a class="dropdown-item" href="#">Open Project</a>
-                                            <a class="dropdown-item" href="#">Tasks Details</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><img src="/images/logos/lang-logo/nextjs.png" alt="" class="rounded-circle thumb-md me-1 d-inline">
-                                    ZZ Diamond
-                                </td>
-                                <td>2</td>
-                                <td>$180</td>
-                                <td>$400</td>
-                                <td class="text-end">
-                                    <div class="dropdown d-inline-block">
-                                        <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                            <i class="las la-ellipsis-v fs-20 text-muted"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
-                                            <a class="dropdown-item" href="#">Creat Project</a>
-                                            <a class="dropdown-item" href="#">Open Project</a>
-                                            <a class="dropdown-item" href="#">Tasks Details</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><img src="/images/logos/lang-logo/reactjs.png" alt="" class="rounded-circle thumb-md me-1 d-inline">
-                                    Dairy Sweet
-                                </td>
-                                <td>6</td>
-                                <td>$210</td>
-                                <td>$500</td>
-                                <td class="text-end">
-                                    <div class="dropdown d-inline-block">
-                                        <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                            <i class="las la-ellipsis-v fs-20 text-muted"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
-                                            <a class="dropdown-item" href="#">Creat Project</a>
-                                            <a class="dropdown-item" href="#">Open Project</a>
-                                            <a class="dropdown-item" href="#">Tasks Details</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><img src="/images/logos/lang-logo/symfony.png" alt="" class="rounded-circle thumb-md me-1 d-inline">
-                                    Corner Tea
-                                </td>
-                                <td>3</td>
-                                <td>$80</td>
-                                <td>$350</td>
-                                <td class="text-end">
-                                    <div class="dropdown d-inline-block">
-                                        <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                            <i class="las la-ellipsis-v fs-20 text-muted"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
-                                            <a class="dropdown-item" href="#">Creat Project</a>
-                                            <a class="dropdown-item" href="#">Open Project</a>
-                                            <a class="dropdown-item" href="#">Tasks Details</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td>Aktif</td>
+                                <td>25/05/2024</td>
+                                <td>Hj. Emma Dety Permanawati, S.PD.I., MM.</td>
+                                <td class="text-end d-flex justify-content-center">
+                                    <span style="font-size: 24px; color: black;">&gt;</span>
+                                </td> 
                             </tr>
                         </tbody>
                     </table><!--end /table-->
@@ -111,7 +51,8 @@
             </div><!--end card-body-->
         </div><!--end card-->
     </div> <!--end col-->
-    <div class="col-md-6 col-lg-6">
+</div><!--end row-->
+    {{-- <div class="col-md-6 col-lg-6">
         <div class="card">
             <div class="card-header">
                 <div class="row align-items-center">
@@ -605,6 +546,6 @@
             </div><!--end card-body-->
         </div><!--end card-->
     </div> <!--end col-->
-</div><!--end row-->
+</div><!--end row--> --}} --
 
 @endsection
