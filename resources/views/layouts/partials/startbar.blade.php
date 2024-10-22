@@ -3,11 +3,7 @@
     <div class="brand">
         <a href="{{ route('any', 'home')}}" class="logo">
             <span>
-                <img src="/images/logo-sm.png" alt="logo-small" class="logo-sm">
-            </span>
-            <span class="">
-                <img src="/images/logo-light.png" alt="logo-large" class="logo-lg logo-light">
-                <img src="/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark">
+                <img src="/images/kabelat3.png" alt="logo-small" class="logo-sm">
             </span>
         </a>
     </div>
@@ -18,13 +14,6 @@
             <div class="d-flex align-items-start flex-column w-100">
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-auto w-100">
-                    <li class="menu-label pt-0 mt-0">
-                        <!-- <small class="label-border">
-                            <div class="border_left hidden-xs"></div>
-                            <div class="border_right"></div>
-                        </small> -->
-                        <span>Main Menu</span>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">

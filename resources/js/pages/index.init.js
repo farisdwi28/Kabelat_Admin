@@ -36,33 +36,33 @@ var options = {
         },
     },
     annotations: {
-        xaxis: [{
-            x: 312,
-            strokeDashArray: 4,
-            borderWidth: 1,
-            borderColor: ["var(--bs-secondary)"],
-        },],
-        points: [{
-            x: 312,
-            y: 52,
-            marker: {
-                size: 6,
-                fillColor: ["var(--bs-primary)"],
-                strokeColor: ["var(--bs-card-bg)"],
-                strokeWidth: 4,
-                radius: 5,
-            },
-            label: {
-                borderWidth: 1,
-                offsetY: -110,
-                text: '50k',
-                style: {
-                    background: ["var(--bs-primary)"],
-                    fontSize: '14px',
-                    fontWeight: '600',
-                }
-            }
-        }],
+        // xaxis: [{
+        //     x: 312,
+        //     strokeDashArray: 4,
+        //     borderWidth: 1,
+        //     borderColor: ["var(--bs-secondary)"],
+        // },],
+        // points: [{
+        //     x: 312,
+        //     y: 52,
+        //     marker: {
+        //         size: 6,
+        //         fillColor: ["var(--bs-primary)"],
+        //         strokeColor: ["var(--bs-card-bg)"],
+        //         strokeWidth: 4,
+        //         radius: 5,
+        //     },
+        //     label: {
+        //         borderWidth: 1,
+        //         offsetY: -110,
+        //         text: '50k',
+        //         style: {
+        //             background: ["var(--bs-primary)"],
+        //             fontSize: '14px',
+        //             fontWeight: '600',
+        //         }
+        //     }
+        // }],
     },
     colors: ["#22c55e", "rgba(106, 155, 155, 0.3)"],
     dataLabels: {
@@ -77,12 +77,8 @@ var options = {
     },
     series: [{
         name: "Income",
-        data: [31, 40, 28, 51, 31, 40, 28, 51, 31, 40, 28, 51],
+        data: [50, 25000, 10000, 6000, 75000, 25000, 30000, 8000, 50000, 3000, 25000, 110000],
     },
-        {
-            name: "Expenses",
-            data: [0, 30, 10, 40, 30, 60, 50, 80, 70, 100, 90, 130],
-        },
     ],
     labels: [
         "Jan",
