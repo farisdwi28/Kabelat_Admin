@@ -37,7 +37,7 @@
                     <div class="row d-flex justify-content-center border-dashed-bottom pb-3">
                         <div class="col-9">
                             <p class="text-dark mb-0 fw-semibold fs-14">Anggota</p>
-                            <h3 class="mt-2 mb-0 fw-bold">17.504</h3>
+                            <h3 class="mt-2 mb-0 fw-bold">{{ $Member }}</h3>
                         </div>
                         <!--end col-->
                         <div class="col-3 align-self-center">
@@ -62,7 +62,7 @@
                     <div class="row d-flex justify-content-center border-dashed-bottom pb-3">
                         <div class="col-9">
                             <p class="text-dark mb-0 fw-semibold fs-14">Kegiatan</p>
-                            <h3 class="mt-2 mb-0 fw-bold">12</h3>
+                            <h3 class="mt-2 mb-0 fw-bold">{{ $Kegiatan }}</h3>
                         </div>
                         <!--end col-->
                         <div class="col-3 align-self-center">
@@ -161,7 +161,7 @@
             </div>
             <!--end card-header-->
             <div class="card-body pt-0">
-                <div id="audience_overview" class="apex-charts"></div>
+                <div id="visitors_report" class="apex-charts"></div>
             </div>
             <!--end card-body-->
         </div>

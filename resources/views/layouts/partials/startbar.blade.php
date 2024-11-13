@@ -15,6 +15,12 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-auto w-100">
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <i class="iconoir-home-simple menu-icon"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li><!--end nav-item-->
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
                             <i class="iconoir-home-simple menu-icon"></i>
@@ -30,7 +36,7 @@
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarDashboards-->
-                    </li><!--end nav-item-->
+                    </li><!--end nav-item--> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarApplications" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarApplications">

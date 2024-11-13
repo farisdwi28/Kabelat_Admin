@@ -143,7 +143,7 @@ chart.render();
 var options = {
     series: [{
         name: "Visitors",
-        data: [20, 38, 38, 72, 55, 63, 43],
+        data: [20, 38, 38, 72, 55, 63, 43, 50, 70, 80, 110],
     },],
     chart: {
         height: 230,
@@ -207,13 +207,17 @@ var options = {
     xaxis: {
         type: "week",
         categories: [
-            "Sun",
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu",
-            "Fri",
-            "Sat",
+            "Jan",
+            "Feb",
+            "Mar",
+            "Mey",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
         ],
         axisBorder: {
             show: false,
