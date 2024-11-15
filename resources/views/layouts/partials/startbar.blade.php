@@ -19,7 +19,13 @@
                             <i class="iconoir-home-simple menu-icon"></i>
                             <span>Dashboard</span>
                         </a>
-                    </li><!--end nav-item-->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('second', ['tables', 'basic'])}}">
+                            <i class="iconoir-community menu-icon"></i>
+                            <span>Member Komunitas</span>
+                        </a>
+                    </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
