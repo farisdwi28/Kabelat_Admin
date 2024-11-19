@@ -27,9 +27,9 @@ class RoutingController extends BaseController
     public function index(Request $request)
     {
         if (Auth::user()) {
-            return redirect('/dashboard/index');
+            return redirect('/dashboard');
         } else {
-            return redirect('/dashboard/index');
+            return redirect('/dashboard');
         }
     }
 

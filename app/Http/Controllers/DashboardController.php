@@ -11,6 +11,7 @@ class DashboardController extends Controller
 {
     public function index() {
         try {
+            
             $Komunitas = Komunitas::count();
             $Member = MemberKomunitas::count();
             $Kegiatan = Kegiatan::count();

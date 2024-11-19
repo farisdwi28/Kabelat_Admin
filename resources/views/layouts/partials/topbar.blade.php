@@ -233,7 +233,12 @@
                         <a class="dropdown-item" href="{{ route('second', ['auth', 'lock-screen'])}}" target="_blank"><i class="las la-lock fs-18 me-1 align-text-bottom"></i> Lock</a>
                         <a class="dropdown-item" href="{{ route('second', ['pages', 'faqs'])}}"><i class="las la-question-circle fs-18 me-1 align-text-bottom"></i> Help Center</a>                       
                         <div class="dropdown-divider mb-0"></div>
-                        <a class="dropdown-item text-danger" href="{{ route('second', ['auth', 'login']) }}"><i class="las la-power-off fs-18 me-1 align-text-bottom"></i> Logout</a>
+                        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger" style="border: none; background: none; width: 100%; text-align: left; padding: 0.25rem 1rem;">
+                                <i class="las la-power-off fs-18 me-1 align-text-bottom"></i> Logout
+                            </button>
+                        </form>
                     </div>
                 </li>
             </ul><!--end topbar-nav-->

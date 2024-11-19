@@ -24,7 +24,7 @@
 
                 <div class="form-group mb-2">
                     <label class="form-label" for="email">Username</label>
-                    <input type="email" class="form-control" id="example-email" name="email" value="user@demo.com" placeholder="Masukkan Username Anda">
+                    <input type="username" class="form-control" id="example-username" name="username" placeholder="Masukkan Username Anda">
                 </div><!--end form-group-->
 
                 <div class="form-group">
