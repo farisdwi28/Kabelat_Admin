@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Komunitas extends Model
 {
@@ -17,5 +18,10 @@ class Komunitas extends Model
     public function Ketua(): HasOne
     {
         return $this->hasOne(MemberKomunitas::class, 'kd_komunitas')->where('kd_jabatan','KETUA');
+    }
+
+    public function Members(): HasMany
+    {
+        return $this->hasMany(MemberKomunitas::class, 'kd_komunitas', 'kd_komunitas');
     }
 }

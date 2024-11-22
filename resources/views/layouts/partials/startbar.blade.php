@@ -1,7 +1,7 @@
 <div class="startbar d-print-none">
     <!--start brand-->
     <div class="brand">
-        <a href="{{ route('any', 'home')}}" class="logo">
+        <a href="{{ route('any', 'home') }}" class="logo">
             <span>
                 <img src="/images/kabelat3.png" alt="logo-small" class="logo-sm">
             </span>
@@ -9,7 +9,7 @@
     </div>
     <!--end brand-->
     <!--start startbar-menu-->
-    <div class="startbar-menu" >
+    <div class="startbar-menu">
         <div class="startbar-collapse" id="startbarCollapse" data-simplebar>
             <div class="d-flex align-items-start flex-column w-100">
                 <!-- Navigation -->
@@ -21,13 +21,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('second', ['tables', 'basic'])}}">
+                        <a class="nav-link {{ Route::is('komunitas.members') ? 'active' : '' }}"
+                            href="{{ route('second', ['Komunitas', 'komunitas']) }}">
                             <i class="iconoir-community menu-icon"></i>
                             <span>Member Komunitas</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('second', ['user', 'users']) }}">
                             <i class="iconoir-user-bag menu-icon"></i>
                             <span>Kelola User</span>
                         </a>
@@ -58,17 +59,19 @@
                         <div class="collapse " id="sidebarApplications">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button"
-                                        aria-expanded="false" aria-controls="sidebarAnalytics">
+                                    <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse"
+                                        role="button" aria-expanded="false" aria-controls="sidebarAnalytics">
                                         <span>Analytics</span>
                                     </a>
                                     <div class="collapse " id="sidebarAnalytics">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
-                                                <a href="{{ route('second', ['application', 'analytics-customers'])}}" class="nav-link ">Customers</a>
+                                                <a href="{{ route('second', ['application', 'analytics-customers']) }}"
+                                                    class="nav-link ">Customers</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a href="{{ route('second', ['application','analytics-reports'])}}" class="nav-link ">Reports</a>
+                                                <a href="{{ route('second', ['application', 'analytics-reports']) }}"
+                                                    class="nav-link ">Reports</a>
                                             </li><!--end nav-item-->
                                         </ul><!--end nav-->
                                     </div>
@@ -81,69 +84,90 @@
                                     <div class="collapse " id="sidebarProjects">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'projects', 'clients'])}}">Clients</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'projects', 'clients']) }}">Clients</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'projects', 'team'])}}">Team</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'projects', 'team']) }}">Team</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'projects', 'project'])}}">Project</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'projects', 'project']) }}">Project</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'projects', 'task'])}}">Task</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'projects', 'task']) }}">Task</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'projects', 'kanban-board'])}}">Kanban Board</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'projects', 'kanban-board']) }}">Kanban
+                                                    Board</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'projects', 'users'])}}">Users</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'projects', 'users']) }}">Users</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'projects', 'create'])}}">Project Create</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'projects', 'create']) }}">Project
+                                                    Create</a>
                                             </li><!--end nav-item-->
                                         </ul><!--end nav-->
                                     </div>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#sidebarEcommerce" data-bs-toggle="collapse" role="button"
-                                        aria-expanded="false" aria-controls="sidebarEcommerce">
+                                    <a class="nav-link" href="#sidebarEcommerce" data-bs-toggle="collapse"
+                                        role="button" aria-expanded="false" aria-controls="sidebarEcommerce">
                                         <span>Ecommerce</span>
                                     </a>
                                     <div class="collapse " id="sidebarEcommerce">
                                         <ul class="nav flex-column">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'ecommerce', 'products'])}}">Products</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'ecommerce', 'products']) }}">Products</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'ecommerce', 'customers'])}}">Customers</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'ecommerce', 'customers']) }}">Customers</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'ecommerce', 'customer-details'])}}">Customer Details</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'ecommerce', 'customer-details']) }}">Customer
+                                                    Details</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'ecommerce', 'orders'])}}">Orders</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'ecommerce', 'orders']) }}">Orders</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'ecommerce', 'order-details'])}}">Order Details</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'ecommerce', 'order-details']) }}">Order
+                                                    Details</a>
                                             </li><!--end nav-item-->
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('third', ['application', 'ecommerce', 'refunds'])}}">Refunds</a>
+                                                <a class="nav-link"
+                                                    href="{{ route('third', ['application', 'ecommerce', 'refunds']) }}">Refunds</a>
                                             </li><!--end nav-item-->
                                         </ul><!--end nav-->
                                     </div>
                                 </li><!--end nav-item-->
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['application', 'chat'])}}">Chat</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['application', 'chat']) }}">Chat</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['application', 'contact-list'])}}">Contact List</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['application', 'contact-list']) }}">Contact List</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['application', 'calendar'])}}">Calendar</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['application', 'calendar']) }}">Calendar</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['application', 'invoice'])}}">Invoice</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['application', 'invoice']) }}">Invoice</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarApplications-->
@@ -164,64 +188,71 @@
                         <div class="collapse " id="sidebarElements">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'alerts'])}}">Alerts</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'alerts']) }}">Alerts</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'avatar'])}}">Avatar</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'avatar']) }}">Avatar</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'buttons'])}}">Buttons</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'buttons']) }}">Buttons</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'badges'])}}">Badges</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'badges']) }}">Badges</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'cards'])}}">Cards</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'cards']) }}">Cards</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'carousels'])}}">Carousels</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['ui', 'carousels']) }}">Carousels</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'dropdowns'])}}">Dropdowns</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['ui', 'dropdowns']) }}">Dropdowns</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'grids'])}}">Grids</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'grids']) }}">Grids</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'images'])}}">Images</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'images']) }}">Images</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'list'])}}">List</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'list']) }}">List</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'modals'])}}">Modals</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'modals']) }}">Modals</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'navs'])}}">Navs</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'navs']) }}">Navs</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'navbar'])}}">Navbar</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'navbar']) }}">Navbar</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'paginations'])}}">Paginations</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['ui', 'paginations']) }}">Paginations</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'popover-tooltips'])}}">Popover & Tooltips</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['ui', 'popover-tooltips']) }}">Popover &
+                                        Tooltips</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'progress'])}}">Progress</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'progress']) }}">Progress</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'spinners'])}}">Spinners</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'spinners']) }}">Spinners</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'tabs-accordions'])}}">Tabs & Accordions</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'tabs-accordions']) }}">Tabs
+                                        & Accordions</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'typography'])}}">Typography</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['ui', 'typography']) }}">Typography</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['ui', 'videos'])}}">Videos</a>
+                                    <a class="nav-link" href="{{ route('second', ['ui', 'videos']) }}">Videos</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarElements-->
@@ -230,39 +261,50 @@
                         <a class="nav-link" href="#sidebarAdvancedUI" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarAdvancedUI">
                             <i class="iconoir-peace-hand menu-icon"></i>
-                            <span>Advanced UI</span><span class="badge rounded text-success bg-success-subtle ms-1">New</span>
+                            <span>Advanced UI</span><span
+                                class="badge rounded text-success bg-success-subtle ms-1">New</span>
                         </a>
                         <div class="collapse " id="sidebarAdvancedUI">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'animation'])}}">Animation</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'animation']) }}">Animation</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'clipboard'])}}">Clip Board</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'clipboard']) }}">Clip Board</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui',    'dragula'])}}">Dragula</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'dragula']) }}">Dragula</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'file-manager'])}}">File Manager</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'file-manager']) }}">File Manager</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'highlight'])}}">Highlight</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'highlight']) }}">Highlight</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'rangeslider'])}}">Range Slider</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'rangeslider']) }}">Range Slider</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'ratings'])}}">Ratings</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'ratings']) }}">Ratings</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'ribbons'])}}">Ribbons</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'ribbons']) }}">Ribbons</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'sweetalerts'])}}">Sweet Alerts</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'sweetalerts']) }}">Sweet Alerts</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['advanced-ui', 'toasts'])}}">Toasts</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['advanced-ui', 'toasts']) }}">Toasts</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarAdvancedUI-->
@@ -276,25 +318,31 @@
                         <div class="collapse " id="sidebarForms">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['forms', 'elements'])}}">Basic Elements</a>
+                                    <a class="nav-link" href="{{ route('second', ['forms', 'elements']) }}">Basic
+                                        Elements</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['forms', 'advanced'])}}">Advance Elements</a>
+                                    <a class="nav-link" href="{{ route('second', ['forms', 'advanced']) }}">Advance
+                                        Elements</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['forms', 'validation'])}}">Validation</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['forms', 'validation']) }}">Validation</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['forms', 'wizard'])}}">Wizard</a>
+                                    <a class="nav-link" href="{{ route('second', ['forms', 'wizard']) }}">Wizard</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['forms', 'editors'])}}">Editors</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['forms', 'editors']) }}">Editors</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['forms', 'file-uploads'])}}">File Upload</a>
+                                    <a class="nav-link" href="{{ route('second', ['forms', 'file-uploads']) }}">File
+                                        Upload</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['forms', 'img-crop'])}}">Image Crop</a>
+                                    <a class="nav-link" href="{{ route('second', ['forms', 'img-crop']) }}">Image
+                                        Crop</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarForms-->
@@ -308,16 +356,18 @@
                         <div class="collapse " id="sidebarCharts">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['charts', 'apex'])}}">Apex</a>
+                                    <a class="nav-link" href="{{ route('second', ['charts', 'apex']) }}">Apex</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['charts', 'justgage'])}}">JustGage</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['charts', 'justgage']) }}">JustGage</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['charts', 'chartjs'])}}">Chartjs</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['charts', 'chartjs']) }}">Chartjs</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['charts', 'toast'])}}">Toast</a>
+                                    <a class="nav-link" href="{{ route('second', ['charts', 'toast']) }}">Toast</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarCharts-->
@@ -330,11 +380,12 @@
                         </a>
                         <div class="collapse " id="sidebarTables">
                             <ul class="nav flex-column">
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['tables', 'basic'])}}">Basic</a>
-                                </li><!--end nav-item--> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['tables', 'datatable'])}}">Datatables</a>
+                                    <a class="nav-link" href="{{ route('second', ['tables', 'basic'])}}">Basic</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['tables', 'datatable']) }}">Datatables</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarTables-->
@@ -348,16 +399,20 @@
                         <div class="collapse " id="sidebarIcons">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['icons', 'fontawesome'])}}">Font Awesome</a>
+                                    <a class="nav-link" href="{{ route('second', ['icons', 'fontawesome']) }}">Font
+                                        Awesome</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['icons', 'lineawesome'])}}">Line Awesome</a>
+                                    <a class="nav-link" href="{{ route('second', ['icons', 'lineawesome']) }}">Line
+                                        Awesome</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['icons', 'icofont'])}}">Icofont</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['icons', 'icofont']) }}">Icofont</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['icons', 'iconoir'])}}">Iconoir</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['icons', 'iconoir']) }}">Iconoir</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarIcons-->
@@ -371,13 +426,16 @@
                         <div class="collapse " id="sidebarMaps">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['maps', 'google'])}}">Google Maps</a>
+                                    <a class="nav-link" href="{{ route('second', ['maps', 'google']) }}">Google
+                                        Maps</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['maps', 'leaflet'])}}">Leaflet Maps</a>
+                                    <a class="nav-link" href="{{ route('second', ['maps', 'leaflet']) }}">Leaflet
+                                        Maps</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['maps', 'vector'])}}">Vector Maps</a>
+                                    <a class="nav-link" href="{{ route('second', ['maps', 'vector']) }}">Vector
+                                        Maps</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarMaps-->
@@ -391,13 +449,17 @@
                         <div class="collapse " id="sidebarEmailTemplates">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['email', 'template-basic'])}}">Basic Action Email</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['email', 'template-basic']) }}">Basic Action
+                                        Email</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['email', 'template-alert'])}}">Alert Email</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['email', 'template-alert']) }}">Alert Email</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['email', 'template-billing'])}}">Billing Email</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['email', 'template-billing']) }}">Billing Email</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarEmailTemplates-->
@@ -418,31 +480,38 @@
                         <div class="collapse " id="sidebarPages">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'profile'])}}">Profile</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['pages', 'profile']) }}">Profile</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'notifications'])}}">Notifications</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['pages', 'notifications']) }}">Notifications</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'timeline'])}}">Timeline</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['pages', 'timeline']) }}">Timeline</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'treeview'])}}">Treeview</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['pages', 'treeview']) }}">Treeview</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'starter'])}}">Starter Page</a>
+                                    <a class="nav-link" href="{{ route('second', ['pages', 'starter']) }}">Starter
+                                        Page</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'pricing'])}}">Pricing</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['pages', 'pricing']) }}">Pricing</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'blogs'])}}">Blogs</a>
+                                    <a class="nav-link" href="{{ route('second', ['pages', 'blogs']) }}">Blogs</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'faqs'])}}">FAQs</a>
+                                    <a class="nav-link" href="{{ route('second', ['pages', 'faqs']) }}">FAQs</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['pages', 'gallery'])}}">Gallery</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['pages', 'gallery']) }}">Gallery</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarPages-->
@@ -459,34 +528,42 @@
                                     <a class="nav-link" href="{{ route('second', ['auth', 'login']) }}">Log in</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['auth', 'register'])}}">Register</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['auth', 'register']) }}">Register</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['auth', 'recover-pw'])}}">Re-Password</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['auth', 'recover-pw']) }}">Re-Password</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['auth', 'lock-screen'])}}">Lock Screen</a>
+                                    <a class="nav-link" href="{{ route('second', ['auth', 'lock-screen']) }}">Lock
+                                        Screen</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['auth', 'maintenance'])}}">Maintenance</a>
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['auth', 'maintenance']) }}">Maintenance</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['auth', 'error-404'])}}">Error 404</a>
+                                    <a class="nav-link" href="{{ route('second', ['auth', 'error-404']) }}">Error
+                                        404</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['auth', 'error-500'])}}">Error 500</a>
+                                    <a class="nav-link" href="{{ route('second', ['auth', 'error-500']) }}">Error
+                                        500</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarAuthentication-->
                     </li><!--end nav-item-->
                 </ul><!--end navbar-nav--->
                 <div class="update-msg text-center">
-                    <div class="d-flex justify-content-center align-items-center thumb-lg update-icon-box  rounded-circle mx-auto">
+                    <div
+                        class="d-flex justify-content-center align-items-center thumb-lg update-icon-box  rounded-circle mx-auto">
                         <i class="iconoir-peace-hand h3 align-self-center mb-0 text-primary"></i>
                     </div>
                     <h5 class="mt-3">Mannat Themes</h5>
                     <p class="mb-3 text-muted">Rizz is a high quality web applications.</p>
-                    <a href="javascript: void(0);" class="btn text-primary shadow-sm rounded-pill">Upgrade your plan</a>
+                    <a href="javascript: void(0);" class="btn text-primary shadow-sm rounded-pill">Upgrade your
+                        plan</a>
                 </div>
             </div>
         </div><!--end startbar-collapse-->
