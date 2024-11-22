@@ -34,17 +34,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($Komunitas as $K)
                             <tr>
                                 <td><img src="/images/logos/bundaliterasi.png" alt="" class="rounded-circle thumb-md me-1 d-inline">
-                                    Bunda Literasi
+                                    {{ $K->nm_komunitas }}
                                 </td>
-                                <td>Aktif</td>
-                                <td>25/05/2024</td>
-                                <td>Hj. Emma Dety Permanawati, S.PD.I., MM.</td>
+                                <td>{{ $K->status }}</td>
+                                <td>{{ $K->tanggal_dibuat }}</td>
+                                <td>{{ $K->Ketua->nm_member ?? '' }}</td>
                                 <td class="text-end d-flex justify-content-center">
-                                    <span style="font-size: 24px; color: black;">&gt;</span>
+                                    <a href=""><span style="font-size: 24px; color: black;">&gt;</span></a>
                                 </td> 
                             </tr>
+                            @endforeach
                         </tbody>
                     </table><!--end /table-->
                 </div><!--end /tableresponsive-->
@@ -546,6 +548,6 @@
             </div><!--end card-body-->
         </div><!--end card-->
     </div> <!--end col-->
-</div><!--end row--> --}} --
+</div><!--end row--> --}}
 
 @endsection

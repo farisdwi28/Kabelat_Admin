@@ -10,5 +10,6 @@ class MemberKomunitas extends Model
     use HasFactory;
     protected $table="member_komunitas";
     protected $primaryKey="kd_member";
-    
+    public $timestamps = false;
+    protected $keyType = 'string';
 }

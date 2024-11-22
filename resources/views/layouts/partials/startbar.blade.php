@@ -26,6 +26,12 @@
                             <span>Member Komunitas</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="iconoir-user-bag menu-icon"></i>
+                            <span>Kelola User</span>
+                        </a>
+                    </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
@@ -324,9 +330,9 @@
                         </a>
                         <div class="collapse " id="sidebarTables">
                             <ul class="nav flex-column">
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ route('second', ['tables', 'basic'])}}">Basic</a>
-                                </li><!--end nav-item-->
+                                </li><!--end nav-item--> --}}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('second', ['tables', 'datatable'])}}">Datatables</a>
                                 </li><!--end nav-item-->

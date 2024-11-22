@@ -387,7 +387,7 @@
                                             <div class="flex-grow-1 text-truncate">
                                                 <h6 class="m-0 text-truncate">Bunda Literasi</h6>
                                                 <a href="#"
-                                                    class="font-12 text-muted text-decoration-underline">400 diskusi diposting hari ini</a>
+                                                    class="font-12 text-muted text-decoration-underline">400 laporan diposting hari ini</a>
                                             </div><!--end media body-->
                                         </div><!--end media-->
                                     </td>
@@ -421,7 +421,7 @@
                                             <div class="flex-grow-1 text-truncate">
                                                 <h6 class="m-0 text-truncate">Bunda Literasi</h6>
                                                 <a href="#"
-                                                    class="font-12 text-muted text-decoration-underline">400 diskusi diposting hari ini</a>
+                                                    class="font-12 text-muted text-decoration-underline">400 kegiatan diposting hari ini</a>
                                             </div><!--end media body-->
                                         </div><!--end media-->
                                     </td>

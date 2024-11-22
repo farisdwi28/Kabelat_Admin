@@ -1,18 +1,16 @@
 <div class="topbar d-print-none">
     <div class="container-xxl">
-        <nav class="topbar-custom d-flex justify-content-between" id="topbar-custom">    
-        
-
-            <ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">                        
+        <nav class="topbar-custom d-flex justify-content-between" id="topbar-custom">
+            <ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
                 <li>
                     <button class="nav-link mobile-menu-btn nav-icon" id="togglemenu">
                         <i class="iconoir-menu-scale"></i>
                     </button>
                 </li> 
                 <li class="mx-3 welcome-text">
-                    <h3 class="mb-0 fw-bold text-truncate">Good Morning, Super Admin!</h3>
+                    <h3 class="mb-0 fw-bold text-truncate">Good Morning, {{ Auth::user() -> name }}</h3>
                     <!-- <h6 class="mb-0 fw-normal text-muted text-truncate fs-14">Here's your overview this week.</h6> -->
-                </li>                   
+                </li>
             </ul>
             <ul class="topbar-item list-unstyled d-inline-flex align-items-center mb-0">
                 <li class="hide-phone app-search">
@@ -220,7 +218,7 @@
                                 <img src="/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
                             </div>
                             <div class="flex-grow-1 ms-2 text-truncate align-self-center">
-                                <h6 class="my-0 fw-medium text-dark fs-13">Super Admin</h6>
+                                <h6 class="my-0 fw-medium text-dark fs-13">{{ Auth::user() -> name }}</h6>
                                 <small class="text-muted mb-0">Dispusip</small>
                             </div><!--end media-body-->
                         </div>

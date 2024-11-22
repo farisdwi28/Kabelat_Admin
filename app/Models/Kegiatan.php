@@ -10,4 +10,5 @@ class Kegiatan extends Model
     use HasFactory;
     protected $table="kegiatan";
     protected $primaryKey="kd_kegiatan";
+    public $timestamps = false;
 }
