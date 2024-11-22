@@ -12,7 +12,7 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h4 class="card-title">Customers Details</h4>
+                        <h4 class="card-title">Kelola Penduduk</h4>
                     </div><!--end col-->
                 </div> <!--end row-->
             </div><!--end card-header-->
@@ -24,22 +24,19 @@
                                 <th>Nama User</th>
                                 <th>Tempat,Tanggal Lahir</th>
                                 <th>Alamat</th>
-                                <th>Kelurahan</th>
-                                <th>Kecamatan</th>
                                 <th>Jenis Kelamin</th>
                                 <th class="text-end">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($Penduduk as $P)
                             <tr>
-                                <td><img src="/images/logos/lang-logo/chatgpt.png" alt="" class="rounded-circle thumb-md me-1 d-inline">
-                                    Micromin
+                                <td><img src="{{$P->foto_pen}}" alt="" class="rounded-circle thumb-md me-1 d-inline">
+                                    {{ $P->nm_pen }}
                                 </td>
-                                <td>9958</td>
-                                <td>Curicó</td>
-                                <td>2005/02/11</td>
-                                <td>37%</td>
-                                <td>3</td>
+                                <td>{{ $P->tempat_lahir }},{{ $P->tgl_lahir }}</td>
+                                <td>{{ $P->alamat }}</td>
+                                <td>{{ $P->jk }}</td>
                                 <td class="text-end">
                                     <div class="dropdown d-inline-block">
                                         <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -53,6 +50,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
