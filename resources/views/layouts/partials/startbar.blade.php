@@ -28,7 +28,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('second', ['user', 'users']) }}">
+                        <a class="nav-link" href="{{ route('penduduk') }}">
                             <i class="iconoir-user-bag menu-icon"></i>
                             <span>Kelola User</span>
                         </a>

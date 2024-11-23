@@ -14,7 +14,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/Komunitas/komunitas', [KomunitasController::class, 'index'])->name('komunitas');
     Route::get('/Komunitas/members/{kd_komunitas}', [KomunitasController::class, 'showMembers'])->name('komunitas.members');
-    Route::get('/user/users', [PendudukController::class, 'index'])->name('penduduk');
+    Route::prefix('user')->group(function () {
+        Route::get('/users', [PendudukController::class, 'index'])->name('penduduk');
+        Route::get('/tambahUsers', [PendudukController::class, 'create'])->name('penduduk.create');
+        Route::post('/tambahUsers', [PendudukController::class, 'store'])->name('penduduk.store');
+        Route::delete('/users/{kd_pen}', [PendudukController::class, 'destroy'])->name('penduduk.delete');
+        Route::get('/edit/{kd_pen}', [PendudukController::class, 'edit'])->name('penduduk.edit');
+        Route::put('/edit/{kd_pen}', [PendudukController::class, 'update'])->name('penduduk.update');
+    });
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
     Route::get('{any}', [RoutingController::class, 'root'])->name('any');

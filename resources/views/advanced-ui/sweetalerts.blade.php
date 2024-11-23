@@ -18,12 +18,9 @@
                     </div> <!--end row-->
                 </div><!--end card-header-->
                 <div class="card-body pt-0">
-                    <button type="button" class="btn btn-primary btn-sm" data-swal-template="#my-template"
-                            id="TriggerModalToast">Trigger modal
-                    </button>
-                    <button type="button" class="btn btn-primary btn-sm" data-swal-toast-template="#my-template"
+                    {{-- <button type="button" class="btn btn-primary btn-sm" data-swal-toast-template="#my-template"
                             id="TriggerModalToast">Trigger toast
-                    </button>
+                    </button> --}}
                     <template id="my-template">
                         <swal-title>
                             Save changes to "Untitled 1" before closing?
@@ -35,13 +32,10 @@
                         <swal-button type="cancel">
                             Cancel
                         </swal-button>
-                        <swal-button type="deny">
-                            Close without Saving
-                        </swal-button>
                         <swal-param name="allowEscapeKey" value="false"/>
                         <swal-param name="customClass" value='{ "popup": "my-popup" }'/>
                     </template>
-                </div><!--end card-body-->
+                </div>
             </div><!--end card-->
         </div> <!--end col-->
         <div class="col-md-6 col-lg-6">
@@ -251,9 +245,6 @@
                                     </swal-button>
                                     <swal-button type="cancel">
                                         Cancel
-                                    </swal-button>
-                                    <swal-button type="deny">
-                                        Close without Saving
                                     </swal-button>
                                     <swal-param name="allowEscapeKey" value="false"/>
                                     <swal-param name="customClass" value='{ "popup": "my-popup" }'/>

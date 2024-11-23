@@ -11,5 +11,14 @@ class Penduduk extends Model
     protected $table="penduduk";
     protected $primaryKey="kd_pen";
     public $timestamps = false;
+    protected $keyType = 'string';
     
+    protected $fillable = [
+        'nm_pen',
+        'jk',
+        'tgl_lahir',
+        'tempat_lahir',
+        'alamat',
+        'foto_pen'
+    ];
 }
