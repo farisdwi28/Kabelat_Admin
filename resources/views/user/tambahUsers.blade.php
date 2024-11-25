@@ -30,17 +30,17 @@
                                     <small class="form-text text-muted">Contoh : Ahmad Fahri</small>
                                 </div>
                             </div>
-                            {{-- <div class="col-md-4">
+                            <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="nik">Nomor NIK *</label>
-                                    <input type="text" class="form-control @error('nik') is-invalid @enderror"
-                                        name="nik" id="nik" required value="{{ old('nik') }}"
-                                        placeholder="Masukkan nomor NIK">
-                                    @error('nik')
+                                    <label class="form-label" for="no_ktp">Nomor KTP *</label>
+                                    <input type="text" class="form-control @error('no_ktp') is-invalid @enderror"
+                                        name="no_ktp" id="no_ktp" required value="{{ old('no_ktp') }}"
+                                        placeholder="Masukkan nomor KTP 16 digit">
+                                    @error('no_ktp')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="jk">Jenis Kelamin *</label>

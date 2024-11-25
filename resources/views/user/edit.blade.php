@@ -37,17 +37,17 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- <div class="col-md-4">
+                            <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label">Nomor NIK *</label>
-                                    <input type="text" class="form-control @error('nik') is-invalid @enderror"
-                                        name="nik" value="{{ old('nik', $Penduduk->nik) }}" required
-                                        placeholder="Masukkan nomor NIK">
-                                    @error('nik')
+                                    <label class="form-label">Nomor KTP *</label>
+                                    <input type="text" class="form-control @error('no_ktp') is-invalid @enderror"
+                                        name="no_ktp" value="{{ old('no_ktp', $Penduduk->no_ktp) }}" required
+                                        placeholder="Masukkan nomor KTP 16 digit">
+                                    @error('no_ktp')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label">Jenis Kelamin *</label>

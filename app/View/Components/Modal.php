@@ -16,8 +16,9 @@ class Modal extends Component
     public $jenisKelamin;
     public $alamat;
     public $foto;
+    public $ktp;
 
-    public function __construct($id, $title, $nama = '', $tempat = '', $tanggal = '', $jenisKelamin = '', $alamat = '', $foto = '')
+    public function __construct($id, $title, $nama = '', $tempat = '', $tanggal = '', $jenisKelamin = '', $alamat = '', $foto = '', $ktp = '')
     {
         $this->id = $id;
         $this->title = $title;
@@ -27,6 +28,7 @@ class Modal extends Component
         $this->jenisKelamin = $jenisKelamin;
         $this->alamat = $alamat;
         $this->foto = $foto;
+        $this->ktp = $ktp;
     }
 
     /**

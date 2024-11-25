@@ -19,6 +19,7 @@ class Penduduk extends Model
         'tgl_lahir',
         'tempat_lahir',
         'alamat',
-        'foto_pen'
+        'foto_pen',
+        'no_ktp'
     ];
 }

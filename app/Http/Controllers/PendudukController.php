@@ -28,6 +28,7 @@ class PendudukController extends Controller
             $validated = $request->validate([
                 'nm_pen' => 'required|string|max:255',
                 'jk' => 'required|in:Laki-laki,Perempuan',
+                'no_ktp' => 'required|string|size:16|unique:penduduk,no_ktp',
                 'tgl_lahir' => 'required|date',
                 'tempat_lahir' => 'required|string|max:255',
                 'alamat' => 'required|string',
@@ -41,6 +42,7 @@ class PendudukController extends Controller
             $penduduk->tgl_lahir = $validated['tgl_lahir'];
             $penduduk->tempat_lahir = $validated['tempat_lahir'];
             $penduduk->alamat = $validated['alamat'];
+            $penduduk->no_ktp = $validated['no_ktp'];
 
             if ($request->hasFile('foto')) {
                 $image = $request->file('foto');
@@ -100,7 +102,8 @@ class PendudukController extends Controller
                 'tgl_lahir' => 'required|date',
                 'tempat_lahir' => 'required|string|max:255',
                 'alamat' => 'required|string',
-                'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'no_ktp' => 'required|string|size:16|unique:penduduk,no_ktp,' . $kd_pen . ',kd_pen'
             ]);
 
             // Ambil data penduduk berdasarkan ID
@@ -112,6 +115,7 @@ class PendudukController extends Controller
             $Penduduk->tgl_lahir = $request->tgl_lahir;
             $Penduduk->tempat_lahir = $request->tempat_lahir;
             $Penduduk->alamat = $request->alamat;
+            $Penduduk->no_ktp = $request->no_ktp;
 
             if ($request->hasFile('foto')) {
                 $image = $request->file('foto');

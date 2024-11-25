@@ -33,6 +33,24 @@
                             <span>Kelola User</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarKomunitas" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarKomunitas">
+                            <i class="iconoir-community menu-icon"></i>
+                            <span>Komunitas</span>
+                        </a>
+                        <div class="collapse " id="sidebarKomunitas">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('second', ['tables', 'basic'])}}">Kelola Komunitas</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="{{ route('second', ['tables', 'datatable']) }}">Kelola Struktur</a>
+                                </li><!--end nav-item-->
+                            </ul><!--end nav-->
+                        </div><!--end startbarTables-->
+                    </li><!--end nav-item-->
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">

@@ -53,9 +53,9 @@
                                                     <i class="las la-ellipsis-v fs-20 text-muted"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-end"
-                                                    aria-labelledby="dLabel{{ $P->id }}">
+                                                    aria-labelledby="dLabel{{ $P->kd_pen }}">
                                                     <a class="dropdown-item" data-bs-toggle="modal"
-                                                        data-bs-target="#modal{{ $P->id }}">Lihat Penduduk</a>
+                                                        data-bs-target="#modal{{ $P->kd_pen }}">Lihat Penduduk</a>
                                                     <a class="dropdown-item" href="edit/{{ $P->kd_pen }}">Ubah Data</a>
                                                     <a class="dropdown-item" href="#"
                                                         onclick="confirmDelete('{{ $P->kd_pen }}')">Hapus Data</a>
@@ -70,9 +70,9 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <x-modal id="modal{{ $P->id }}" title="Detail Penduduk" :nama="$P->nm_pen"
+                                    <x-modal id="modal{{ $P->kd_pen }}" title="Detail Penduduk" :nama="$P->nm_pen"
                                         :tempat="$P->tempat_lahir" :tanggal="$P->tgl_lahir" :jenisKelamin="$P->jk" :alamat="$P->alamat"
-                                        :foto="$P->foto_pen" />
+                                        :foto="$P->foto_pen" :ktp="$P->no_ktp" />
                                 @endforeach
                             </tbody>
                         </table>

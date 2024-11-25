@@ -1,4 +1,5 @@
-<div class="modal fade" id="{{ $id }}" tabindex="-1" role="dialog" aria-labelledby="{{ $id }}Label" aria-hidden="true">
+<div class="modal fade" id="{{ $id }}" tabindex="-1" role="dialog" aria-labelledby="{{ $id }}Label"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -12,7 +13,8 @@
                     </div>
                     <div class="col-lg-8">
                         <h5>{{ $nama }}</h5>
-                    <p class="mb-3">Alamat: {{ $alamat }}</p>
+                        <p class="mb-3">E-KTP: {{ $ktp }}</p>
+                        <p class="mb-3">Alamat: {{ $alamat }}</p>
                         <p class="mb-3">Tempat, Tanggal Lahir: {{ $tempat }}, {{ $tanggal }}</p>
                         <p class="mb-3">Jenis Kelamin: {{ $jenisKelamin }}</p>
                     </div>
