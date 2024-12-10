@@ -95,7 +95,6 @@ class PendudukController extends Controller
     public function update(Request $request, $kd_pen)
     {
         try {
-            // Validasi input
             $request->validate([
                 'nm_pen' => 'required|string|max:255',
                 'jk' => 'required|in:Laki-laki,Perempuan',
@@ -106,10 +105,8 @@ class PendudukController extends Controller
                 'no_ktp' => 'required|string|size:16|unique:penduduk,no_ktp,' . $kd_pen . ',kd_pen'
             ]);
 
-            // Ambil data penduduk berdasarkan ID
             $Penduduk = Penduduk::findOrFail($kd_pen);
 
-            // Update data umum
             $Penduduk->nm_pen = $request->nm_pen;
             $Penduduk->jk = $request->jk;
             $Penduduk->tgl_lahir = $request->tgl_lahir;
@@ -143,7 +140,6 @@ class PendudukController extends Controller
             $imageContent = file_get_contents($image);
             $mimeType = $image->getMimeType();
 
-            // Encode ke Base64
             $base64Image = 'data:' . $mimeType . ';base64,' . base64_encode($imageContent);
 
             return $base64Image;

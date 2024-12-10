@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\kelolaKomunitasController;
 use App\Http\Controllers\KomunitasController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\RoutingController;
@@ -21,6 +22,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/users/{kd_pen}', [PendudukController::class, 'destroy'])->name('penduduk.delete');
         Route::get('/edit/{kd_pen}', [PendudukController::class, 'edit'])->name('penduduk.edit');
         Route::put('/edit/{kd_pen}', [PendudukController::class, 'update'])->name('penduduk.update');
+    });
+    Route::prefix('kelolaKomunitas')->group(function () {
+        Route::get('/komunitas', [kelolaKomunitasController::class, 'index'])->name('kelolaKomunitas');
+        Route::get('/tambahKomunitas', [kelolaKomunitasController::class, 'create'])->name('kelolaKomunitas.create');
+        Route::post('/tambahKomunitas', [kelolaKomunitasController::class, 'store'])->name('kelolaKomunitas.store');
+        Route::get('/kelola-komunitas/edit/{kd_komunitas}', [kelolaKomunitasController::class, 'edit'])->name('kelolaKomunitas.edit');
+        Route::put('/kelola-komunitas/update/{kd_komunitas}', [kelolaKomunitasController::class, 'update'])->name('kelolaKomunitas.update');
+        Route::delete('/kelola-komunitas/delete/{kd_komunitas}', [kelolaKomunitasController::class, 'destroy'])->name('kelolaKomunitas.delete');
     });
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');

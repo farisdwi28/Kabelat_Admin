@@ -23,7 +23,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('komunitas.members') ? 'active' : '' }}"
                             href="{{ route('second', ['Komunitas', 'komunitas']) }}">
-                            <i class="iconoir-community menu-icon"></i>
+                            <i class="iconoir-group menu-icon"></i>
                             <span>Member Komunitas</span>
                         </a>
                     </li>
@@ -34,23 +34,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#sidebarKomunitas" data-bs-toggle="collapse" role="button"
+                        <a class="nav-link {{ Route::is('kelolaKomunitas.create') ? 'active' : '' }}" href="#sidebarKomunitas" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarKomunitas">
                             <i class="iconoir-community menu-icon"></i>
                             <span>Komunitas</span>
                         </a>
-                        <div class="collapse " id="sidebarKomunitas">
+                        <div class="collapse {{ Route::is('kelolaKomunitas.create') ? 'show' : '' }}" area id="sidebarKomunitas">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['tables', 'basic'])}}">Kelola Komunitas</a>
+                                    <a class="nav-link {{ Route::is('kelolaKomunitas.create') ? 'active' : '' }}"
+                                        href="{{ route('second', ['kelolaKomunitas', 'komunitas']) }}">Kelola
+                                        Komunitas</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link"
-                                        href="{{ route('second', ['tables', 'datatable']) }}">Kelola Struktur</a>
+                                    <a class="nav-link" href="{{ route('second', ['tables', 'datatable']) }}">Kelola
+                                        Struktur</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
-                        </div><!--end startbarTables-->
-                    </li><!--end nav-item-->
+                        </div>
+                    </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
@@ -399,7 +401,7 @@
                         <div class="collapse " id="sidebarTables">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['tables', 'basic'])}}">Basic</a>
+                                    <a class="nav-link" href="{{ route('second', ['tables', 'basic']) }}">Basic</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
                                     <a class="nav-link"

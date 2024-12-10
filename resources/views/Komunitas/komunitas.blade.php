@@ -22,7 +22,7 @@
                                     <div class="d-flex align-items-center">
                                         <span>Status</span>
                                         <select class="form-select form-select-sm ms-2" id="status-filter">
-                                            <option value="all">    Semua</option>
+                                            <option value="all">Semua</option>
                                             <option value="active">Aktif</option>
                                             <option value="inactive">Tidak Aktif</option>
                                         </select>
@@ -36,7 +36,7 @@
                         <tbody>
                             @foreach ($Komunitas as $K)
                             <tr>
-                                <td><img src="/images/logos/bundaliterasi.png" alt="" class="rounded-circle thumb-md me-1 d-inline">
+                                <td><img src="{{ $K->logo }}" alt="" class="rounded-circle thumb-md me-1 d-inline">
                                     {{ $K->nm_komunitas }}
                                 </td>
                                 <td>{{ $K->status }}</td>
