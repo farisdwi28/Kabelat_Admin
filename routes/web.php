@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\kelolaKomunitasController;
 use App\Http\Controllers\KomunitasController;
 use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\programDispusipController;
 use App\Http\Controllers\RoutingController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/kelola-komunitas/edit/{kd_komunitas}', [kelolaKomunitasController::class, 'edit'])->name('kelolaKomunitas.edit');
         Route::put('/kelola-komunitas/update/{kd_komunitas}', [kelolaKomunitasController::class, 'update'])->name('kelolaKomunitas.update');
         Route::delete('/kelola-komunitas/delete/{kd_komunitas}', [kelolaKomunitasController::class, 'destroy'])->name('kelolaKomunitas.delete');
+    });
+    Route::prefix('programDispusip')->group(function () {
+        Route::post('/programDispusip/{id}/{status}', [programDispusipController::class, 'updateProgramStatus'])->name('programDispusip.updateStatus');
+        Route::get('/programDispusip', [programDispusipController::class, 'index'])->name('programDispusip');
     });
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-startbar="light" data-bs-theme="light">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 <head>
     @include('layouts.partials/title-meta', ['title' => $title])
