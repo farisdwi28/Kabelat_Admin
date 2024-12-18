@@ -62,14 +62,14 @@
                                 </div>
                             </div>
 
-                            <div class="input-group mb-3">
-                                <input type="file" class="form-control @error('foto') is-invalid @enderror"
-                                    name="foto" id="foto" required>
-                                <label class="input-group-text" for="foto">Sampul Program</label>
-                                @error('foto')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <div class="mb-3">
+                                <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto"
+                                    onchange="previewImage()" required>
+                                <img id="image-preview" class="img-thumbnail mt-2" style="display: none;"
+                                    alt="Preview Foto">
+                                <small class="form-text text-muted">Ukuran foto harus 1920x400px</small>
                             </div>
+
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="tentang_program" class="form-label">Tentang Program *</label>
@@ -138,5 +138,39 @@
                 });
             });
         });
+
+        function previewImage() {
+            const preview = document.getElementById('image-preview');
+            const fileInput = document.getElementById('foto');
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            // Reset preview jika file kosong
+            if (!file) {
+                preview.style.display = 'none';
+                fileInput.value = ''; // Reset input jika tidak valid
+                return;
+            }
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+
+                // Tunggu hingga gambar selesai dimuat
+                preview.onload = function() {
+                    // Periksa dimensi gambar
+                    const validWidth = 1920;
+                    const validHeight = 400;
+
+                    if (preview.naturalWidth !== validWidth || preview.naturalHeight !== validHeight) {
+                        alert(`Ukuran foto harus ${validWidth}x${validHeight} piksel`);
+                        preview.style.display = 'none'; // Sembunyikan preview
+                        fileInput.value = ''; // Reset input
+                    }
+                };
+            };
+
+            reader.readAsDataURL(file);
+        }
     </script>
 @endsection

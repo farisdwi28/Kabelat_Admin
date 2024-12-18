@@ -75,13 +75,23 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Sampul Program</label>
-                                <input type="file" class="form-control" name="foto" id="foto">
-                                @if ($program->sampul_program)
-                                    <img src="{{ $program->sampul_program }}" alt="Sampul Program"
-                                        class="img-thumbnail mt-2">
-                                @endif
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="foto" class="form-label">Sampul Program</label>
+                                    <input type="file" class="form-control" name="foto" id="foto"
+                                        onchange="previewImage()">
+                                    @if ($program->sampul_program)
+                                        <img src="{{ old('sampul_program',$program->sampul_program) }}" id="image-preview"
+                                            class="img-thumbnail mt-2" alt="Sampul Program">
+                                    @else
+                                        <img id="image-preview" class="img-thumbnail mt-2" style="display: none;"
+                                            alt="Pratinjau Foto">
+                                    @endif
+                                    @error('foto')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <small class="form-text text-muted">Ukuran foto harus 1920x400px</small>
+                                </div>
                             </div>
 
                             <div class="col-md-12">
@@ -159,5 +169,37 @@
                 wrapper.appendChild(newInputGroup);
             });
         });
+
+        function previewImage() {
+            const preview = document.getElementById('image-preview');
+            const fileInput = document.getElementById('foto');
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            // Reset jika tidak ada file
+            if (!file) {
+                preview.style.display = 'none';
+                return;
+            }
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+
+                preview.onload = function() {
+                    // Validasi dimensi gambar
+                    const validWidth = 1920;
+                    const validHeight = 400;
+
+                    if (preview.naturalWidth !== validWidth || preview.naturalHeight !== validHeight) {
+                        alert(`Ukuran foto harus ${validWidth}x${validHeight} piksel`);
+                        preview.style.display = 'none';
+                        fileInput.value = '';
+                    }
+                };
+            };
+
+            reader.readAsDataURL(file);
+        }
     </script>
 @endsection
