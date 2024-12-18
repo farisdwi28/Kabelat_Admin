@@ -35,6 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('programDispusip')->group(function () {
         Route::post('/programDispusip/{id}/{status}', [programDispusipController::class, 'updateProgramStatus'])->name('programDispusip.updateStatus');
         Route::get('/programDispusip', [programDispusipController::class, 'index'])->name('programDispusip');
+        Route::get('/tambahProgram', [programDispusipController::class, 'create'])->name('programDispusip.create');
+        Route::post('/tambahProgram', [programDispusipController::class, 'store'])->name('programDispusip.store');
+        Route::get('/editProgram/{kd_program}', [programDispusipController::class, 'edit'])->name('programDispusip.edit');
+        Route::put('/editProgram/{kd_program}', [programDispusipController::class, 'update'])->name('programDispusip.update');
     });
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');

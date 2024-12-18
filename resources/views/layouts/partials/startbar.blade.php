@@ -54,7 +54,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('programDispusip') }}">
+                        <a class="nav-link  {{ Route::is('programDispusip.edit','programDispusip.create') ? 'active' : '' }}" href="{{ route('programDispusip') }}">
                             <i class="iconoir-calendar menu-icon"></i>
                             <span>Kelola Program Dispusip</span>
                         </a>

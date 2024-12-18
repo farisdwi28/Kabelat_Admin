@@ -14,7 +14,12 @@ class Inisiator extends Model
     public $timestamps = false;
     protected $keyType = 'string';
 
-    public function program(){
+    protected $fillable = [
+        'kd_inisiator',
+    ];
+
+    public function program()
+    {
         return $this->belongsTo(Program::class, 'kd_program');
     }
 }

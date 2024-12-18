@@ -12,7 +12,7 @@
                             <h4 class="card-title">Kelola Program</h4>
                         </div>
                         <div class="col-auto">
-                            <a href="{{ route('second', ['kelolaKomunitas', 'tambahKomunitas']) }}">
+                            <a href="{{ route('programDispusip.create') }}">
                                 <button class="btn bg-primary-subtle text-primary">
                                     <i class="fas fa-plus me-1"></i>Tambah Program
                                 </button>
@@ -63,7 +63,7 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a href="">
+                                            <a href="{{ route('programDispusip.edit', ['kd_program' => $P->kd_program]) }}">
                                                 <i class="las la-pen text-secondary font-16"></i>
                                             </a>
                                         </td>
@@ -79,13 +79,28 @@
 @endsection
 
 @section('script')
+    @vite(['resources/js/pages/datatable.init.js'])
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const updateStatusLinks = document.querySelectorAll('.update-status');
 
             updateStatusLinks.forEach(link => {
+                const currentStatusButton = link.closest('.dropdown').querySelector('button');
+                const currentStatus = currentStatusButton.textContent.toLowerCase().trim();
+                const linkStatus = link.dataset.status;
+
+                if (currentStatus === linkStatus) {
+                    link.classList.add('disabled');
+                    link.setAttribute('aria-disabled', 'true');
+                    link.style.pointerEvents = 'none';
+                    link.style.opacity = '0.5';
+                }
+
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
+                    if (this.classList.contains('disabled')) {
+                        e.preventDefault();
+                        return;
+                    }
 
                     const programId = this.dataset.id;
                     const newStatus = this.dataset.status;
@@ -110,6 +125,16 @@
                                 if (data.success) {
                                     alert('Status berhasil diperbarui.');
 
+                                    // Reset status pada semua dropdown
+                                    const allDropdownLinks = this.closest('.dropdown')
+                                        .querySelectorAll('.update-status');
+                                    allDropdownLinks.forEach(dropdownLink => {
+                                        dropdownLink.classList.remove('disabled');
+                                        dropdownLink.removeAttribute('aria-disabled');
+                                        dropdownLink.style.pointerEvents = '';
+                                        dropdownLink.style.opacity = '';
+                                    });
+
                                     // Perbarui tombol status
                                     const button = this.closest('.dropdown').querySelector(
                                         'button');
@@ -118,6 +143,17 @@
                                     button.className = newStatus === 'aktif' ?
                                         'btn btn-success btn-sm dropdown-toggle' :
                                         'btn btn-danger btn-sm dropdown-toggle';
+
+                                    // Disable link untuk status yang baru saja dipilih
+                                    const newStatusLink = Array.from(allDropdownLinks).find(
+                                        link =>
+                                        link.dataset.status === newStatus);
+                                    if (newStatusLink) {
+                                        newStatusLink.classList.add('disabled');
+                                        newStatusLink.setAttribute('aria-disabled', 'true');
+                                        newStatusLink.style.pointerEvents = 'none';
+                                        newStatusLink.style.opacity = '0.5';
+                                    }
                                 } else {
                                     alert('Gagal memperbarui status: ' + data.message);
                                 }
