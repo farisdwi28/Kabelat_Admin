@@ -20,6 +20,6 @@ class Inisiator extends Model
 
     public function program()
     {
-        return $this->belongsTo(Program::class, 'kd_program');
+        return $this->belongsTo(Program::class, 'kd_program', 'kd_program');
     }
 }

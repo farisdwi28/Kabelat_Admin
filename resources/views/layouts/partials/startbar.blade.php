@@ -34,12 +34,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('kelolaKomunitas.create') ? 'active' : '' }}" href="#sidebarKomunitas" data-bs-toggle="collapse" role="button"
+                        <a class="nav-link {{ Route::is('kelolaKomunitas.create', 'detailStruktur') ? 'active' : '' }}" href="#sidebarKomunitas" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarKomunitas">
                             <i class="iconoir-community menu-icon"></i>
                             <span>Komunitas</span>
                         </a>
-                        <div class="collapse {{ Route::is('kelolaKomunitas.create') ? 'show' : '' }}" area id="sidebarKomunitas">
+                        <div class="collapse {{ Route::is('kelolaKomunitas.create', 'detailStruktur') ? 'show' : '' }}" area id="sidebarKomunitas">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link {{ Route::is('kelolaKomunitas.create') ? 'active' : '' }}"
@@ -47,7 +47,7 @@
                                         Komunitas</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('second', ['tables', 'datatable']) }}">Kelola
+                                    <a class="nav-link {{ Route::is('detailStruktur') ? 'active' : '' }}" href="{{ route('kelolaStruktur') }}">Kelola
                                         Struktur</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->

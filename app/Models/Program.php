@@ -14,8 +14,8 @@ class Program extends Model
     public $timestamps = false;
     protected $keyType = 'string';
 
-    public function inisiator(): BelongsTo
+    public function inisiator()
     {
-        return $this->belongsTo(Inisiator::class, 'kd_program', 'kd_program');
+        return $this->hasMany(Inisiator::class, 'kd_program', 'kd_program');
     }
 }

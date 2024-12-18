@@ -46,7 +46,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="nm_inisiator[]" class="form-label">Nama Inisiator *</label>

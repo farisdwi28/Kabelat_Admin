@@ -37,7 +37,8 @@
                                     <tr>
                                         <td>{{ $P->nm_program }}</td>
                                         <td>{{ $P->tanggal_dibuat }}</td>
-                                        <td>{{ $P->inisiator->nm_inisiator ?? '-' }}</td>
+                                        <td> {{ $P->inisiator->pluck('nm_inisiator')->implode(', ') }}</td>
+                                       
                                         <td>
                                             <div class="dropdown">
                                                 <button

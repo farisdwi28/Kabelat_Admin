@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\kelolaKomunitasController;
+use App\Http\Controllers\kelolaStrukturController;
 use App\Http\Controllers\KomunitasController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\programDispusipController;
@@ -31,6 +32,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/kelola-komunitas/edit/{kd_komunitas}', [kelolaKomunitasController::class, 'edit'])->name('kelolaKomunitas.edit');
         Route::put('/kelola-komunitas/update/{kd_komunitas}', [kelolaKomunitasController::class, 'update'])->name('kelolaKomunitas.update');
         Route::delete('/kelola-komunitas/delete/{kd_komunitas}', [kelolaKomunitasController::class, 'destroy'])->name('kelolaKomunitas.delete');
+    });
+    Route::prefix('kelolaStruktur')->group(function () {
+        Route::get('/kelolaStruktur', [kelolaStrukturController::class, 'index'])->name('kelolaStruktur');
+        Route::get('/detailStruktur/{id}', [kelolaStrukturController::class, 'showDetail'])->name('detailStruktur');
     });
     Route::prefix('programDispusip')->group(function () {
         Route::post('/programDispusip/{id}/{status}', [programDispusipController::class, 'updateProgramStatus'])->name('programDispusip.updateStatus');
