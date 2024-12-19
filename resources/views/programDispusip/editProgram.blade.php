@@ -50,20 +50,27 @@
                                 <div class="mb-3">
                                     <label for="nm_inisiator[]" class="form-label">Nama Inisiator *</label>
                                     <div id="inisiator-wrapper">
-                                        @foreach ($inisiators as $key => $inisiator)
+                                        @if ($inisiators->count() > 0)
+                                            @foreach ($inisiators as $key => $inisiator)
+                                                <div class="input-group mb-2">
+                                                    <input type="text" class="form-control" name="nm_inisiator[]"
+                                                        value="{{ old('nm_inisiator.' . $key, $inisiator->nm_inisiator) }}"
+                                                        required>
+                                                    @if ($loop->first)
+                                                        <button type="button" class="btn btn-success"
+                                                            id="add-inisiator">+</button>
+                                                    @else
+                                                        <button type="button"
+                                                            class="btn btn-danger remove-inisiator">-</button>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+                                        @else
                                             <div class="input-group mb-2">
-                                                <input type="text" class="form-control" name="nm_inisiator[]"
-                                                    value="{{ old('nm_inisiator.' . $key, $inisiator->nm_inisiator) }}"
-                                                    required>
-                                                @if ($loop->first)
-                                                    <button type="button" class="btn btn-success"
-                                                        id="add-inisiator">+</button>
-                                                @else
-                                                    <button type="button"
-                                                        class="btn btn-danger remove-inisiator">-</button>
-                                                @endif
+                                                <input type="text" class="form-control" name="nm_inisiator[]" required>
+                                                <button type="button" class="btn btn-success" id="add-inisiator">+</button>
                                             </div>
-                                        @endforeach
+                                        @endif
                                     </div>
 
                                     @error('nm_inisiator.0')
@@ -80,7 +87,7 @@
                                     <input type="file" class="form-control" name="foto" id="foto"
                                         onchange="previewImage()">
                                     @if ($program->sampul_program)
-                                        <img src="{{ old('sampul_program',$program->sampul_program) }}" id="image-preview"
+                                        <img src="{{ old('sampul_program', $program->sampul_program) }}" id="image-preview"
                                             class="img-thumbnail mt-2" alt="Sampul Program">
                                     @else
                                         <img id="image-preview" class="img-thumbnail mt-2" style="display: none;"
@@ -142,10 +149,11 @@
             const addButton = document.getElementById('add-inisiator');
             const wrapper = document.getElementById('inisiator-wrapper');
 
-            // Tambahkan event delegation untuk tombol hapus yang sudah ada
+            // Pastikan elemen-elemen ada sebelum menambahkan event listener
+            if (!wrapper || !addButton) return;
+
             wrapper.addEventListener('click', function(event) {
                 if (event.target.classList.contains('remove-inisiator')) {
-                    // Pastikan minimal satu input inisiator tetap tersisa
                     if (wrapper.querySelectorAll('.input-group').length > 1) {
                         event.target.closest('.input-group').remove();
                     } else {
@@ -155,16 +163,14 @@
             });
 
             addButton.addEventListener('click', function() {
-                // Buat elemen input baru
                 const newInputGroup = document.createElement('div');
                 newInputGroup.classList.add('input-group', 'mb-2');
 
                 newInputGroup.innerHTML = `
-                <input type="text" class="form-control" name="nm_inisiator[]" placeholder="Masukkan nama inisiator" required>
-                <button type="button" class="btn btn-danger remove-inisiator">-</button>
-            `;
+            <input type="text" class="form-control" name="nm_inisiator[]" required>
+            <button type="button" class="btn btn-danger remove-inisiator">-</button>
+        `;
 
-                // Tambahkan elemen input ke dalam wrapper
                 wrapper.appendChild(newInputGroup);
             });
         });

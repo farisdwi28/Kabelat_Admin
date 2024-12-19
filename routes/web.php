@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\kelolaKategoriKegiatanController;
 use App\Http\Controllers\kelolaKomunitasController;
 use App\Http\Controllers\kelolaStrukturController;
 use App\Http\Controllers\KomunitasController;
@@ -44,6 +45,12 @@ Route::middleware('auth')->group(function () {
         Route::post('/tambahProgram', [programDispusipController::class, 'store'])->name('programDispusip.store');
         Route::get('/editProgram/{kd_program}', [programDispusipController::class, 'edit'])->name('programDispusip.edit');
         Route::put('/editProgram/{kd_program}', [programDispusipController::class, 'update'])->name('programDispusip.update');
+    });
+    Route::prefix('kelolaKategoriKegiatan')->group(function () {
+        Route::get('/kelolaKategoriKegiatan', [kelolaKategoriKegiatanController::class, 'index'])->name('kategori.index');
+        Route::post('/store', [kelolaKategoriKegiatanController::class, 'store'])->name('kategori.store');
+        Route::put('/update/{kd_katkeg}', [kelolaKategoriKegiatanController::class, 'update'])->name('kategori.update');
+        Route::delete('/delete/{kd_katkeg}', [kelolaKategoriKegiatanController::class, 'destroy'])->name('kategori.destroy');
     });
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');

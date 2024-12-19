@@ -59,6 +59,12 @@
                             <span>Kelola Program Dispusip</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('kategori.index') }}">
+                            <i class="iconoir-activity menu-icon"></i>
+                            <span>Kelola Kategori Kegiatan</span>
+                        </a>
+                    </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
