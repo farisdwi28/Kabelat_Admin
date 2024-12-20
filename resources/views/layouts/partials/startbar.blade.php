@@ -60,6 +60,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="">
+                            <i class="iconoir-running menu-icon"></i>
+                            <span>Kelola Kegiatan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('kategori.index') }}">
                             <i class="iconoir-activity menu-icon"></i>
                             <span>Kelola Kategori Kegiatan</span>

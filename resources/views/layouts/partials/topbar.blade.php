@@ -225,11 +225,11 @@
                         <div class="dropdown-divider mt-0"></div>
                         <small class="text-muted px-2 pb-1 d-block">Account</small>
                         <a class="dropdown-item" href="{{ route('second', ['pages', 'profile'])}}"><i class="las la-user fs-18 me-1 align-text-bottom"></i> Profile</a>
-                        <a class="dropdown-item" href="{{ route('third', ['application', 'ecommerce', 'orders'])}}"><i class="las la-wallet fs-18 me-1 align-text-bottom"></i> Earning</a>
-                        <small class="text-muted px-2 py-1 d-block">Settings</small>                        
+                        {{-- <a class="dropdown-item" href="{{ route('third', ['application', 'ecommerce', 'orders'])}}"><i class="las la-wallet fs-18 me-1 align-text-bottom"></i> Earning</a>
+                        <small class="text-muted px-2 py-1 d-block">Settings</small>
                         <a class="dropdown-item" href="{{ route('second', ['pages', 'profile'])}}"><i class="las la-cog fs-18 me-1 align-text-bottom"></i>Account Settings</a>
                         <a class="dropdown-item" href="{{ route('second', ['auth', 'lock-screen'])}}" target="_blank"><i class="las la-lock fs-18 me-1 align-text-bottom"></i> Lock</a>
-                        <a class="dropdown-item" href="{{ route('second', ['pages', 'faqs'])}}"><i class="las la-question-circle fs-18 me-1 align-text-bottom"></i> Help Center</a>                       
+                        <a class="dropdown-item" href="{{ route('second', ['pages', 'faqs'])}}"><i class="las la-question-circle fs-18 me-1 align-text-bottom"></i> Help Center</a>                        --}}
                         <div class="dropdown-divider mb-0"></div>
                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                             @csrf
