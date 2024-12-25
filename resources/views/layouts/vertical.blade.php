@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-startbar="light" data-bs-theme="light">
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <head>
     @include('layouts.partials/title-meta', ['title' => $title])
-
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     @yield('css')
+    @include('sweetalert::alert')
 
     @include('layouts.partials/head-css')
 </head>
@@ -24,6 +26,9 @@
 
                 @yield('content')
 
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                @stack('scripts')
+
             </div>
 
             @include('layouts.partials/endbar')
@@ -36,8 +41,6 @@
     @include('layouts.partials/vendorjs')
 
     @vite(['resources/js/app.js'])
-
-
 </body>
 
 </html>

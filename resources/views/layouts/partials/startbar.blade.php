@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link {{ Route::is('kelolaKegiatan.create') ? 'active' : '' }}" href="{{ route('kelolaKegiatan.index') }}">
                             <i class="iconoir-running menu-icon"></i>
                             <span>Kelola Kegiatan</span>
                         </a>

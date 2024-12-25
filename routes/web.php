@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\kelolaKategoriKegiatanController;
 use App\Http\Controllers\kelolaKomunitasController;
 use App\Http\Controllers\kelolaStrukturController;
@@ -45,6 +46,14 @@ Route::middleware('auth')->group(function () {
         Route::post('/tambahProgram', [programDispusipController::class, 'store'])->name('programDispusip.store');
         Route::get('/editProgram/{kd_program}', [programDispusipController::class, 'edit'])->name('programDispusip.edit');
         Route::put('/editProgram/{kd_program}', [programDispusipController::class, 'update'])->name('programDispusip.update');
+    });
+    Route::prefix('kelolaKegiatan')->group(function () {
+        Route::get('/kelolaKegiatanProgram', [KegiatanController::class, 'index'])->name('kelolaKegiatan.index');
+        Route::get('/tambahKegiatanProgram', [KegiatanController::class, 'create'])->name('kelolaKegiatan.create');
+        Route::post('/tambahKegiatanProgram', [KegiatanController::class, 'store'])->name('kelolaKegiatan.store');
+        Route::post('/addPhotos', [KegiatanController::class, 'addPhotos'])->name('kelolaKegiatan.addPhotos');
+        Route::get('/deletePhoto/{kdFoto}', [KegiatanController::class, 'deletePhoto'])->name('kelolaKegiatan.deletePhoto');
+        Route::get('/delete/{kdKegiatan}', [KegiatanController::class, 'delete'])->name('kelolaKegiatan.delete');
     });
     Route::prefix('kelolaKategoriKegiatan')->group(function () {
         Route::get('/kelolaKategoriKegiatan', [kelolaKategoriKegiatanController::class, 'index'])->name('kategori.index');

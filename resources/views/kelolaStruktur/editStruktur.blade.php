@@ -35,6 +35,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Perbarui Data</button>
                             <a href="{{ route('kelolaKomunitas') }}" class="btn btn-danger">Batal</a>
+                        </div>
                     </form>
                 </div>
             </div>
