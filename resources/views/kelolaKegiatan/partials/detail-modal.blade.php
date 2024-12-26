@@ -43,6 +43,10 @@
                                 <td>: <a href="{{ $kegiatan->link_keg }}" target="_blank">{{ $kegiatan->link_keg }}</a>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>: {{ $kegiatan->status }}</td>
+                            </tr>
                         </table>
                     </div>
 

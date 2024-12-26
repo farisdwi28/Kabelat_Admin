@@ -25,7 +25,8 @@ class Kegiatan extends Model
         'kd_komunitas',
         'kd_katkeg',
         'kecamatan',
-        'kelurahan'
+        'kelurahan',
+        'status'
     ];
 
     public function program()

@@ -9,6 +9,7 @@ use App\Models\kategoriKegiatan;
 use App\Models\FotoKegiatan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 
 class KegiatanController extends Controller
@@ -16,7 +17,34 @@ class KegiatanController extends Controller
     public function index()
     {
         $kegiatan = Kegiatan::with(['program', 'kategori', 'fotoKegiatan'])->get();
+
+        foreach ($kegiatan as $k) {
+            $newStatus = $this->determineStatus($k->tgl_mulai, $k->tgl_berakhir);
+            $k->update(['status' => $newStatus]);
+        }
+
         return view('kelolaKegiatan.kelolaKegiatanProgram', compact('kegiatan'));
+    }
+
+    private function determineStatus($startDate, $endDate)
+    {
+        $today = Carbon::now('Asia/Jakarta')->startOfDay();
+        $startDate = Carbon::parse($startDate, 'Asia/Jakarta')->startOfDay();
+        $endDate = Carbon::parse($endDate, 'Asia/Jakarta')->endOfDay();
+
+        // \Log::info('Date comparison', [
+        //     'today' => $today->format('Y-m-d H:i:s'),
+        //     'startDate' => $startDate->format('Y-m-d H:i:s'),
+        //     'endDate' => $endDate->format('Y-m-d H:i:s')
+        // ]);
+
+        if ($today->gte($startDate) && $today->lte($endDate)) {
+            return 'Sedang Berlangsung';
+        } elseif ($today->lt($startDate)) {
+            return 'Segera Hadir';
+        } else {
+            return 'Selesai';
+        }
     }
 
     public function create()
@@ -24,7 +52,7 @@ class KegiatanController extends Controller
         $programs = Program::all();
         $categories = kategoriKegiatan::all();
         $kecamatanList = $this->getEnumValues('kegiatan', 'kecamatan');
-        $kelurahanList = $this->getEnumValues('kegiatan', 'Kelurahan');
+        $kelurahanList = $this->getEnumValues('kegiatan', 'kelurahan');
 
         return view('kelolaKegiatan.tambahKegiatanProgram', compact(
             'programs',
@@ -36,7 +64,7 @@ class KegiatanController extends Controller
 
     public function store(Request $request)
     {
-        \Log::info('Store method called', ['request_data' => $request->all()]);
+        // \Log::info('Store method called', ['request_data' => $request->all()]);
         try {
             // Validasi dasar
             $request->validate([
@@ -49,7 +77,7 @@ class KegiatanController extends Controller
                 'kd_program' => 'required|exists:program,kd_program',
                 'kd_katkeg' => 'required|exists:kategori_kegiatan,kd_katkeg',
                 'kecamatan' => 'required',
-                'Kelurahan' => 'required',
+                'kelurahan' => 'required',
             ], [
                 'tgl_berakhir.after_or_equal' => 'Tanggal berakhir harus sama dengan atau setelah tanggal mulai',
                 'link_keg.url' => 'Format link kegiatan tidak valid',
@@ -112,6 +140,9 @@ class KegiatanController extends Controller
 
             $newCode = sprintf("KG%03d", $newNumber);
 
+            // Determine initial status based on dates
+            $status = $this->determineStatus($request->tgl_mulai, $request->tgl_berakhir);
+
             // Simpan kegiatan
             $kegiatan = Kegiatan::create([
                 'kd_kegiatan' => $newCode,
@@ -124,7 +155,8 @@ class KegiatanController extends Controller
                 'kd_program' => $request->kd_program,
                 'kd_katkeg' => $request->kd_katkeg,
                 'kecamatan' => $request->kecamatan,
-                'Kelurahan' => $request->Kelurahan,
+                'kelurahan' => $request->kelurahan,
+                'status' => $status
             ]);
 
             if (!$kegiatan) {
@@ -175,10 +207,10 @@ class KegiatanController extends Controller
                 ->with('success', 'Kegiatan berhasil ditambahkan.');
         } catch (\Exception $e) {
             DB::rollBack();
-            \Log::error('Error in store method', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
+            // \Log::error('Error in store method', [
+            //     'error' => $e->getMessage(),
+            //     'trace' => $e->getTraceAsString()
+            // ]);
             return back()
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
@@ -277,10 +309,9 @@ class KegiatanController extends Controller
 
             return back()->with('success', 'Foto berhasil ditambahkan');
         } catch (\Exception $e) {
-            \Log::error('Error adding photos', ['error' => $e->getMessage()]);
+            // \Log::error('Error adding photos', ['error' => $e->getMessage()]);
             return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
-
     }
 
 
