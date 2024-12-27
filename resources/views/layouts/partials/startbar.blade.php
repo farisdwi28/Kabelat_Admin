@@ -79,17 +79,31 @@
                             </ul><!--end nav-->
                         </div>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link {{ Route::is('kelolaKegiatan.create') ? 'active' : '' }}" href="{{ route('kelolaKegiatan.index') }}">
-                            <i class="iconoir-running menu-icon"></i>
-                            <span>Kelola Kegiatan</span>
-                        </a>
-                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('kategori.index') }}">
                             <i class="iconoir-activity menu-icon"></i>
                             <span>Kelola Kategori Kegiatan</span>
                         </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('informasiBerita.create', 'informasiBerita.edit', 'informasiPengumuman.create', 'informasiPengumuman.edit') ? 'active' : '' }}" href="#sidebarInformasi" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarInformasi">
+                            <i class="iconoir-info-circle menu-icon"></i>
+                            <span>Kelola Informasi</span>
+                        </a>
+                        <div class="collapse {{ Route::is('informasiBerita.create', 'informasiBerita.edit', 'informasiPengumuman.create', 'informasiPengumuman.edit') ? 'show' : '' }}" area id="sidebarInformasi">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Route::is('informasiBerita' ,'informasiBerita.create', 'informasiBerita.edit') ? 'active' : '' }}"
+                                        href="{{ route('informasiBerita') }}">
+                                        Kelola Berita</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Route::is('informasiPengumuman', 'informasiPengumuman.create', 'informasiPengumuman.edit') ? 'active' : '' }}" href="{{ route('informasiPengumuman') }}">
+                                        Kelola Pengumuman</a>
+                                </li><!--end nav-item-->
+                            </ul><!--end nav-->
+                        </div>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"

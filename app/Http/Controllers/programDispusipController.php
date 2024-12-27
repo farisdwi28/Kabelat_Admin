@@ -227,16 +227,4 @@ class programDispusipController extends Controller
             return redirect()->back()->with('error', 'Gagal memperbarui program: ' . $e->getMessage());
         }
     }
-
-    // public function destroy($id)
-    // {
-    //     try {
-    //         $program = Program::findOrFail($id);
-    //         $program->delete();
-
-    //         return redirect()->route('program.index')->with('success', 'Program berhasil dihapus');
-    //     } catch (\Exception $e) {
-    //         return redirect()->back()->with('error', $e->getMessage());
-    //     }
-    // }
 }

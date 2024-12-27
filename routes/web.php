@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\informasiBeritaController;
+use App\Http\Controllers\informasiPengumumanController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\kegitanKomunitasController;
 use App\Http\Controllers\kelolaKategoriKegiatanController;
@@ -69,6 +71,25 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [kelolaKategoriKegiatanController::class, 'store'])->name('kategori.store');
         Route::put('/update/{kd_katkeg}', [kelolaKategoriKegiatanController::class, 'update'])->name('kategori.update');
         Route::delete('/delete/{kd_katkeg}', [kelolaKategoriKegiatanController::class, 'destroy'])->name('kategori.destroy');
+    });
+    Route::prefix('kelolaInformasi')->group(function () {
+        // Berita
+        Route::get('/kelolaInformasiBerita', [informasiBeritaController::class, 'index'])->name('informasiBerita');
+        Route::get('/tambahInformasiBerita', [InformasiBeritaController::class, 'create'])->name('informasiBerita.create');
+        Route::post('/tambahInformasiBerita', [InformasiBeritaController::class, 'store'])->name('informasiBerita.store');
+        Route::get('/editInformasiBerita/{kd_info}', [InformasiBeritaController::class, 'edit'])->name('informasiBerita.edit');
+        Route::put('/editInformasiBerita/{kd_info}', [InformasiBeritaController::class, 'update'])->name('informasiBerita.update');
+        Route::post('/kelolaInformasiBerita/{kd_info}/{status}', [InformasiBeritaController::class, 'updateInformasiBeritaStatus'])->name('informasiBerita.updateStatus');
+        Route::delete('/kelolaInformasiBerita/{kd_info}', [InformasiBeritaController::class, 'destroy'])->name('informasiBerita.destroy');
+
+        // Pengumuman
+        Route::get('/kelolaInformasiPengumuman', [informasiPengumumanController::class, 'index'])->name('informasiPengumuman');
+        Route::get('/tambahInformasiPengumuman', [informasiPengumumanController::class, 'create'])->name('informasiPengumuman.create');
+        Route::post('/tambahInformasiPengumuman', [informasiPengumumanController::class, 'store'])->name('informasiPengumuman.store');
+        Route::get('/editInformasiPengumuman/{kd_info}', [informasiPengumumanController::class, 'edit'])->name('informasiPengumuman.edit');
+        Route::put('/editInformasiPengumuman/{kd_info}', [informasiPengumumanController::class, 'update'])->name('informasiPengumuman.update');
+        Route::post('/kelolaInformasiPengumuman/{kd_info}/{status}', [informasiPengumumanController::class, 'updateInformasiPengumumanStatus'])->name('informasiPengumuman.updateStatus');
+        Route::delete('/kelolaInformasiPengumuman/{kd_info}', [informasiPengumumanController::class, 'destroy'])->name('informasiPengumuman.destroy');
     });
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');

@@ -87,7 +87,7 @@
                     <div class="row d-flex justify-content-center border-dashed-bottom pb-3">
                         <div class="col-9">
                             <p class="text-dark mb-0 fw-semibold fs-14">Berita</p>
-                            <h3 class="mt-2 mb-0 fw-bold">207</h3>
+                            <h3 class="mt-2 mb-0 fw-bold">{{ $Berita }}</h3>
                         </div>
                         <!--end col-->
                         <div class="col-3 align-self-center">
@@ -112,7 +112,7 @@
                     <div class="row d-flex justify-content-center border-dashed-bottom pb-3">
                         <div class="col-9">
                             <p class="text-dark mb-0 fw-semibold fs-14">Pengumuman</p>
-                            <h3 class="mt-2 mb-0 fw-bold">11</h3>
+                            <h3 class="mt-2 mb-0 fw-bold">{{ $Pengumuman }}</h3>
                         </div>
                         <!--end col-->
                         <div class="col-3 align-self-center">
