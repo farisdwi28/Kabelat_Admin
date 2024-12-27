@@ -60,12 +60,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('kelolaKegiatan.create') ? 'active' : '' }}" href="#sidebarKegiatan" data-bs-toggle="collapse" role="button"
+                        <a class="nav-link {{ Route::is('kelolaKegiatan.create', 'kelolaKegiatan2.create') ? 'active' : '' }}" href="#sidebarKegiatan" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarKegiatan">
                             <i class="iconoir-running menu-icon"></i>
                             <span>Kelola Kegiatan</span>
                         </a>
-                        <div class="collapse {{ Route::is('kelolaKegiatan.create') ? 'show' : '' }}" area id="sidebarKegiatan">
+                        <div class="collapse {{ Route::is('kelolaKegiatan.create', 'kelolaKegiatan2.create') ? 'show' : '' }}" area id="sidebarKegiatan">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link {{ Route::is('kelolaKegiatan.index', 'kelolaKegiatan.create') ? 'active' : '' }}"
@@ -73,7 +73,7 @@
                                         Program</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link {{ Route::is('kelolaKegiatan2.index') ? 'active' : '' }}" href="{{ route('kelolaKegiatan2.index') }}">
+                                    <a class="nav-link {{ Route::is('kelolaKegiatan2.index', 'kelolaKegiatan2.create') ? 'active' : '' }}" href="{{ route('kelolaKegiatan2.index') }}">
                                         Komunitas</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
