@@ -31,7 +31,7 @@
                                     <th>Nama Kegiatan</th>
                                     <th>Tanggal Mulai-Berakhir</th>
                                     <th>Lokasi</th>
-                                    <th>Program</th>
+                                    <th>Komunitas</th>
                                     <th class="text-end">Action</th>
                                 </tr>
                             </thead>
