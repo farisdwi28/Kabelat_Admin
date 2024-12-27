@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\kegitanKomunitasController;
 use App\Http\Controllers\kelolaKategoriKegiatanController;
 use App\Http\Controllers\kelolaKomunitasController;
 use App\Http\Controllers\kelolaStrukturController;
@@ -48,12 +49,20 @@ Route::middleware('auth')->group(function () {
         Route::put('/editProgram/{kd_program}', [programDispusipController::class, 'update'])->name('programDispusip.update');
     });
     Route::prefix('kelolaKegiatan')->group(function () {
+        //Program
         Route::get('/kelolaKegiatanProgram', [KegiatanController::class, 'index'])->name('kelolaKegiatan.index');
         Route::get('/tambahKegiatanProgram', [KegiatanController::class, 'create'])->name('kelolaKegiatan.create');
         Route::post('/tambahKegiatanProgram', [KegiatanController::class, 'store'])->name('kelolaKegiatan.store');
         Route::post('/addPhotos', [KegiatanController::class, 'addPhotos'])->name('kelolaKegiatan.addPhotos');
         Route::get('/deletePhoto/{kdFoto}', [KegiatanController::class, 'deletePhoto'])->name('kelolaKegiatan.deletePhoto');
         Route::get('/delete/{kdKegiatan}', [KegiatanController::class, 'delete'])->name('kelolaKegiatan.delete');
+        // Komunitas
+        Route::get('/kelolaKegiatanKomunitas', [kegitanKomunitasController::class, 'index'])->name('kelolaKegiatan2.index');
+        Route::get('/tambahKegiatanKomunitas', [kegitanKomunitasController::class, 'create'])->name('kelolaKegiatan2.create');
+        Route::post('/tambahKegiatanKomunitas', [kegitanKomunitasController::class, 'store'])->name('kelolaKegiatan2.store');
+        Route::post('/addPhotos2', [kegitanKomunitasController::class, 'addPhotos'])->name('kelolaKegiatan2.addPhotos');
+        Route::get('/deletePhoto2/{kdFoto}', [kegitanKomunitasController::class, 'deletePhoto'])->name('kelolaKegiatan2.deletePhoto');
+        Route::get('/delete2/{kdKegiatan}', [kegitanKomunitasController::class, 'delete'])->name('kelolaKegiatan2.delete');
     });
     Route::prefix('kelolaKategoriKegiatan')->group(function () {
         Route::get('/kelolaKategoriKegiatan', [kelolaKategoriKegiatanController::class, 'index'])->name('kategori.index');

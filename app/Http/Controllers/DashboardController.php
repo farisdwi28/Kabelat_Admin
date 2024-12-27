@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Komunitas;
 use App\Models\MemberKomunitas;
 use App\Models\Kegiatan;
+use App\Models\kegitanKomunitas;
 use Exception;
 
 class DashboardController extends Controller
@@ -15,10 +16,11 @@ class DashboardController extends Controller
             $Komunitas = Komunitas::count();
             $Member = MemberKomunitas::count();
             $Kegiatan = Kegiatan::count();
+            $KegiatanKomunitas = kegitanKomunitas::count();
         } catch (Exception $e) {
             return response()->json(['error' => 'An error occurred while fetching data.'], 500);
         }
-        return view('dashboard.index', compact('Komunitas', 'Member', 'Kegiatan'));
+        return view('dashboard.index', compact('Komunitas', 'Member', 'Kegiatan', 'KegiatanKomunitas'));
     }
     
 }

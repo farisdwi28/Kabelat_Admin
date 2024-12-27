@@ -60,11 +60,31 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {{ Route::is('kelolaKegiatan.create') ? 'active' : '' }}" href="#sidebarKegiatan" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarKegiatan">
+                            <i class="iconoir-running menu-icon"></i>
+                            <span>Kelola Kegiatan</span>
+                        </a>
+                        <div class="collapse {{ Route::is('kelolaKegiatan.create') ? 'show' : '' }}" area id="sidebarKegiatan">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Route::is('kelolaKegiatan.index', 'kelolaKegiatan.create') ? 'active' : '' }}"
+                                        href="{{ route('kelolaKegiatan.index') }}">
+                                        Program</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Route::is('kelolaKegiatan2.index') ? 'active' : '' }}" href="{{ route('kelolaKegiatan2.index') }}">
+                                        Komunitas</a>
+                                </li><!--end nav-item-->
+                            </ul><!--end nav-->
+                        </div>
+                    </li>
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ Route::is('kelolaKegiatan.create') ? 'active' : '' }}" href="{{ route('kelolaKegiatan.index') }}">
                             <i class="iconoir-running menu-icon"></i>
                             <span>Kelola Kegiatan</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('kategori.index') }}">
                             <i class="iconoir-activity menu-icon"></i>
