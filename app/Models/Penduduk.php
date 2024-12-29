@@ -14,12 +14,18 @@ class Penduduk extends Model
     protected $keyType = 'string';
     
     protected $fillable = [
+        'kd_pen',
         'nm_pen',
         'jk',
         'tgl_lahir',
         'tempat_lahir',
         'alamat',
         'foto_pen',
-        'no_ktp'
+        'no_ktp',
+        'no_hp',
+        'RT',
+        'RW',
+        'desa',
+        'kd_kecamatan'
     ];
 }

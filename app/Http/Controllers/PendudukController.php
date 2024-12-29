@@ -31,8 +31,13 @@ class PendudukController extends Controller
                 'no_ktp' => 'required|string|size:16|unique:penduduk,no_ktp',
                 'tgl_lahir' => 'required|date',
                 'tempat_lahir' => 'required|string|max:255',
-                'alamat' => 'required|string',
-                'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+                'alamat' => 'required|string|max:1000',
+                'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'no_hp' => 'required|string|max:20',
+                'RT' => 'required|integer|min:1|max:999',
+                'RW' => 'required|integer|min:1|max:999',
+                'desa' => 'required|string|max:50',
+                'kd_kecamatan' => 'required|string|size:5'
             ]);
 
             $penduduk = new Penduduk();
@@ -43,6 +48,11 @@ class PendudukController extends Controller
             $penduduk->tempat_lahir = $validated['tempat_lahir'];
             $penduduk->alamat = $validated['alamat'];
             $penduduk->no_ktp = $validated['no_ktp'];
+            $penduduk->no_hp = $validated['no_hp'];
+            $penduduk->RT = $validated['RT'];
+            $penduduk->RW = $validated['RW'];
+            $penduduk->desa = $validated['desa'];
+            $penduduk->kd_kecamatan = $validated['kd_kecamatan'];
 
             if ($request->hasFile('foto')) {
                 $image = $request->file('foto');

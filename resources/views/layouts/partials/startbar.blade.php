@@ -122,7 +122,7 @@
                             </ul><!--end nav-->
                         </div><!--end startbarDashboards-->
                     </li><!--end nav-item--> --}}
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#sidebarApplications" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarApplications">
                             <i class="iconoir-view-grid menu-icon"></i>
@@ -625,9 +625,9 @@
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
                         </div><!--end startbarAuthentication-->
-                    </li><!--end nav-item-->
+                    </li><!--end nav-item--> --}}
                 </ul><!--end navbar-nav--->
-                <div class="update-msg text-center">
+                {{-- <div class="update-msg text-center">
                     <div
                         class="d-flex justify-content-center align-items-center thumb-lg update-icon-box  rounded-circle mx-auto">
                         <i class="iconoir-peace-hand h3 align-self-center mb-0 text-primary"></i>
@@ -636,7 +636,7 @@
                     <p class="mb-3 text-muted">Rizz is a high quality web applications.</p>
                     <a href="javascript: void(0);" class="btn text-primary shadow-sm rounded-pill">Upgrade your
                         plan</a>
-                </div>
+                </div> --}}
             </div>
         </div><!--end startbar-collapse-->
     </div><!--end startbar-menu-->

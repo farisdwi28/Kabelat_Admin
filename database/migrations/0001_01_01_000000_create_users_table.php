@@ -12,9 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Kolom id sebagai AUTO_INCREMENT dan PRIMARY KEY
             $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
+            $table->enum('role', ['user', 'adminLokal', 'superAdmin'])->default('user');
+            $table->char('kd_lokal', 10)->nullable();
+            $table->char('kd_penduduk', 5)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

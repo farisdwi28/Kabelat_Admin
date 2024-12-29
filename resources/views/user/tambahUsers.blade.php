@@ -78,7 +78,57 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="no_hp">Nomor HP *</label>
+                                    <input type="text" class="form-control @error('no_hp') is-invalid @enderror"
+                                        name="no_hp" id="no_hp" required value="{{ old('no_hp') }}"
+                                        placeholder="Masukkan nomor HP">
+                                    @error('no_hp')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label" for="RT">RT *</label>
+                                    <input type="number" class="form-control @error('RT') is-invalid @enderror"
+                                        name="RT" id="RT" required value="{{ old('RT') }}"
+                                        placeholder="RT">
+                                    @error('RT')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label" for="RW">RW *</label>
+                                    <input type="number" class="form-control @error('RW') is-invalid @enderror"
+                                        name="RW" id="RW" required value="{{ old('RW') }}"
+                                        placeholder="RW">
+                                    @error('RW')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="desa">Desa *</label>
+                                    <input type="text" class="form-control @error('desa') is-invalid @enderror"
+                                        name="desa" id="desa" required value="{{ old('desa') }}"
+                                        placeholder="Nama Desa">
+                                    @error('desa')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="mb-3">
