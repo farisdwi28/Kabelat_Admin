@@ -37,7 +37,7 @@ class PendudukController extends Controller
                 'RT' => 'required|integer|min:1|max:999',
                 'RW' => 'required|integer|min:1|max:999',
                 'desa' => 'required|string|max:50',
-                'kd_kecamatan' => 'required|string|size:5'
+                'kecamatan' => 'required|string|max:50'
             ]);
 
             $penduduk = new Penduduk();
@@ -52,7 +52,7 @@ class PendudukController extends Controller
             $penduduk->RT = $validated['RT'];
             $penduduk->RW = $validated['RW'];
             $penduduk->desa = $validated['desa'];
-            $penduduk->kd_kecamatan = $validated['kd_kecamatan'];
+            $penduduk->kecamatan = $validated['kecamatan'];
 
             if ($request->hasFile('foto')) {
                 $image = $request->file('foto');
@@ -112,7 +112,12 @@ class PendudukController extends Controller
                 'tempat_lahir' => 'required|string|max:255',
                 'alamat' => 'required|string',
                 'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-                'no_ktp' => 'required|string|size:16|unique:penduduk,no_ktp,' . $kd_pen . ',kd_pen'
+                'no_ktp' => 'required|string|size:16|unique:penduduk,no_ktp,' . $kd_pen . ',kd_pen',
+                'no_hp' => 'required|string|max:20',
+                'RT' => 'required|integer|min:1|max:999',
+                'RW' => 'required|integer|min:1|max:999',
+                'desa' => 'required|string|max:50',
+                'kecamatan' => 'required|string|max:50'
             ]);
 
             $Penduduk = Penduduk::findOrFail($kd_pen);
@@ -123,6 +128,11 @@ class PendudukController extends Controller
             $Penduduk->tempat_lahir = $request->tempat_lahir;
             $Penduduk->alamat = $request->alamat;
             $Penduduk->no_ktp = $request->no_ktp;
+            $Penduduk->no_hp = $request->no_hp;
+            $Penduduk->RT = $request->RT;
+            $Penduduk->RW = $request->RW;
+            $Penduduk->desa = $request->desa;
+            $Penduduk->kecamatan = $request->kecamatan;
 
             if ($request->hasFile('foto')) {
                 $image = $request->file('foto');

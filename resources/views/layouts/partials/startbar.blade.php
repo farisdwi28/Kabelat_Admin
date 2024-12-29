@@ -28,7 +28,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('penduduk') }}">
+                        <a class="nav-link {{ Route::is('penduduk.create', 'penduduk.edit') ? 'active' : '' }}" href="{{ route('penduduk') }}">
                             <i class="iconoir-user-bag menu-icon"></i>
                             <span>Kelola User</span>
                         </a>

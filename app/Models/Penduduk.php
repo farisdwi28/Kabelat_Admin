@@ -26,6 +26,6 @@ class Penduduk extends Model
         'RT',
         'RW',
         'desa',
-        'kd_kecamatan'
+        'kecamatan'
     ];
 }

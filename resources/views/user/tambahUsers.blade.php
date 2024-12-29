@@ -127,6 +127,17 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="kecamatan">Kecamatan *</label>
+                                    <input type="text" class="form-control @error('kecamatan') is-invalid @enderror"
+                                        name="kecamatan" id="kecamatan" required value="{{ old('kecamatan') }}"
+                                        placeholder="Nama kecamatan">
+                                    @error('kecamatan')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row">
