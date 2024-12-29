@@ -40,6 +40,19 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    const ROLE_SUPER_ADMIN = 'superAdmin';
+    const ROLE_ADMIN_LOKAL = 'adminLokal';
+    const ROLE_USER = 'user';
+
+    public function hasRole($roles)
+    {
+        if (is_array($roles)) {
+            return in_array($this->role, $roles);
+        }
+
+        return $this->role === $roles;
+    }
+
     /**
      * Get the attributes that should be cast.
      *

@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Super Admin',
-            'username' => 'superadmin2025',
-            'email' => 'superadmin2025@gmail.com',
+            'name' => 'Admin Lokal Cimenyan',
+            'username' => 'admincimenyan',
+            'email' => 'admincimenyan@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('Superadmin2025!'),
-            'role' => 'superAdmin',
+            'password' => Hash::make('Admincimenyan2025!'),
+            'role' => 'adminLokal',
             'kd_lokal' => 'P0001',
             'kd_penduduk' => 4,
             'remember_token' => Str::random(10),

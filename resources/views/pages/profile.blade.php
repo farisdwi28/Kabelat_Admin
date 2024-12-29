@@ -37,14 +37,10 @@
                             </div> <!--end row-->
                         </div><!--end card-header-->
                         <div class="card-body pt-0">
-                            <p class="text-muted fw-medium mb-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                             <ul class="list-unstyled mb-0">
-                                <li class=""><i class="las la-birthday-cake me-2 text-secondary fs-22 align-middle"></i> <b> Birth Date </b> : 06 June 1989</li>
-                                <li class="mt-2"><i class="las la-briefcase me-2 text-secondary fs-22 align-middle"></i> <b> Position </b> : Full Stack Developer</li>
-                                <li class="mt-2"><i class="las la-university me-2 text-secondary fs-22 align-middle"></i> <b> Education </b> : Stanford Univercity</li>
-                                <li class="mt-2"><i class="las la-language me-2 text-secondary fs-22 align-middle"></i> <b> Languages </b> : English, French, Spanish</li>
-                                <li class="mt-2"><i class="las la-phone me-2 text-secondary fs-22 align-middle"></i> <b> Phone </b> : +91 23456 78910</li>
-                                <li class="mt-2"><i class="las la-envelope text-secondary fs-22 align-middle me-2"></i> <b> Email </b> : mannat.theme@gmail.com</li>
+                                <li class=""><i class="las la-address-card me-2 text-secondary fs-22 align-middle"></i> <b> Nama </b> : {{ Auth::user() -> name }}</li>
+                                <li class="mt-2"><i class="las la-envelope me-2 text-secondary fs-22 align-middle"></i> <b> Email </b> : {{ Auth::user() -> email }}</li>
+                                <li class="mt-2"><i class="las la-user me-2 text-secondary fs-22 align-middle"></i> <b> Username </b> : {{ Auth::user() -> username }}</li>
                             </ul>
                         </div><!--end card-body-->
                     </div><!--end card-->

@@ -27,8 +27,24 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|string',
+            'login' => 'required|string',  // Changed from username to login
             'password' => 'required|string',
+        ];
+    }
+
+    /**
+     * Get the login credentials from the request.
+     *
+     * @return array
+     */
+    protected function credentials()
+    {
+        $login = $this->input('login');
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        
+        return [
+            $field => $login,
+            'password' => $this->input('password'),
         ];
     }
 
@@ -43,11 +59,11 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (!Auth::attempt($this->only('username', 'password'), $this->filled('remember'))) {
+        if (!Auth::attempt($this->credentials(), $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
+            
             throw ValidationException::withMessages([
-                'username' => __('auth.failed'),
+                'login' => __('auth.failed'),
             ]);
         }
 
@@ -72,7 +88,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'username' => trans('auth.throttle', [
+            'login' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -86,6 +102,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey()
     {
-        return Str::lower($this->input('username')) . '|' . $this->ip();
+        return Str::lower($this->input('login')) . '|' . $this->ip();
     }
 }
