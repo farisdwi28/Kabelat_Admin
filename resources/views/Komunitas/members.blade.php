@@ -42,7 +42,7 @@
                                             </div>
                                         </td>
                                         <td>{{ $member->nm_member }}</td>
-                                        <td>{{ $member->tgl_bergabung }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($member->tgl_bergabung)->format('d M Y') }}</td>
                                         <td>{{ $member->kecamatan }}, RT {{ $member->RT }}, RW {{ $member->RW }}</td>
                                         <td>
                                             @switch($member->kd_jabatan)

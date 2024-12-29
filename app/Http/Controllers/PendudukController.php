@@ -79,13 +79,13 @@ class PendudukController extends Controller
             $latestPenduduk = Penduduk::orderBy('kd_pen', 'desc')->first();
 
             if (!$latestPenduduk) {
-                return 'P001';
+                return 'P0001';
             }
 
             $lastNumber = intval(substr($latestPenduduk->kd_pen, 1));
             $newNumber = $lastNumber + 1;
 
-            return 'P' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+            return 'P' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
         } catch (\Exception $e) {
             throw new \Exception('Gagal generate kode penduduk: ' . $e->getMessage());
         }

@@ -52,4 +52,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function penduduk()
+    {
+        return $this->belongsTo(Penduduk::class, 'kd_pen', 'kd_pen');
+    }
 }

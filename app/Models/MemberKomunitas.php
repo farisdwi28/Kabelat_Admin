@@ -12,4 +12,14 @@ class MemberKomunitas extends Model
     protected $primaryKey="kd_member";
     public $timestamps = false;
     protected $keyType = 'string';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'id');
+    }
+
+    public function komunitas()
+    {
+        return $this->belongsTo(Komunitas::class, 'kd_komunitas', 'kd_komunitas');
+    }
 }
