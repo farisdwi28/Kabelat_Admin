@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <div class="row d-flex justify-content-center border-dashed-bottom pb-3">
                         <div class="col-9">
-                            <p class="text-dark mb-0 fw-semibold fs-14">Anggota</p>
+                            <p class="text-dark mb-0 fw-semibold fs-14">Member</p>
                             <h3 class="mt-2 mb-0 fw-bold">{{ $Member }}</h3>
                         </div>
                         <!--end col-->
@@ -49,7 +49,7 @@
                         <!--end col-->
                     </div>
                     <!--end row-->
-                    <p class="mb-0 text-truncate text-muted mt-3">Anggota sudah terdaftar</p>
+                    <p class="mb-0 text-truncate text-muted mt-3">Member sudah terdaftar</p>
                 </div>
                 <!--end card-body-->
             </div>

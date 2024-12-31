@@ -1,11 +1,8 @@
 @extends('layouts.vertical', ['title' => 'Rizz'])
-
 @section('css')
     @vite(['node_modules/simple-datatables/dist/style.css'])
 @endsection
-
 @section('content')
-
 <div class="row justify-content-center">
     <div class="col-md-10 col-lg-10">
         <div class="card">
@@ -46,9 +43,12 @@
                                 <td>{{ $K->Ketua->nm_member ?? '' }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('kelolaKomunitas.edit', ['kd_komunitas' => $K->kd_komunitas]) }}"><i class="las la-pen text-secondary font-16"></i></a>
-                                    <a href="#" onclick="confirmDelete('{{ $K->kd_komunitas }}')"><i class="las la-trash-alt text-secondary font-16"></i></a>
+                                    <a href="javascript:void(0)" onclick="confirmDelete('{{ $K->kd_komunitas }}', '{{ $K->nm_komunitas }}')">
+                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                    </a>
                                     <form id="delete-form-{{ $K->kd_komunitas }}"
-                                        action="{{ route('kelolaKomunitas.delete', $K->kd_komunitas) }}" method="POST"
+                                        action="{{ route('kelolaKomunitas.delete', $K->kd_komunitas) }}" 
+                                        method="POST"
                                         style="display: none;">
                                         @csrf
                                         @method('DELETE')
@@ -64,14 +64,47 @@
     </div> <!--end col-->
 </div><!--end row-->
 @endsection
-
 @section('script')
     @vite(['resources/js/pages/datatable.init.js'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmDelete(kdKomunitas) {
-            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                document.getElementById('delete-form-' + kdKomunitas).submit();
-            }
+        function confirmDelete(kdKomunitas, nmKomunitas) {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: `Anda akan menghapus komunitas "${nmKomunitas}"`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + kdKomunitas).submit();
+                }
+            });
         }
+
+        // Handle success message if exists
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+
+        // Handle error message if exists
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('error') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
     </script>
 @endsection

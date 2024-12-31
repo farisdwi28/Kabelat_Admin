@@ -80,6 +80,7 @@
 
 @section('script')
     @vite(['resources/js/pages/datatable.init.js'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const updateStatusLinks = document.querySelectorAll('.update-status');
@@ -105,64 +106,98 @@
                     const programId = this.dataset.id;
                     const newStatus = this.dataset.status;
 
-                    if (confirm(`Apakah Anda yakin ingin mengubah status menjadi ${newStatus}?`)) {
-                        fetch(`/programDispusip/programDispusip/${programId}/${newStatus}`, {
-                                method: 'POST',
-                                headers: {
-                                    'X-CSRF-TOKEN': document.querySelector(
-                                        'meta[name="csrf-token"]').getAttribute('content'),
-                                    'Accept': 'application/json',
-                                    'Content-Type': 'application/json'
-                                }
-                            })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error(`HTTP error! status: ${response.status}`);
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                if (data.success) {
-                                    alert('Status berhasil diperbarui.');
-
-                                    // Reset status pada semua dropdown
-                                    const allDropdownLinks = this.closest('.dropdown')
-                                        .querySelectorAll('.update-status');
-                                    allDropdownLinks.forEach(dropdownLink => {
-                                        dropdownLink.classList.remove('disabled');
-                                        dropdownLink.removeAttribute('aria-disabled');
-                                        dropdownLink.style.pointerEvents = '';
-                                        dropdownLink.style.opacity = '';
-                                    });
-
-                                    // Perbarui tombol status
-                                    const button = this.closest('.dropdown').querySelector(
-                                        'button');
-                                    button.textContent = newStatus.charAt(0).toUpperCase() +
-                                        newStatus.slice(1);
-                                    button.className = newStatus === 'aktif' ?
-                                        'btn btn-success btn-sm dropdown-toggle' :
-                                        'btn btn-danger btn-sm dropdown-toggle';
-
-                                    // Disable link untuk status yang baru saja dipilih
-                                    const newStatusLink = Array.from(allDropdownLinks).find(
-                                        link =>
-                                        link.dataset.status === newStatus);
-                                    if (newStatusLink) {
-                                        newStatusLink.classList.add('disabled');
-                                        newStatusLink.setAttribute('aria-disabled', 'true');
-                                        newStatusLink.style.pointerEvents = 'none';
-                                        newStatusLink.style.opacity = '0.5';
+                    Swal.fire({
+                        title: 'Konfirmasi Perubahan',
+                        text: `Apakah Anda yakin ingin mengubah status menjadi ${newStatus}?`,
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Ubah!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            fetch(`/programDispusip/programDispusip/${programId}/${newStatus}`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRF-TOKEN': document.querySelector(
+                                            'meta[name="csrf-token"]').getAttribute(
+                                            'content'),
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
                                     }
-                                } else {
-                                    alert('Gagal memperbarui status: ' + data.message);
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert('Terjadi kesalahan saat memperbarui status.');
-                            });
-                    }
+                                })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error(
+                                            `HTTP error! status: ${response.status}`
+                                            );
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    if (data.success) {
+                                        Swal.fire({
+                                            title: 'Berhasil!',
+                                            text: 'Status berhasil diperbarui',
+                                            icon: 'success',
+                                            timer: 1500,
+                                            showConfirmButton: false
+                                        });
+
+                                        // Reset status pada semua dropdown
+                                        const allDropdownLinks = this.closest(
+                                            '.dropdown').querySelectorAll(
+                                            '.update-status');
+                                        allDropdownLinks.forEach(dropdownLink => {
+                                            dropdownLink.classList.remove(
+                                                'disabled');
+                                            dropdownLink.removeAttribute(
+                                                'aria-disabled');
+                                            dropdownLink.style.pointerEvents =
+                                                '';
+                                            dropdownLink.style.opacity = '';
+                                        });
+
+                                        // Perbarui tombol status
+                                        const button = this.closest('.dropdown')
+                                            .querySelector('button');
+                                        button.textContent = newStatus.charAt(0)
+                                            .toUpperCase() + newStatus.slice(1);
+                                        button.className = newStatus === 'aktif' ?
+                                            'btn btn-success btn-sm dropdown-toggle' :
+                                            'btn btn-danger btn-sm dropdown-toggle';
+
+                                        // Disable link untuk status yang baru saja dipilih
+                                        const newStatusLink = Array.from(
+                                            allDropdownLinks).find(link =>
+                                            link.dataset.status === newStatus);
+                                        if (newStatusLink) {
+                                            newStatusLink.classList.add('disabled');
+                                            newStatusLink.setAttribute('aria-disabled',
+                                                'true');
+                                            newStatusLink.style.pointerEvents = 'none';
+                                            newStatusLink.style.opacity = '0.5';
+                                        }
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Gagal!',
+                                            text: 'Gagal memperbarui status: ' +
+                                                data.message,
+                                            icon: 'error'
+                                        });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'Terjadi kesalahan saat memperbarui status',
+                                        icon: 'error'
+                                    });
+                                });
+                        }
+                    });
                 });
             });
         });
