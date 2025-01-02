@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Kegiatan;
 use App\Models\Program;
 use App\Models\kategoriKegiatan;
-use App\Models\FotoKegiatan;
+use App\Models\fotoKegiatan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;

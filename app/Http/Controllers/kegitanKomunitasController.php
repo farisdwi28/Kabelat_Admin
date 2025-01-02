@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\kegitanKomunitas;
 use App\Models\kategoriKegiatan;
-use App\Models\FotoKegiatan;
+use App\Models\fotoKegiatan;
 use App\Models\Komunitas;
 // use App\Models\Kegiatan;
 use Illuminate\Support\Facades\DB;
