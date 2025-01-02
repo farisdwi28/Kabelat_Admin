@@ -154,7 +154,7 @@ class kegitanKomunitasController extends Controller
             }
 
             // Upload foto
-            $lastFotoCode = FotoKegiatan::orderBy('kd_fotokeg', 'desc')->first();
+            $lastFotoCode = fotoKegiatan::orderBy('kd_fotokeg', 'desc')->first();
             $fotoNumber = $lastFotoCode ? (int)substr($lastFotoCode->kd_fotokeg, 2) + 1 : 1;
 
             foreach ($photos as $index => $file) {
@@ -172,7 +172,7 @@ class kegitanKomunitasController extends Controller
 
                     $fotoCode = sprintf("FK%03d", $fotoNumber);
 
-                    $fotoKegiatan = FotoKegiatan::create([
+                    $fotoKegiatan = fotoKegiatan::create([
                         'kd_fotokeg' => $fotoCode,
                         'kd_kegiatan2' => $newCode,
                         'foto_path' => 'kegiatan-photos/' . $filename
@@ -256,7 +256,7 @@ class kegitanKomunitasController extends Controller
             }
 
             // Proses upload dan simpan ke database
-            $lastFotoCode = FotoKegiatan::orderBy('kd_fotokeg', 'desc')->first();
+            $lastFotoCode = fotoKegiatan::orderBy('kd_fotokeg', 'desc')->first();
             $fotoNumber = $lastFotoCode ? (int)substr($lastFotoCode->kd_fotokeg, 2) + 1 : 1;
             // $destinationPath = 'public/kegiatan-photos';
 
@@ -279,7 +279,7 @@ class kegitanKomunitasController extends Controller
 
                 $fotoCode = sprintf("FK%03d", $fotoNumber);
 
-                $fotoKegiatan = FotoKegiatan::create([
+                $fotoKegiatan = fotoKegiatan::create([
                     'kd_fotokeg' => $fotoCode,
                     'kd_kegiatan2' => $request->kd_kegiatan2,
                     'foto_path' => 'kegiatan-photos/' . $filename
@@ -302,7 +302,7 @@ class kegitanKomunitasController extends Controller
     public function deletePhoto($kdFoto)
     {
         try {
-            $foto = FotoKegiatan::findOrFail($kdFoto);
+            $foto = fotoKegiatan::findOrFail($kdFoto);
             Storage::delete('public/' . $foto->foto_path);
             $foto->delete();
 
