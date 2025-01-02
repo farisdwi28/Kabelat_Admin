@@ -14,9 +14,9 @@
                 <div class="card-body pt-0">
                     <div class="col-auto mb-3">
                         <a href="#">
-                            <button class="btn bg-primary-subtle text-primary">
+                            {{-- <button class="btn bg-primary-subtle text-primary">
                                 <i class="fa-regular fa-pen-to-square me-1"></i>Edit Struktur Jabatan
-                            </button>
+                            </button> --}}
                         </a>
                     </div>
                     <img src="{{ $komunitas->foto_struktur }}" class="img-fluid img-thumbnail mt-2 w-100" alt="Struktur Komunitas">

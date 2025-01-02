@@ -45,7 +45,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="nm_inisiator[]" class="form-label">Author *</label>
@@ -73,6 +72,25 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="kd_kecamatan" class="form-label">Kecamatan</label>
+                                    <select name="kd_kecamatan" id="kd_kecamatan"
+                                        class="form-control @error('kd_kecamatan') is-invalid @enderror" required>
+                                        <option value="">Pilih Kecamatan</option>
+                                        @foreach ($kecamatanList as $kd_kecamatan => $nm_kecamatan)
+                                            <option value="{{ $kd_kecamatan }}"
+                                                {{ $informasi->kd_kecamatan == $kd_kecamatan ? 'selected' : '' }}>
+                                                {{ $nm_kecamatan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('kd_kecamatan')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="foto" class="form-label">Sampul Pengumuman</label>
@@ -90,7 +108,7 @@
                                     @error('foto')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">Ukuran foto harus 1920x400px</small>
+                                    <small class="form-text text-muted">Ukuran foto harus 1920x600px</small>
                                 </div>
                             </div>
 
@@ -169,7 +187,7 @@
 
                 preview.onload = function() {
                     const validWidth = 1920;
-                    const validHeight = 400;
+                    const validHeight = 600;
 
                     if (preview.naturalWidth !== validWidth || preview.naturalHeight !== validHeight) {
                         alert(`Ukuran foto harus ${validWidth}x${validHeight} piksel`);

@@ -371,33 +371,45 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h4 class="card-title">Komunitas Paling Aktif</h4>
-                        </div><!--end col-->
-                    </div> <!--end row-->
-                </div><!--end card-header-->
+                            <h4 class="card-title">Komunitas Paling Aktif Hari Ini</h4>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body pt-0">
                     <div class="table-responsive">
                         <table class="table mb-0">
                             <tbody>
-                                <tr class="">
-                                    <td class="px-0">
-                                        <div class="d-flex align-items-center">
-                                            <img src="/images/users/avatar-1.jpg" height="36"
-                                                class="me-2 align-self-center rounded" alt="...">
-                                            <div class="flex-grow-1 text-truncate">
-                                                <h6 class="m-0 text-truncate">Bunda Literasi</h6>
-                                                <a href="#"
-                                                    class="font-12 text-muted text-decoration-underline">400 laporan diposting hari ini</a>
-                                            </div><!--end media body-->
-                                        </div><!--end media-->
-                                    </td>
-                                </tr><!--end tr-->
+                                @forelse($aktiveCommunities as $komunitas)
+                                    <tr>
+                                        <td class="px-0">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ $komunitas->logo ?? '/images/users/avatar-1.jpg' }}"
+                                                    height="36" class="me-2 align-self-center rounded"
+                                                    alt="{{ $komunitas->nm_komunitas }}">
+                                                <div class="flex-grow-1 text-truncate">
+                                                    <h6 class="m-0 text-truncate">{{ $komunitas->nm_komunitas }}</h6>
+                                                    <p class="font-12 text-muted mb-0">
+                                                        {{ Str::limit($komunitas->desk_komunitas, 50) }}</p>
+                                                    <a href="{{ route('komunitas.detail', $komunitas->kd_komunitas) }}"
+                                                        class="font-12 text-primary text-decoration-underline">
+                                                        {{ $komunitas->total_diskusi }} Diskusi Hari Ini
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="text-center">
+                                            <p class="text-muted mb-0">Belum ada diskusi hari ini</p>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
-                        </table> <!--end table-->
-                    </div><!--end /div-->
-                </div><!--end card-body-->
+                        </table>
+                    </div>
+                </div>
             </div>
-            <!--end card-->
         </div>
         <!--end col-->
         <div class="col-md-6 col-lg-6">
@@ -420,8 +432,8 @@
                                                 class="me-2 align-self-center rounded" alt="...">
                                             <div class="flex-grow-1 text-truncate">
                                                 <h6 class="m-0 text-truncate">Bunda Literasi</h6>
-                                                <a href="#"
-                                                    class="font-12 text-muted text-decoration-underline">400 kegiatan diposting hari ini</a>
+                                                <a href="#" class="font-12 text-muted text-decoration-underline">400
+                                                    kegiatan diposting hari ini</a>
                                             </div><!--end media body-->
                                         </div><!--end media-->
                                     </td>

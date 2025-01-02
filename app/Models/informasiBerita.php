@@ -22,5 +22,11 @@ class informasiBerita extends Model
         'foto_berita',
         'author',
         'tanggal_dibuat',
+        'kd_kecamatan'
     ];
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class, 'kd_kecamatan', 'kd_kecamatan');
+    }
 }

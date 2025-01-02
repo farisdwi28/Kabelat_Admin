@@ -48,4 +48,16 @@ class Komunitas extends Model
                 'penduduk.RW',
             );
     }
+
+    public function diskusi()
+    {
+        return $this->hasMany(Diskusi::class, 'kd_komunitas', 'kd_komunitas');
+    }
+
+    public function getDiskusiHariIniCount()
+    {
+        return $this->diskusi()
+            ->whereDate('tglpost_diskusi', now()->toDateString())
+            ->count();
+    }
 }

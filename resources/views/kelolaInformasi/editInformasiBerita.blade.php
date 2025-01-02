@@ -53,7 +53,8 @@
                                         @if (isset($informasi->author) && count(json_decode($informasi->author)) > 0)
                                             @foreach (json_decode($informasi->author) as $key => $inisiator)
                                                 <div class="input-group mb-2">
-                                                    <input type="text" class="form-control" name="author[]" value="{{ old('author.' . $key, $inisiator) }}" required>
+                                                    <input type="text" class="form-control" name="author[]"
+                                                        value="{{ old('author.' . $key, $inisiator) }}" required>
                                                     @if ($loop->first)
                                                         <button type="button" class="btn btn-success"
                                                             id="add-inisiator">+</button>
@@ -112,6 +113,25 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="kd_kecamatan">Kecamatan</label>
+                                    <select name="kd_kecamatan" id="kd_kecamatan"
+                                        class="form-control @error('kd_kecamatan') is-invalid @enderror" required>
+                                        <option value="">Pilih Kecamatan</option>
+                                        @foreach ($kecamatanList as $kd_kecamatan => $nm_kecamatan)
+                                            <option value="{{ $kd_kecamatan }}"
+                                                {{ $informasi->kd_kecamatan == $kd_kecamatan ? 'selected' : '' }}>
+                                                {{ $nm_kecamatan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('kd_kecamatan')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="foto" class="form-label">Sampul Berita</label>
@@ -129,7 +149,7 @@
                                     @error('foto')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">Ukuran foto harus 1920x400px</small>
+                                    <small class="form-text text-muted">Ukuran foto harus 1920x600px</small>
                                 </div>
                             </div>
 
@@ -182,7 +202,7 @@
                 newInputGroup.classList.add('input-group', 'mb-2');
 
                 newInputGroup.innerHTML = `
-             <input type="text" class="form-control" name="author[]" placeholder="Masukkan nama inisiator" required>
+                <input type="text" class="form-control" name="author[]" placeholder="Masukkan nama inisiator" required>
                 <button type="button" class="btn btn-danger remove-inisiator" id="add-inisiator">-</button>
         `;
 
@@ -208,7 +228,7 @@
 
                 preview.onload = function() {
                     const validWidth = 1920;
-                    const validHeight = 400;
+                    const validHeight = 600;
 
                     if (preview.naturalWidth !== validWidth || preview.naturalHeight !== validHeight) {
                         alert(`Ukuran foto harus ${validWidth}x${validHeight} piksel`);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\informasiPengumuman;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -11,10 +12,17 @@ use Illuminate\Support\Facades\DB;
 
 class informasiPengumumanController extends Controller
 {
+    private function getKecamatanList()
+    {
+        return Kecamatan::whereNotNull('nm_kecamatan')
+            ->where('nm_kecamatan', '!=', '')
+            ->pluck('nm_kecamatan', 'kd_kecamatan');
+    }
+
     public function index()
     {
         try {
-            $informasiPengumuman = informasiPengumuman::all();
+            $informasiPengumuman = informasiPengumuman::with('kecamatan')->get();
             return view('kelolaInformasi.kelolaInformasiPengumuman', compact('informasiPengumuman'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal mengambil data: ' . $e->getMessage());
@@ -92,7 +100,8 @@ class informasiPengumumanController extends Controller
 
     public function create()
     {
-        return view('kelolaInformasi.tambahInformasiPengumuman');
+        $kecamatanList = $this->getKecamatanList();
+        return view('kelolaInformasi.tambahInformasiPengumuman', compact('kecamatanList'));
     }
 
     public function store(Request $request)
@@ -105,6 +114,7 @@ class informasiPengumumanController extends Controller
             'foto' => 'required|image|max:5120|mimes:jpeg,png,jpg,gif',
             'author' => 'required|array',
             'author.*' => 'string|max:50',
+            'kd_kecamatan' => 'required|exists:kecamatan,kd_kecamatan',
         ]);
 
         if ($validator->fails()) {
@@ -126,6 +136,7 @@ class informasiPengumumanController extends Controller
             $informasi->tanggal_dibuat = now()->toDateString();
             $informasi->foto_pengumuman = $sampulPengumuman;
             $informasi->author = json_encode($request->author);
+            $informasi->kd_kecamatan = $request->kd_kecamatan;
             $informasi->save();
 
             DB::commit();
@@ -141,8 +152,9 @@ class informasiPengumumanController extends Controller
     public function edit($id)
     {
         try {
-            $informasi = informasiPengumuman::findOrFail($id);
-            return view('kelolaInformasi.editInformasiPengumuman', compact('informasi'));
+            $informasi = informasiPengumuman::with('kecamatan')->findOrFail($id);
+            $kecamatanList = $this->getKecamatanList();
+            return view('kelolaInformasi.editInformasiPengumuman', compact('informasi', 'kecamatanList'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Informasi tidak ditemukan');
         }
@@ -158,6 +170,7 @@ class informasiPengumumanController extends Controller
             'foto' => 'nullable|image|max:5120|mimes:jpeg,png,jpg,gif',
             'author' => 'required|array',
             'author.*' => 'string|max:50',
+            'kd_kecamatan' => 'required|exists:kecamatan,kd_kecamatan',
         ]);
 
         if ($validator->fails()) {
@@ -173,6 +186,7 @@ class informasiPengumumanController extends Controller
             $informasi->judul_pengumuman = $request->judul_pengumuman;
             $informasi->isi_pengumuman = $request->isi_pengumuman;
             $informasi->status_info = $request->status_info;
+            $informasi->kd_kecamatan = $request->kd_kecamatan;
 
             if ($request->hasFile('foto')) {
                 $foto = $request->file('foto');

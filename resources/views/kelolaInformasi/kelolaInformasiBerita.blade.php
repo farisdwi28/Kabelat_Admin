@@ -31,6 +31,7 @@
                                     <th>Tanggal Dibuat</th>
                                     <th>Penulis</th>
                                     <th>Kategori</th>
+                                    <th>Kecamatan</th>
                                     <th>Status</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
@@ -42,6 +43,7 @@
                                         <td>{{ $info->tanggal_dibuat }}</td>
                                         <td>{{ implode(', ', json_decode($info->author)) }}</td>
                                         <td>{{ $info->kategori_berita }}</td>
+                                        <td>{{ $info->kecamatan->nm_kecamatan ?? 'Tidak ada kecamatan' }}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button
