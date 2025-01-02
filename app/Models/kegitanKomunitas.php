@@ -40,6 +40,6 @@ class kegitanKomunitas extends Model
 
     public function fotoKegiatan()
     {
-        return $this->hasMany(FotoKegiatan::class, 'kd_kegiatan2', 'kd_kegiatan2');
+        return $this->hasMany(fotoKegiatan::class, 'kd_kegiatan2', 'kd_kegiatan2');
     }
 }

@@ -41,7 +41,7 @@ class Kegiatan extends Model
 
     public function fotoKegiatan()
     {
-        return $this->hasMany(FotoKegiatan::class, 'kd_kegiatan', 'kd_kegiatan');
+        return $this->hasMany(fotoKegiatan::class, 'kd_kegiatan', 'kd_kegiatan');
     }
 }
 
