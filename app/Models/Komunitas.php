@@ -60,4 +60,9 @@ class Komunitas extends Model
             ->whereDate('tglpost_diskusi', now()->toDateString())
             ->count();
     }
+
+    public function kegiatanKomunitas()
+    {
+        return $this->hasMany(kegitanKomunitas::class, 'kd_komunitas', 'kd_komunitas');
+    }
 }

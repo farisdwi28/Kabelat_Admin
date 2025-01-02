@@ -48,6 +48,34 @@ class DashboardController extends Controller
         }
     }
 
+    private function getMostActiveCommunities2($limit = 5)
+    {
+        try {
+            $aktiveCommunities = Komunitas::select(
+                'komunitas.kd_komunitas',
+                'komunitas.nm_komunitas',
+                'komunitas.logo',
+                'komunitas.desk_komunitas'
+            )
+                ->leftJoin('kegiatan_komunitas', 'komunitas.kd_komunitas', '=', 'kegiatan_komunitas.kd_komunitas')
+                ->groupBy(
+                    'komunitas.kd_komunitas',
+                    'komunitas.nm_komunitas',
+                    'komunitas.logo',
+                    'komunitas.desk_komunitas'
+                )
+                ->orderByRaw('COUNT(kegiatan_komunitas.kd_kegiatan2) DESC')
+                ->withCount('kegiatanKomunitas as total_kegiatan')
+                ->limit($limit)
+                ->get();
+
+            return $aktiveCommunities;
+        } catch (Exception $e) {
+            Log::error('Error getting most active communities: ' . $e->getMessage());
+            return collect();
+        }
+    }
+
     public function index()
     {
         try {
@@ -65,6 +93,7 @@ class DashboardController extends Controller
 
             // Get most active communities
             $aktiveCommunities = $this->getMostActiveCommunities(5);
+            $aktiveCommunities2 = $this->getMostActiveCommunities2(5);
 
             return view('dashboard.index', compact(
                 'Komunitas',
@@ -73,7 +102,8 @@ class DashboardController extends Controller
                 'KegiatanKomunitas',
                 'Pengumuman',
                 'Berita',
-                'aktiveCommunities'
+                'aktiveCommunities',
+                'aktiveCommunities2'
             ));
         } catch (Exception $e) {
             return response()->json(['error' => 'An error occurred while fetching data.'], 500);

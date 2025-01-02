@@ -74,7 +74,7 @@
                         <!--end col-->
                     </div>
                     <!--end row-->
-                    <p class="mb-0 text-truncate text-muted mt-3">Tekan untuk kelola</p>
+                    <p class="mb-0 text-truncate text-muted mt-3">Total kegiatan</p>
                 </div>
                 <!--end card-body-->
             </div>
@@ -150,6 +150,7 @@
                                 Tahun Ini<i class="las la-angle-down ms-1"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">2024</a>
                                 <a class="dropdown-item" href="#">2023</a>
                                 <a class="dropdown-item" href="#">2022</a>
                             </div>
@@ -383,14 +384,14 @@
                                     <tr>
                                         <td class="px-0">
                                             <div class="d-flex align-items-center">
-                                                <img src="{{ $komunitas->logo ?? '/images/users/avatar-1.jpg' }}"
+                                                <img src="{{ $komunitas->logo }}"
                                                     height="36" class="me-2 align-self-center rounded"
                                                     alt="{{ $komunitas->nm_komunitas }}">
                                                 <div class="flex-grow-1 text-truncate">
                                                     <h6 class="m-0 text-truncate">{{ $komunitas->nm_komunitas }}</h6>
                                                     <p class="font-12 text-muted mb-0">
                                                         {{ Str::limit($komunitas->desk_komunitas, 50) }}</p>
-                                                    <a href="{{ route('komunitas.detail', $komunitas->kd_komunitas) }}"
+                                                    <a href="#"
                                                         class="font-12 text-primary text-decoration-underline">
                                                         {{ $komunitas->total_diskusi }} Diskusi Hari Ini
                                                     </a>
@@ -418,30 +419,42 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h4 class="card-title">Aktivitas</h4>
-                        </div><!--end col-->
-                    </div> <!--end row-->
-                </div><!--end card-header-->
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body pt-0">
                     <div class="table-responsive">
                         <table class="table mb-0">
                             <tbody>
-                                <tr class="">
-                                    <td class="px-0">
-                                        <div class="d-flex align-items-center">
-                                            <img src="/images/users/avatar-1.jpg" height="36"
-                                                class="me-2 align-self-center rounded" alt="...">
-                                            <div class="flex-grow-1 text-truncate">
-                                                <h6 class="m-0 text-truncate">Bunda Literasi</h6>
-                                                <a href="#" class="font-12 text-muted text-decoration-underline">400
-                                                    kegiatan diposting hari ini</a>
-                                            </div><!--end media body-->
-                                        </div><!--end media-->
-                                    </td>
-                                </tr><!--end tr-->
+                                @forelse($aktiveCommunities2 as $community)
+                                    <tr>
+                                        <td class="px-0">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ $community->logo }}"
+                                                    height="36" class="me-2 align-self-center rounded"
+                                                    alt="{{ $community->nm_komunitas }}">
+                                                <div class="flex-grow-1 text-truncate">
+                                                    <h6 class="m-0 text-truncate">{{ $community->nm_komunitas }}</h6>
+                                                    <a href="#"
+                                                        class="font-12 text-muted text-decoration-underline">
+                                                        {{ $community->total_kegiatan }}
+                                                        kegiatan diposting
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="text-center">
+                                            <p class="text-muted mb-0">Belum ada aktivitas hari ini</p>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
-                        </table> <!--end table-->
-                    </div><!--end /div-->
-                </div><!--end card-body-->
+                        </table>
+                    </div>
+                </div>
             </div>
             {{-- <div class="card">
                 <div class="card-header">
