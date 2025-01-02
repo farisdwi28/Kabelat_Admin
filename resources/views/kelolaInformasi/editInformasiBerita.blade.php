@@ -149,7 +149,7 @@
                                     @error('foto')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">Ukuran foto harus 1920x600px</small>
+                                    <small class="form-text text-muted">Ukuran foto harus 1920x800px</small>
                                 </div>
                             </div>
 
@@ -228,7 +228,7 @@
 
                 preview.onload = function() {
                     const validWidth = 1920;
-                    const validHeight = 600;
+                    const validHeight = 800;
 
                     if (preview.naturalWidth !== validWidth || preview.naturalHeight !== validHeight) {
                         alert(`Ukuran foto harus ${validWidth}x${validHeight} piksel`);

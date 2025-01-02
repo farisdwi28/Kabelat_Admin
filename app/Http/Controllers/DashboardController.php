@@ -139,15 +139,34 @@ class DashboardController extends Controller
             // \Log::info('Member count: ' . $Member);
 
             $Komunitas = Komunitas::count();
-            $Kegiatan = Kegiatan::count();
-            $KegiatanKomunitas = kegitanKomunitas::count();
-            $Pengumuman = informasiPengumuman::count();
-            $Berita = informasiBerita::count();
+
+            $KegiatanKomunitas = kegitanKomunitas::join('kelurahan_desa', function ($join) use ($adminKdLokal) {
+                $join->where('kelurahan_desa.kd_kelurahan', '=', $adminKdLokal);
+            })
+                ->join('kecamatan', 'kelurahan_desa.kd_kecamatan', '=', 'kecamatan.kd_kecamatan')
+                ->where(function ($query) use ($adminKdLokal) {
+                    $query->whereRaw("UPPER(REPLACE(kegiatan_komunitas.kelurahan, ' ', '')) = 
+                    UPPER(REPLACE(kelurahan_desa.nama, ' ', '')) 
+                    COLLATE utf8mb4_general_ci")
+                        ->orWhereRaw("UPPER(REPLACE(kegiatan_komunitas.kecamatan, ' ', '')) = 
+                    UPPER(REPLACE(kecamatan.nm_kecamatan, ' ', '')) 
+                    COLLATE utf8mb4_general_ci");
+                })
+                ->count();
+
+            $Berita = informasiBerita::join('kabelat.kecamatan', 'informasi.kd_kecamatan', '=', 'kabelat.kecamatan.kd_kecamatan')
+                ->join('kelurahan_desa', 'kelurahan_desa.kd_kecamatan', '=', 'kabelat.kecamatan.kd_kecamatan')
+                ->where('kelurahan_desa.kd_kelurahan', $adminKdLokal)
+                ->count();
+
+            $Pengumuman = informasiPengumuman::join('kabelat.kecamatan', 'informasi_pengumuman.kd_kecamatan', '=', 'kabelat.kecamatan.kd_kecamatan')
+                ->join('kelurahan_desa', 'kelurahan_desa.kd_kecamatan', '=', 'kabelat.kecamatan.kd_kecamatan')
+                ->where('kelurahan_desa.kd_kelurahan', $adminKdLokal)
+                ->count();
 
             return view('dashboardLokal.index', compact(
                 'Komunitas',
                 'Member',
-                'Kegiatan',
                 'KegiatanKomunitas',
                 'Pengumuman',
                 'Berita'

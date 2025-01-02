@@ -62,7 +62,7 @@
                     <div class="row d-flex justify-content-center border-dashed-bottom pb-3">
                         <div class="col-9">
                             <p class="text-dark mb-0 fw-semibold fs-14">Kegiatan</p>
-                            <h3 class="mt-2 mb-0 fw-bold">{{ $Kegiatan + $KegiatanKomunitas }}</h3>
+                            <h3 class="mt-2 mb-0 fw-bold">{{ $KegiatanKomunitas }}</h3>
                         </div>
                         <!--end col-->
                         <div class="col-3 align-self-center">
@@ -139,7 +139,7 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h4 class="card-title">Jumlah Pengunjung</h4>
+                        <h4 class="card-title">Jumlah Member</h4>
                     </div>
                     <!--end col-->
                     <div class="col-auto">
@@ -161,7 +161,7 @@
             </div>
             <!--end card-header-->
             <div class="card-body pt-0">
-                <div id="visitors_report" class="apex-charts"></div>
+                <div id="members_report" class="apex-charts"></div>
             </div>
             <!--end card-body-->
         </div>
@@ -365,7 +365,37 @@
         <!--end col-->
     </div> --}}
     <!--end row-->
-    <div class="row justify-content-center">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h4 class="card-title">Laporan Kegiatan</h4>
+                </div><!--end col-->
+            </div> <!--end row-->
+        </div><!--end card-header-->
+        <div class="card-body pt-0">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <tbody>
+                        <tr class="">
+                            <td class="px-0">
+                                <div class="d-flex align-items-center">
+                                    <img src="/images/users/avatar-1.jpg" height="36"
+                                        class="me-2 align-self-center rounded" alt="...">
+                                    <div class="flex-grow-1 text-truncate">
+                                        <h6 class="m-0 text-truncate">Bunda Literasi</h6>
+                                        <a href="#"
+                                            class="font-12 text-muted text-decoration-underline">400 kegiatan diposting hari ini</a>
+                                    </div><!--end media body-->
+                                </div><!--end media-->
+                            </td>
+                        </tr><!--end tr-->
+                    </tbody>
+                </table> <!--end table-->
+            </div><!--end /div-->
+        </div><!--end card-body-->
+    </div>
+    {{-- <div class="row justify-content-center">
         <div class="col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
@@ -398,39 +428,9 @@
                 </div><!--end card-body-->
             </div>
             <!--end card-->
-        </div>
+        </div> --}}
         <!--end col-->
-        <div class="col-md-6 col-lg-6">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h4 class="card-title">Aktivitas</h4>
-                        </div><!--end col-->
-                    </div> <!--end row-->
-                </div><!--end card-header-->
-                <div class="card-body pt-0">
-                    <div class="table-responsive">
-                        <table class="table mb-0">
-                            <tbody>
-                                <tr class="">
-                                    <td class="px-0">
-                                        <div class="d-flex align-items-center">
-                                            <img src="/images/users/avatar-1.jpg" height="36"
-                                                class="me-2 align-self-center rounded" alt="...">
-                                            <div class="flex-grow-1 text-truncate">
-                                                <h6 class="m-0 text-truncate">Bunda Literasi</h6>
-                                                <a href="#"
-                                                    class="font-12 text-muted text-decoration-underline">400 kegiatan diposting hari ini</a>
-                                            </div><!--end media body-->
-                                        </div><!--end media-->
-                                    </td>
-                                </tr><!--end tr-->
-                            </tbody>
-                        </table> <!--end table-->
-                    </div><!--end /div-->
-                </div><!--end card-body-->
-            </div>
+        {{-- <div class="col-md-6 col-lg-6"> --}}
             {{-- <div class="card">
                 <div class="card-header">
                     <div class="row align-items-center">
@@ -531,9 +531,9 @@
                 <!--end card-body-->
             </div>
             <!--end card--> --}}
-        </div>
+        {{-- </div> --}}
         <!--end col-->
-    </div>
+    {{-- </div> --}}
 @endsection
 
 @section('script')

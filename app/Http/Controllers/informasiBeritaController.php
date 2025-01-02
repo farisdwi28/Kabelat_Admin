@@ -203,7 +203,7 @@ class informasiBeritaController extends Controller
             if ($request->hasFile('foto')) {
                 $foto = $request->file('foto');
                 $fotoBase64 = $this->convertImageToBase64($foto);
-                $informasi->foto_berita = $fotoBase64; 
+                $informasi->foto_berita = $fotoBase64;
             }
 
             // Update author
@@ -225,9 +225,15 @@ class informasiBeritaController extends Controller
             $informasi = InformasiBerita::findOrFail($id);
             $informasi->delete();
 
-            return redirect()->route('informasiBerita')->with('success', 'Berita berhasil dihapus');
+            return response()->json([
+                'success' => true,
+                'message' => 'Pengumuman berhasil dihapus'
+            ]);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menghapus berita');
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menghapus berita'
+            ], 500);
         }
     }
 }

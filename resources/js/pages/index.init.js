@@ -245,6 +245,113 @@ var options = {
 var chart1 = new ApexCharts(document.querySelector("#visitors_report"), options);
 chart1.render();
 
+// Members
+
+var options = {
+    series: [{
+        name: "Members",
+        data: [20, 38, 38, 72, 55, 63, 43, 50, 70, 80, 110],
+    },],
+    chart: {
+        height: 230,
+        type: "bar",
+        toolbar: {
+            show: false,
+        },
+    },
+    fill: {
+        type: "gradient",
+        gradient: {
+            shadeIntensity: 1,
+            opacityFrom: 0.7,
+            opacityTo: 1,
+            colorStops: [{
+                offset: 0,
+                color: "rgba(106, 155, 155, 0.4)",
+                opacity: 1,
+            },
+                {
+                    offset: 100,
+                    color: "rgba(106, 155, 155, 0.4)",
+                    opacity: 1,
+                },
+            ],
+        },
+    },
+
+    plotOptions: {
+        bar: {
+            columnWidth: "55%",
+            endingShape: "rounded",
+            borderRadius: 5,
+        },
+    },
+    dataLabels: {
+        enabled: false,
+    },
+    legend: {
+        show: false,
+    },
+    yaxis: {
+
+        labels: {
+            show: false,
+        },
+    },
+    grid: {
+        strokeDashArray: 3,
+        xaxis: {
+            lines: {
+                show: false,
+            },
+        },
+        yaxis: {
+            lines: {
+                show: false,
+            },
+        },
+    },
+    xaxis: {
+        type: "week",
+        categories: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Mey",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ],
+        axisBorder: {
+            show: false,
+            color: "rgba(119, 119, 142, 0.05)",
+            offsetX: 0,
+            offsetY: 0,
+        },
+        axisTicks: {
+            show: false,
+            borderType: "solid",
+            color: "rgba(119, 119, 142, 0.05)",
+            width: 6,
+            offsetX: 0,
+            offsetY: 0,
+        },
+        labels: {
+            rotate: -90,
+            style: {
+                colors: "rgb(107 ,114 ,128)",
+                fontSize: "12px",
+            },
+        },
+    },
+};
+var chart2 = new ApexCharts(document.querySelector("#members_report"), options);
+chart2.render();
+
 // Map
 
 var map_2 = new jsVectorMap({

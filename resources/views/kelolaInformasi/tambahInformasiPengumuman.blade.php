@@ -84,7 +84,7 @@
                                     name="foto" id="foto" onchange="previewImage()" required>
                                 <img id="image-preview" class="img-thumbnail mt-2" style="display: none;"
                                     alt="Preview Foto">
-                                <small class="form-text text-muted">Ukuran foto harus 1920x600px</small>
+                                <small class="form-text text-muted">Ukuran foto harus 1920x800px</small>
                             </div>
 
                             <div class="col-md-12">
@@ -159,7 +159,7 @@
                 preview.onload = function() {
                     // Periksa dimensi gambar
                     const validWidth = 1920;
-                    const validHeight = 600;
+                    const validHeight = 800;
 
                     if (preview.naturalWidth !== validWidth || preview.naturalHeight !== validHeight) {
                         alert(`Ukuran foto harus ${validWidth}x${validHeight} piksel`);
