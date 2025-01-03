@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Rizz'])
+@extends('layouts.vertical', ['title' => 'Kabelat'])
 @section('content')
     <div class="row justify-content-center">
         <div class="col-12">

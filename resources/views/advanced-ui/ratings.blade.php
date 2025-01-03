@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Rizz'])
+@extends('layouts.vertical', ['title' => 'Kabelat'])
 
 @section('css')
 @vite(['node_modules/starability/starability-css/starability-all.css', 'node_modules/animate.css/animate.min.css'])

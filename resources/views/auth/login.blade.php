@@ -1,4 +1,4 @@
-@extends('layouts.auth', ['title' => 'Rizz'])
+@extends('layouts.auth', ['title' => 'Kabelat'])
 @section('content')
     <div class="col-lg-4 mx-auto">
         <div class="card">

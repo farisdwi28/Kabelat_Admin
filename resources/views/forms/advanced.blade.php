@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Rizz'])
+@extends('layouts.vertical', ['title' => 'Kabelat'])
 
 @section('css')
 @vite(['node_modules/mobius1-selectr/dist/selectr.min.css', 'node_modules/huebee/dist/huebee.min.css', 'node_modules/vanillajs-datepicker/dist/css/datepicker.min.css'])

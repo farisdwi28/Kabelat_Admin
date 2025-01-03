@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Rizz'])
+@extends('layouts.vertical', ['title' => 'Kabelat'])
 
 @section('css')
     @vite(['node_modules/sweetalert2/dist/sweetalert2.min.css', 'node_modules/animate.css/animate.min.css'])

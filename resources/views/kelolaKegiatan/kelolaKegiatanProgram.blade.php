@@ -1,4 +1,4 @@
-    @extends('layouts.vertical', ['title' => 'Rizz'])
+    @extends('layouts.vertical', ['title' => 'Kabelat'])
 
     @section('content')
         @foreach ($kegiatan as $k)

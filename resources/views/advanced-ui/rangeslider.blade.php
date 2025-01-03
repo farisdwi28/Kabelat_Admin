@@ -1,4 +1,4 @@
-@extends('layouts.vertical', ['title' => 'Rizz'])
+@extends('layouts.vertical', ['title' => 'Kabelat'])
 
 @section('css')
 @vite(['node_modules/nouislider/dist/nouislider.min.css'])
