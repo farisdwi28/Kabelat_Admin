@@ -145,22 +145,22 @@ class DashboardController extends Controller
             })
                 ->join('kecamatan', 'kelurahan_desa.kd_kecamatan', '=', 'kecamatan.kd_kecamatan')
                 ->where(function ($query) use ($adminKdLokal) {
-                    $query->whereRaw("UPPER(REPLACE(kegiatan_komunitas.kelurahan, ' ', '')) = 
-                    UPPER(REPLACE(kelurahan_desa.nama, ' ', '')) 
+                    $query->whereRaw("UPPER(REPLACE(kegiatan_komunitas.kelurahan, ' ', '')) =
+                    UPPER(REPLACE(kelurahan_desa.nama, ' ', ''))
                     COLLATE utf8mb4_general_ci")
-                        ->orWhereRaw("UPPER(REPLACE(kegiatan_komunitas.kecamatan, ' ', '')) = 
-                    UPPER(REPLACE(kecamatan.nm_kecamatan, ' ', '')) 
+                        ->orWhereRaw("UPPER(REPLACE(kegiatan_komunitas.kecamatan, ' ', '')) =
+                    UPPER(REPLACE(kecamatan.nm_kecamatan, ' ', ''))
                     COLLATE utf8mb4_general_ci");
                 })
                 ->count();
 
-            $Berita = informasiBerita::join('kabelat.kecamatan', 'informasi.kd_kecamatan', '=', 'kabelat.kecamatan.kd_kecamatan')
-                ->join('kelurahan_desa', 'kelurahan_desa.kd_kecamatan', '=', 'kabelat.kecamatan.kd_kecamatan')
+            $Berita = informasiBerita::join('kecamatan', 'informasi.kd_kecamatan', '=', 'kecamatan.kd_kecamatan')
+                ->join('kelurahan_desa', 'kelurahan_desa.kd_kecamatan', '=', 'kecamatan.kd_kecamatan')
                 ->where('kelurahan_desa.kd_kelurahan', $adminKdLokal)
                 ->count();
 
-            $Pengumuman = informasiPengumuman::join('kabelat.kecamatan', 'informasi_pengumuman.kd_kecamatan', '=', 'kabelat.kecamatan.kd_kecamatan')
-                ->join('kelurahan_desa', 'kelurahan_desa.kd_kecamatan', '=', 'kabelat.kecamatan.kd_kecamatan')
+            $Pengumuman = informasiPengumuman::join('kecamatan', 'informasi_pengumuman.kd_kecamatan', '=', 'kecamatan.kd_kecamatan')
+                ->join('kelurahan_desa', 'kelurahan_desa.kd_kecamatan', '=', 'kecamatan.kd_kecamatan')
                 ->where('kelurahan_desa.kd_kelurahan', $adminKdLokal)
                 ->count();
 
