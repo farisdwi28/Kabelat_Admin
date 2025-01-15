@@ -142,7 +142,7 @@ var options = {
       bar: {
         borderRadius: 6,
           dataLabels: {
-              position: 'top', // top, center, bottom              
+              position: 'top', // top, center, bottom
           },
           columnWidth: '20',
           distributed: true,

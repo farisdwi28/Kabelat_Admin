@@ -31,7 +31,7 @@
                                     <small class="form-text text-muted">Contoh : Nama Komunitas Wajib Diisi!</small>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="nm_ketua">Nama Ketua Komunitas *</label>
                                     <input type="text" class="form-control @error('nm_ketua') is-invalid @enderror"
@@ -41,7 +41,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="status">Status *</label>

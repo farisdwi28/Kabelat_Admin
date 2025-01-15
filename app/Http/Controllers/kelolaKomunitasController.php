@@ -33,7 +33,7 @@ class kelolaKomunitasController extends Controller
                 'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048'
             ]);
 
-            $ketua = MemberKomunitas::where('nm_member', $request->input('nm_ketua'))->first();
+            // $ketua = MemberKomunitas::where('nm_member', $request->input('nm_ketua'))->first();
 
             if ($request->hasFile('foto')) {
                 $logoBase64 = $this->convertImageToBase64($request->file('foto'));
@@ -50,13 +50,13 @@ class kelolaKomunitasController extends Controller
             $Komunitas->kd_komunitas = $this->generateKodeKomunitas();
             $Komunitas->save();
 
-            if ($ketua) {
-                $memberKomunitas = new MemberKomunitas();
-                $memberKomunitas->kd_komunitas = $Komunitas->kd_komunitas;
-                $memberKomunitas->kd_jabatan = 'KETUA';
-                $memberKomunitas->nm_member = $ketua->nm_member;
-                $memberKomunitas->save();
-            }
+            // if ($ketua) {
+            //     $memberKomunitas = new MemberKomunitas();
+            //     $memberKomunitas->kd_komunitas = $Komunitas->kd_komunitas;
+            //     $memberKomunitas->kd_jabatan = 'KETUA';
+            //     $memberKomunitas->nm_member = $ketua->nm_member;
+            //     $memberKomunitas->save();
+            // }
 
             return redirect()->route('kelolaKomunitas')->with('success', 'Komunitas berhasil ditambahkan.');
         } catch (\Exception $e) {

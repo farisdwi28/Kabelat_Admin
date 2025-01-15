@@ -48,7 +48,7 @@
                                         Komunitas</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link {{ Route::is('detailStruktur') ? 'active' : '' }}" href="{{ route('kelolaStruktur') }}">Kelola
+                                    <a class="nav-link {{ Route::is('detailStruktur') ? 'active' : '' }}" href="{{ route('kelolaStruktur') }}">Lihat
                                         Struktur</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->

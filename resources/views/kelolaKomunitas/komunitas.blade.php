@@ -40,7 +40,7 @@
                                 </td>
                                 <td>{{ $K->status }}</td>
                                 <td>{{ $K->tanggal_dibuat }}</td>
-                                <td>{{ $K->Ketua->nm_member ?? '' }}</td>
+                                <td>{{ $K->Ketua->nm_member ?? '-' }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('kelolaKomunitas.edit', ['kd_komunitas' => $K->kd_komunitas]) }}"><i class="las la-pen text-secondary font-16"></i></a>
                                     <a href="javascript:void(0)" onclick="confirmDelete('{{ $K->kd_komunitas }}', '{{ $K->nm_komunitas }}')">
