@@ -162,7 +162,6 @@ class informasiPengumumanController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validasi input
         $validator = Validator::make($request->all(), [
             'judul_pengumuman' => 'required|max:250',
             'isi_pengumuman' => 'required',
@@ -179,10 +178,8 @@ class informasiPengumumanController extends Controller
         }
 
         try {
-            // Temukan data berdasarkan ID
             $informasi = informasiPengumuman::findOrFail($id);
 
-            // Update data
             $informasi->judul_pengumuman = $request->judul_pengumuman;
             $informasi->isi_pengumuman = $request->isi_pengumuman;
             $informasi->status_info = $request->status_info;
@@ -194,10 +191,8 @@ class informasiPengumumanController extends Controller
                 $informasi->foto_pengumuman = $fotoBase64;
             }
 
-            // Update author
             $informasi->author = json_encode($request->author);
 
-            // Simpan perubahan
             $informasi->save();
 
             return redirect()->route('informasiPengumuman')->with('success', 'Informasi berhasil diperbarui');

@@ -66,7 +66,6 @@ class KegiatanController extends Controller
     {
         // \Log::info('Store method called', ['request_data' => $request->all()]);
         try {
-            // Validasi dasar
             $request->validate([
                 'nm_keg' => 'required',
                 'desk_keg' => 'required|string|max:4294967295',
@@ -83,7 +82,6 @@ class KegiatanController extends Controller
                 'link_keg.url' => 'Format link kegiatan tidak valid',
             ]);
 
-            // Validasi foto
             if (!$request->hasFile('photos')) {
                 return back()
                     ->withInput()
@@ -92,26 +90,22 @@ class KegiatanController extends Controller
 
             $photos = $request->file('photos');
 
-            // Validasi jumlah foto
             if (count($photos) > 10) {
                 return back()
                     ->withInput()
                     ->with('error', 'Maksimal 10 foto yang dapat diunggah. Anda mengunggah ' . count($photos) . ' foto.');
             }
 
-            // Validasi setiap foto
             $totalSize = 0;
             foreach ($photos as $index => $photo) {
                 $totalSize += $photo->getSize();
 
-                // Validasi format
                 if (!in_array($photo->getClientOriginalExtension(), ['jpg', 'jpeg', 'png'])) {
                     return back()
                         ->withInput()
                         ->with('error', 'Foto ke-' . ($index + 1) . ' harus berformat JPG, JPEG, atau PNG');
                 }
 
-                // Validasi ukuran per file (5MB = 5 * 1024 * 1024 bytes)
                 if ($photo->getSize() > (5 * 1024 * 1024)) {
                     return back()
                         ->withInput()
@@ -119,7 +113,6 @@ class KegiatanController extends Controller
                 }
             }
 
-            // Validasi total ukuran (20MB = 20 * 1024 * 1024 bytes)
             if ($totalSize > (20 * 1024 * 1024)) {
                 return back()
                     ->withInput()
@@ -129,7 +122,6 @@ class KegiatanController extends Controller
 
             DB::beginTransaction();
 
-            // Generate kode kegiatan
             $lastCode = Kegiatan::orderBy('kd_kegiatan', 'desc')->first();
             $newNumber = 1;
 
@@ -140,10 +132,8 @@ class KegiatanController extends Controller
 
             $newCode = sprintf("KG%03d", $newNumber);
 
-            // Determine initial status based on dates
             $status = $this->determineStatus($request->tgl_mulai, $request->tgl_berakhir);
 
-            // Simpan kegiatan
             $kegiatan = Kegiatan::create([
                 'kd_kegiatan' => $newCode,
                 'nm_keg' => $request->nm_keg,
@@ -163,7 +153,6 @@ class KegiatanController extends Controller
                 throw new \Exception('Gagal menyimpan data kegiatan');
             }
 
-            // Upload foto
             $lastFotoCode = fotoKegiatan::orderBy('kd_fotokeg', 'desc')->first();
             $fotoNumber = $lastFotoCode ? (int)substr($lastFotoCode->kd_fotokeg, 2) + 1 : 1;
 
@@ -220,7 +209,6 @@ class KegiatanController extends Controller
     public function addPhotos(Request $request)
     {
         try {
-            // Validasi input
             if (!$request->hasFile('photos')) {
                 return back()->with('error', 'Pilih foto terlebih dahulu');
             }
@@ -235,7 +223,6 @@ class KegiatanController extends Controller
                 return back()->with('error', 'Kegiatan tidak ditemukan');
             }
 
-            // Validasi jumlah foto
             $currentPhotoCount = $kegiatan->fotoKegiatan->count();
             $newPhotoCount = count($photos);
 
@@ -243,21 +230,17 @@ class KegiatanController extends Controller
                 return back()->with('error', 'Total foto tidak boleh melebihi 10. Saat ini ada ' . $currentPhotoCount . ' foto.');
             }
 
-            // Validasi dan proses setiap foto
             $totalSize = 0;
             $allowedExtensions = ['jpg', 'jpeg', 'png'];
             foreach ($photos as $index => $photo) {
-                // Pastikan file tidak null
                 if (!$photo || !$photo->isValid()) {
                     return back()->with('error', 'Foto ke-' . ($index + 1) . ' tidak valid atau gagal diunggah.');
                 }
 
-                // Validasi format
                 if (!in_array(strtolower($photo->getClientOriginalExtension()), $allowedExtensions)) {
                     return back()->with('error', 'Foto ke-' . ($index + 1) . ' harus berformat JPG, JPEG, atau PNG');
                 }
 
-                // Validasi ukuran per file (5MB)
                 if ($photo->getSize() > (5 * 1024 * 1024)) {
                     return back()->with('error', 'Foto ke-' . ($index + 1) . ' melebihi batas ukuran 5MB');
                 }
@@ -265,12 +248,10 @@ class KegiatanController extends Controller
                 $totalSize += $photo->getSize();
             }
 
-            // Validasi total ukuran (20MB)
             if ($totalSize > (20 * 1024 * 1024)) {
                 return back()->with('error', 'Total ukuran foto melebihi 20MB. Ukuran total saat ini: ' . number_format($totalSize / (1024 * 1024), 2) . 'MB');
             }
 
-            // Proses upload dan simpan ke database
             $lastFotoCode = fotoKegiatan::orderBy('kd_fotokeg', 'desc')->first();
             $fotoNumber = $lastFotoCode ? (int)substr($lastFotoCode->kd_fotokeg, 2) + 1 : 1;
             // $destinationPath = 'public/kegiatan-photos';
@@ -309,7 +290,6 @@ class KegiatanController extends Controller
 
             return back()->with('success', 'Foto berhasil ditambahkan');
         } catch (\Exception $e) {
-            // \Log::error('Error adding photos', ['error' => $e->getMessage()]);
             return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
@@ -333,7 +313,6 @@ class KegiatanController extends Controller
         try {
             $kegiatan = Kegiatan::with('fotoKegiatan')->findOrFail($kdKegiatan);
 
-            // Delete associated photos
             foreach ($kegiatan->fotoKegiatan as $foto) {
                 Storage::delete('public/' . $foto->foto_path);
                 $foto->delete();

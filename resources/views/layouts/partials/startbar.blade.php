@@ -35,12 +35,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('kelolaKomunitas.create', 'detailStruktur') ? 'active' : '' }}" href="#sidebarKomunitas" data-bs-toggle="collapse" role="button"
+                        <a class="nav-link {{ Route::is('kelolaKomunitas.create', 'detailStruktur', 'editStruktur') ? 'active' : '' }}" href="#sidebarKomunitas" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarKomunitas">
                             <i class="iconoir-community menu-icon"></i>
                             <span>Komunitas</span>
                         </a>
-                        <div class="collapse {{ Route::is('kelolaKomunitas.create', 'detailStruktur') ? 'show' : '' }}" area id="sidebarKomunitas">
+                        <div class="collapse {{ Route::is('kelolaKomunitas.create', 'detailStruktur','editStruktur') ? 'show' : '' }}" area id="sidebarKomunitas">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link {{ Route::is('kelolaKomunitas.create') ? 'active' : '' }}"
@@ -48,7 +48,7 @@
                                         Komunitas</a>
                                 </li><!--end nav-item-->
                                 <li class="nav-item">
-                                    <a class="nav-link {{ Route::is('detailStruktur') ? 'active' : '' }}" href="{{ route('kelolaStruktur') }}">Lihat
+                                    <a class="nav-link {{ Route::is('detailStruktur', 'editStruktur') ? 'active' : '' }}" href="{{ route('kelolaStruktur') }}">Kelola
                                         Struktur</a>
                                 </li><!--end nav-item-->
                             </ul><!--end nav-->
@@ -111,6 +111,20 @@
                         <a class="nav-link" href="{{ route('dashboardLokal') }}">
                             <i class="iconoir-home-simple menu-icon"></i>
                             <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('memberLokal.detail', 'memberLokal.edit', 'memberLokal.create') ? 'active' : '' }}"
+                            href="{{ route('memberLokal') }}">
+                            <i class="iconoir-group menu-icon"></i>
+                            <span>Kelola Member</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('laporanLokal') ? 'active' : '' }}"
+                            href="{{ route('laporanLokal') }}">
+                            <i class="iconoir-book menu-icon"></i>
+                            <span>Laporan</span>
                         </a>
                     </li>
                     @endif

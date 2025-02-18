@@ -193,3 +193,24 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (session('swal_success'))
+            Swal.fire({
+                title: "{{ session('swal_success')['title'] }}",
+                text: "{{ session('swal_success')['text'] }}",
+                icon: "{{ session('swal_success')['icon'] }}"
+            });
+        @endif
+
+        @if (session('swal_error'))
+            Swal.fire({
+                title: "{{ session('swal_error')['title'] }}",
+                text: "{{ session('swal_error')['text'] }}",
+                icon: "{{ session('swal_error')['icon'] }}"
+            });
+        @endif
+    </script>
+@endsection

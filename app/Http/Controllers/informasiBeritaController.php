@@ -153,8 +153,8 @@ class informasiBeritaController extends Controller
             return redirect()->route('informasiBerita')->with('success', 'Informasi berhasil ditambahkan');
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Error saving informasi berita: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Gagal menambahkan informasi: ' . $e->getMessage());
+            // Log::error('Error saving informasi berita: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Berita gagal ditambahkan. Berita telah ada sebelumnya.');
         }
     }
 
@@ -172,7 +172,6 @@ class informasiBeritaController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validasi input
         $validator = Validator::make($request->all(), [
             'judul_berita' => 'required|max:250',
             'isi_berita' => 'required',
@@ -190,10 +189,8 @@ class informasiBeritaController extends Controller
         }
 
         try {
-            // Temukan data berdasarkan ID
             $informasi = InformasiBerita::findOrFail($id);
 
-            // Update data
             $informasi->judul_berita = $request->judul_berita;
             $informasi->isi_berita = $request->isi_berita;
             $informasi->status_info = $request->status_info;
@@ -206,10 +203,8 @@ class informasiBeritaController extends Controller
                 $informasi->foto_berita = $fotoBase64;
             }
 
-            // Update author
             $informasi->author = json_encode($request->author);
 
-            // Simpan perubahan
             $informasi->save();
 
             return redirect()->route('informasiBerita')->with('success', 'Informasi berhasil diperbarui');

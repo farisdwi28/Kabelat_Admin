@@ -127,10 +127,8 @@ class programDispusipController extends Controller
         try {
             DB::beginTransaction();
 
-            // Generate Program Code
             $programCode = $this->generateProgramCode();
 
-            // Convert Image to Base64
             $sampulProgram = $this->convertImageToBase64($request->file('foto'));
 
             $program = new Program();
@@ -143,7 +141,6 @@ class programDispusipController extends Controller
             $program->sampul_program = $sampulProgram;
             $program->save();
 
-            // Create Inisiators
             $inisiators = [];
             foreach ($request->nm_inisiator as $inisiatorName) {
                 $inisiatorCode = $this->generateInisiatorCode();
@@ -190,13 +187,11 @@ class programDispusipController extends Controller
         try {
             DB::beginTransaction();
 
-            // Cari data program
             $program = Program::findOrFail($id);
             $program->nm_program = $request->nm_program;
             $program->tentang_program = $request->tentang_program;
             $program->tujuan_program = $request->tujuan_program;
 
-            // Update gambar jika ada file baru
             if ($request->hasFile('foto')) {
                 $sampulProgram = $this->convertImageToBase64($request->file('foto'));
                 $program->sampul_program = $sampulProgram;
@@ -204,8 +199,7 @@ class programDispusipController extends Controller
 
             $program->save();
 
-            // Update daftar inisiator
-            Inisiator::where('kd_program', $id)->delete(); // Hapus inisiator lama
+            Inisiator::where('kd_program', $id)->delete(); 
 
             $inisiators = [];
             foreach ($request->nm_inisiator as $inisiatorName) {

@@ -377,19 +377,26 @@
             <div class="table-responsive">
                 <table class="table mb-0">
                     <tbody>
-                        <tr class="">
-                            <td class="px-0">
-                                <div class="d-flex align-items-center">
-                                    <img src="/images/users/avatar-1.jpg" height="36"
-                                        class="me-2 align-self-center rounded" alt="...">
-                                    <div class="flex-grow-1 text-truncate">
-                                        <h6 class="m-0 text-truncate">Bunda Literasi</h6>
-                                        <a href="#"
-                                            class="font-12 text-muted text-decoration-underline">400 kegiatan diposting hari ini</a>
-                                    </div><!--end media body-->
-                                </div><!--end media-->
-                            </td>
-                        </tr><!--end tr-->
+                        @foreach ($laporan as $lapor)
+                            <tr class="">
+                                <td class="px-0">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ $lapor->komunitas->logo }}" height="36"
+                                            class="me-2 align-self-center rounded" alt="...">
+                                        <div class="flex-grow-1 text-truncate">
+                                            <h6 class="m-0 text-truncate">{{ $lapor->komunitas->nm_komunitas }}</h6>
+                                            <a href="#"
+                                                class="font-12 text-muted text-decoration-underline">{{ $lapor->judul }}</a>
+                                            
+                                        </div>
+                                        <a href="{{ route('laporanLokal') }}"><button class="btn btn-primary">
+                                            Lihat Laporan</i>
+                                        </button></a>
+                                    </div><!--end media-->
+                                </td>
+                            </tr>
+                        @endforeach
+                        <!--end tr-->
                     </tbody>
                 </table> <!--end table-->
             </div><!--end /div-->
@@ -429,9 +436,9 @@
             </div>
             <!--end card-->
         </div> --}}
-        <!--end col-->
-        {{-- <div class="col-md-6 col-lg-6"> --}}
-            {{-- <div class="card">
+    <!--end col-->
+    {{-- <div class="col-md-6 col-lg-6"> --}}
+    {{-- <div class="card">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
@@ -531,11 +538,11 @@
                 <!--end card-body-->
             </div>
             <!--end card--> --}}
-        {{-- </div> --}}
-        <!--end col-->
+    {{-- </div> --}}
+    <!--end col-->
     {{-- </div> --}}
 @endsection
 
-@section('script')
+@section("script")
     @vite(['resources/js/pages/index.init.js'])
 @endsection

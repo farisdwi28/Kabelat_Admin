@@ -9,6 +9,7 @@ use App\Models\MemberKomunitas;
 use App\Models\Kegiatan;
 use App\Models\kegitanKomunitas;
 use App\Models\kelurahanDesa;
+use App\Models\Laporan;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -79,7 +80,6 @@ class DashboardController extends Controller
     public function index()
     {
         try {
-            // Only accessible by superAdmin
             if (Auth::user()->role !== 'superAdmin') {
                 return redirect()->route('dashboardLokal');
             }
@@ -91,7 +91,6 @@ class DashboardController extends Controller
             $Pengumuman = informasiPengumuman::count();
             $Berita = informasiBerita::count();
 
-            // Get most active communities
             $aktiveCommunities = $this->getMostActiveCommunities(5);
             $aktiveCommunities2 = $this->getMostActiveCommunities2(5);
 
@@ -164,12 +163,25 @@ class DashboardController extends Controller
                 ->where('kelurahan_desa.kd_kelurahan', $adminKdLokal)
                 ->count();
 
+            $laporan = Laporan::join('member_komunitas', 'laporan.kd_member', '=', 'member_komunitas.kd_member')
+                ->join('users', 'member_komunitas.id', '=', 'users.id')
+                ->join('penduduk', 'users.kd_pen', '=', 'penduduk.kd_pen')
+                ->join('kelurahan_desa', function ($join) use ($adminKdLokal) {
+                    $join->where('kelurahan_desa.kd_kelurahan', '=', $adminKdLokal);
+                })
+                ->join('kecamatan', 'kelurahan_desa.kd_kecamatan', '=', 'kecamatan.kd_kecamatan')
+                ->whereRaw("UPPER(REPLACE(REPLACE(penduduk.kecamatan, ' ', ''), ',', '')) =
+                        UPPER(REPLACE(REPLACE(kecamatan.nm_kecamatan, ' ', ''), ',', ''))
+                        COLLATE utf8mb4_general_ci")
+                ->get();
+
             return view('dashboardLokal.index', compact(
                 'Komunitas',
                 'Member',
                 'KegiatanKomunitas',
                 'Pengumuman',
-                'Berita'
+                'Berita',
+                'laporan'
             ));
         } catch (Exception $e) {
             // \Log::error('Dashboard error: ' . $e->getMessage());

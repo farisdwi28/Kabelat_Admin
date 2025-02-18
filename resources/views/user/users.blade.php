@@ -88,11 +88,40 @@
 
 @section('script')
     @vite(['resources/js/pages/datatable.init.js'])
-    <script>
-        function confirmDelete(kdPen) {
-            if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function confirmDelete(kdPen) {
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Data ini akan dihapus secara permanen!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
                 document.getElementById('delete-form-' + kdPen).submit();
             }
-        }
-    </script>
+        });
+    }
+
+    @if (session('swal_success'))
+            Swal.fire({
+                title: "{{ session('swal_success')['title'] }}",
+                text: "{{ session('swal_success')['text'] }}",
+                icon: "{{ session('swal_success')['icon'] }}"
+            });
+        @endif
+
+        @if (session('swal_error'))
+            Swal.fire({
+                title: "{{ session('swal_error')['title'] }}",
+                text: "{{ session('swal_error')['text'] }}",
+                icon: "{{ session('swal_error')['icon'] }}"
+            });
+        @endif
+</script>
 @endsection

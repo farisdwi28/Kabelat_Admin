@@ -64,15 +64,22 @@ class PendudukController extends Controller
 
             return redirect()
                 ->route('penduduk')
-                ->with('success', 'Data Penduduk berhasil ditambahkan');
+                ->with('swal_success', [
+                    'title' => 'Berhasil!',
+                    'text' => 'Data Penduduk berhasil ditambahkan',
+                    'icon' => 'success'
+                ]);
         } catch (\Exception $e) {
             return redirect()
                 ->back()
-                ->with('error', 'Gagal menambahkan data: ' . $e->getMessage())
+                ->with('swal_error', [
+                    'title' => 'Error',
+                    'text' => 'Gagal menambahkan data: NO KTP sudah terdaftar',
+                    'icon' => 'error'
+                ])
                 ->withInput();
         }
     }
-
     private function generateKodePenduduk()
     {
         try {
@@ -136,16 +143,27 @@ class PendudukController extends Controller
 
             if ($request->hasFile('foto')) {
                 $image = $request->file('foto');
-                // dd($image);
                 $base64Image = $this->convertImageToBase64($image);
                 $Penduduk->foto_pen = $base64Image;
             }
 
             $Penduduk->save();
 
-            return redirect()->route('penduduk')->with('success', 'Data Penduduk berhasil diperbarui');
+            return redirect()
+                ->route('penduduk')
+                ->with('swal_success', [
+                    'title' => 'Berhasil!',
+                    'text' => 'Data Penduduk berhasil diperbarui',
+                    'icon' => 'success'
+                ]);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal memperbarui data: ' . $e->getMessage())
+            return redirect()
+                ->back()
+                ->with('swal_error', [
+                    'title' => 'Error',
+                    'text' => 'Gagal memperbarui data: ' . $e->getMessage(),
+                    'icon' => 'error'
+                ])
                 ->withInput();
         }
     }
@@ -173,9 +191,21 @@ class PendudukController extends Controller
         try {
             $Penduduk = Penduduk::findOrFail($kd_pen);
             $Penduduk->delete();
-            return redirect()->route('penduduk')->with('success', 'Data Penduduk berhasil dihapus');
+            return redirect()
+                ->route('penduduk')
+                ->with('swal_success', [
+                    'title' => 'Berhasil!',
+                    'text' => 'Data Penduduk berhasil dihapus',
+                    'icon' => 'success'
+                ]);
         } catch (\Exception $e) {
-            return redirect()->route('penduduk')->with('error', 'Gagal menghapus data: ' . $e->getMessage());
+            return redirect()
+                ->route('penduduk')
+                ->with('swal_error', [
+                    'title' => 'Error',
+                    'text' => 'Gagal menghapus data: ' . $e->getMessage(),
+                    'icon' => 'error'
+                ]);
         }
     }
 }

@@ -90,7 +90,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        
+
                             <div class="col-md-2">
                                 <div class="mb-3">
                                     <label class="form-label" for="RT">RT *</label>
@@ -102,7 +102,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        
+
                             <div class="col-md-2">
                                 <div class="mb-3">
                                     <label class="form-label" for="RW">RW *</label>
@@ -114,7 +114,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        
+
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="desa">Desa *</label>
@@ -155,8 +155,8 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto"
-                                id="foto" required>
+                            <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                name="foto" id="foto" required>
                             <label class="input-group-text" for="foto">Foto User</label>
                             @error('foto')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -174,4 +174,25 @@
             </div><!--end card-->
         </div> <!--end col-->
     </div><!--end row-->
+@endsection
+
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (session('swal_success'))
+            Swal.fire({
+                title: "{{ session('swal_success')['title'] }}",
+                text: "{{ session('swal_success')['text'] }}",
+                icon: "{{ session('swal_success')['icon'] }}"
+            });
+        @endif
+
+        @if (session('swal_error'))
+            Swal.fire({
+                title: "{{ session('swal_error')['title'] }}",
+                text: "{{ session('swal_error')['text'] }}",
+                icon: "{{ session('swal_error')['icon'] }}"
+            });
+        @endif
+    </script>
 @endsection

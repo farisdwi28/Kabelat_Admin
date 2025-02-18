@@ -115,6 +115,7 @@
 @section('script')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             const addButton = document.getElementById('add-inisiator'); // Tombol +
             const wrapper = document.getElementById('inisiator-wrapper'); // Wrapper input inisiator
 

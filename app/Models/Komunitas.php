@@ -35,6 +35,18 @@ class Komunitas extends Model
             );
     }
 
+    public function Ketua2(): HasOne
+    {
+        return $this->hasOne(MemberKomunitas::class, 'kd_komunitas')
+            ->join('users', 'member_komunitas.id', '=', 'users.id')
+            ->join('penduduk', 'users.kd_pen', '=', 'penduduk.kd_pen')
+            ->where('kd_jabatan', 'KET01')
+            ->select(
+                'member_komunitas.*',
+                'penduduk.nm_pen as nm_member'
+            );
+    }
+
     public function Members(): HasMany
     {
         return $this->hasMany(MemberKomunitas::class, 'kd_komunitas', 'kd_komunitas')
@@ -64,5 +76,10 @@ class Komunitas extends Model
     public function kegiatanKomunitas()
     {
         return $this->hasMany(kegitanKomunitas::class, 'kd_komunitas', 'kd_komunitas');
+    }
+
+    public function jabatan()
+    {
+        return $this->belongsToMany(StrukturJabatan::class, 'komunitas_jabatan', 'kd_komunitas', 'kd_jabatan');
     }
 }

@@ -7,11 +7,14 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\kegitanKomunitasController;
 use App\Http\Controllers\kelolaKategoriKegiatanController;
 use App\Http\Controllers\kelolaKomunitasController;
+use App\Http\Controllers\kelolaMemberController;
 use App\Http\Controllers\kelolaStrukturController;
 use App\Http\Controllers\KomunitasController;
+use App\Http\Controllers\laporanController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\programDispusipController;
 use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -20,7 +23,7 @@ Route::get('/', [RoutingController::class, 'index'])->name('root');
 
 // Route yang membutuhkan middleware 'auth'
 Route::middleware('auth')->group(function () {
-    Route::get('/check-role', function() {
+    Route::get('/check-role', function () {
         if (auth()->user()->role === 'superAdmin') {
             return redirect('/dashboard');
         } else if (auth()->user()->role === 'adminLokal') {
@@ -28,6 +31,12 @@ Route::middleware('auth')->group(function () {
         }
         return redirect('/login');
     })->name('check-role');
+    Route::post('/profile/update/name', [ProfileController::class, 'updateName'])
+        ->name('profile.update.name');
+    Route::post('/profile/update/email', [ProfileController::class, 'updateEmail'])
+        ->name('profile.update.email');
+    Route::post('/profile/update/password', [ProfileController::class, 'updatePassword'])
+        ->name('profile.update.password');
 
     Route::middleware(['check.role:superAdmin'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -52,6 +61,9 @@ Route::middleware('auth')->group(function () {
         Route::prefix('kelolaStruktur')->group(function () {
             Route::get('/kelolaStruktur', [kelolaStrukturController::class, 'index'])->name('kelolaStruktur');
             Route::get('/detailStruktur/{id}', [kelolaStrukturController::class, 'showDetail'])->name('detailStruktur');
+            Route::get('/editStruktur/{id}', [kelolaStrukturController::class, 'edit'])->name('editStruktur');
+            Route::put('/editStruktur/{id}', [kelolaStrukturController::class, 'update'])->name('updateStruktur');
+            Route::delete('/editStruktur/removeJabatan/{id}/{jabatan_id}', [kelolaStrukturController::class, 'removeJabatan'])->name('removeJabatan');
         });
         Route::prefix('programDispusip')->group(function () {
             Route::post('/programDispusip/{id}/{status}', [programDispusipController::class, 'updateProgramStatus'])->name('programDispusip.updateStatus');
@@ -105,7 +117,41 @@ Route::middleware('auth')->group(function () {
     });
     Route::middleware(['check.role:adminLokal'])->group(function () {
         Route::get('/dashboardLokal', [DashboardController::class, 'indexLokal'])->name('dashboardLokal');
-        // Add other adminLokal routes here
+        Route::get('/kelolaMember', [KelolaMemberController::class, 'index'])->name('memberLokal');
+
+        Route::group(['prefix' => 'kelolaMemberLokal'], function () {
+            Route::get('/{kd_komunitas}/detailMember', [KelolaMemberController::class, 'showMembers'])
+                ->name('memberLokal.detail');
+
+            Route::get('/{kd_komunitas}/tambahMember', [KelolaMemberController::class, 'create'])
+                ->name('memberLokal.create');
+
+            Route::post('/{kd_komunitas}/tambahMember', [KelolaMemberController::class, 'store'])
+                ->name('memberLokal.store');
+
+            Route::get('/{kd_komunitas}/editMember/{kd_member}', [KelolaMemberController::class, 'editMember'])
+                ->name('memberLokal.edit');
+
+            Route::put('/{kd_komunitas}/editMember/{kd_member}', [KelolaMemberController::class, 'updateMember'])
+                ->name('memberLokal.update');
+
+            Route::delete('/{kd_komunitas}/{kd_member}', [KelolaMemberController::class, 'destroy'])
+                ->name('memberLokal.delete');
+        });
+        Route::group(['prefix' => 'kelolaLaporanLokal'], function () {
+            Route::get('/kelolaLaporan', [laporanController::class, 'index'])
+                ->name('laporanLokal');
+            Route::get('/kelolaLaporan/detailLaporan/{kd_laporan}', [laporanController::class, 'detail'])
+                ->name('LaporanLokalDetail');
+            Route::post('/kelolaLaporan/detailLaporan/{kd_laporan}', [laporanController::class, 'prosesAction'])
+                ->name('LaporanLokalAksi');
+            Route::delete('/kelolaLaporan/detailLaporan/{kd_laporan}', [laporanController::class, 'hapusLaporan'])
+                ->name('LaporanLokalHapus');
+        });
+        
+
+        Route::get('/check-ktp', [KelolaMemberController::class, 'checkKtp'])
+            ->name('memberLokal.checkKtp');
     });
 
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
