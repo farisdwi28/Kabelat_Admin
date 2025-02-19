@@ -80,6 +80,6 @@ class Komunitas extends Model
 
     public function jabatan()
     {
-        return $this->belongsToMany(StrukturJabatan::class, 'komunitas_jabatan', 'kd_komunitas', 'kd_jabatan');
+        return $this->belongsToMany(strukturJabatan::class, 'komunitas_jabatan', 'kd_komunitas', 'kd_jabatan');
     }
 }
