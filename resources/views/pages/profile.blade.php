@@ -132,9 +132,9 @@
 @section('script')
 @vite([
     'resources/js/pages/profile.init.js',
-    'node_modules/sweetalert2/dist/sweetalert2.min.js'
 ])
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function openNameModal() {
         new bootstrap.Modal(document.getElementById('nameModal')).show();
