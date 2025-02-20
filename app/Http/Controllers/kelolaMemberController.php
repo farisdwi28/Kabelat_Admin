@@ -56,8 +56,7 @@ class kelolaMemberController extends Controller
             if (!$latestMember) {
                 return 'M0002';
             }
-
-            $lastNumber = intval(substr($latestMember->kd_info, 1));
+            $lastNumber = intval(substr($latestMember->kd_member, 1));
             $newNumber = $lastNumber + 1;
 
             return 'M' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
