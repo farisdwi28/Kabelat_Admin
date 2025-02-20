@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Komunitas;
 use App\Models\MemberKomunitas;
 use App\Models\Penduduk;
-use App\Models\StrukturJabatan;
+use App\Models\strukturJabatan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -148,7 +148,7 @@ class kelolaMemberController extends Controller
                 $user->save();
             }
 
-            $kd_jabatan = StrukturJabatan::where('nm_jabatan', 'Anggota')->value('kd_jabatan');
+            $kd_jabatan = strukturJabatan::where('nm_jabatan', 'Anggota')->value('kd_jabatan');
 
             if (!$kd_jabatan) {
                 return redirect()->back()->with('error', 'Kode jabatan untuk "Anggota" tidak ditemukan.');
