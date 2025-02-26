@@ -48,22 +48,22 @@ class kelolaMemberController extends Controller
         return view('kelolaMemberLokal.tambahMember', compact('komunitas'));
     }
 
-    private function generateMemberCode()
-    {
-        try {
-            $latestMember = MemberKomunitas::orderBy('kd_member', 'desc')->first();
+    // private function generateMemberCode()
+    // {
+    //     try {
+    //         $latestMember = MemberKomunitas::orderBy('kd_member', 'desc')->first();
 
-            if (!$latestMember) {
-                return 'P0002';
-            }
-            $lastNumber = intval(substr($latestMember->kd_member, 1));
-            $newNumber = $lastNumber + 1;
+    //         if (!$latestMember) {
+    //             return 'P0002';
+    //         }
+    //         $lastNumber = intval(substr($latestMember->kd_member, 1));
+    //         $newNumber = $lastNumber + 1;
 
-            return 'P' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
-        } catch (\Exception $e) {
-            throw new \Exception('Gagal generate kode komunitas: ' . $e->getMessage());
-        }
-    }
+    //         return 'P' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
+    //     } catch (\Exception $e) {
+    //         throw new \Exception('Gagal generate kode komunitas: ' . $e->getMessage());
+    //     }
+    // }
 
     public function checkKtp(Request $request)
     {
