@@ -54,12 +54,12 @@ class kelolaMemberController extends Controller
             $latestMember = MemberKomunitas::orderBy('kd_member', 'desc')->first();
 
             if (!$latestMember) {
-                return 'M0002';
+                return 'P0002';
             }
             $lastNumber = intval(substr($latestMember->kd_member, 1));
             $newNumber = $lastNumber + 1;
 
-            return 'M' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
+            return 'P' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
         } catch (\Exception $e) {
             throw new \Exception('Gagal generate kode komunitas: ' . $e->getMessage());
         }
@@ -154,10 +154,10 @@ class kelolaMemberController extends Controller
                 return redirect()->back()->with('error', 'Kode jabatan untuk "Anggota" tidak ditemukan.');
             }
 
-            $memberCode = $this->generateMemberCode();
+            // $memberCode = $this->generateMemberCode();
 
             $member = new MemberKomunitas();
-            $member->kd_member = $memberCode;
+            $member->kd_member = $penduduk->kd_pen;
             $member->tgl_bergabung = now();
             $member->id = $user->id;
             $member->kd_komunitas = $kd_komunitas;
