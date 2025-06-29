@@ -20,9 +20,11 @@ class informasiBerita extends Model
         'status_info',
         'kategori_berita',
         'foto_berita',
+        'video_link',
         'author',
         'tanggal_dibuat',
         'kd_kecamatan'
+        
     ];
 
     public function kecamatan()

@@ -121,6 +121,7 @@ class informasiBeritaController extends Controller
             'status_info' => 'required|in:draft,terbit,sembunyi',
             'kategori_berita' => 'required|in:semua berita,kegiatan,layanan,koleksi,fasilitas,prestasi,kerjasama,events',
             'foto' => 'required|image|max:5120|mimes:jpeg,png,jpg,gif',
+            'video_link' => 'nullable|url', //
             'author' => 'required|array',
             'author.*' => 'string|max:50',
             'kd_kecamatan' => 'required|exists:kecamatan,kd_kecamatan',
@@ -145,6 +146,7 @@ class informasiBeritaController extends Controller
             $informasi->tanggal_dibuat = now()->toDateString();
             $informasi->kategori_berita = $request->kategori_berita;
             $informasi->foto_berita = $sampulBerita;
+            $informasi->video_link = $request->video_link; // Tambahkan
             $informasi->author = json_encode($request->author);
             $informasi->kd_kecamatan = $request->kd_kecamatan;
             $informasi->save();
@@ -178,6 +180,7 @@ class informasiBeritaController extends Controller
             'status_info' => 'required|in:draft,terbit,sembunyi',
             'kategori_berita' => 'required|in:semua berita,kegiatan,layanan,koleksi,fasilitas,prestasi,kerjasama,events',
             'foto' => 'nullable|image|max:5120|mimes:jpeg,png,jpg,gif',
+            'video_link' => 'nullable|url', // Tambahkan validasi untuk video_link
             'author' => 'required|array',
             'author.*' => 'string|max:50',
             'kd_kecamatan' => 'required|exists:kecamatan,kd_kecamatan',
@@ -194,6 +197,7 @@ class informasiBeritaController extends Controller
             $informasi->judul_berita = $request->judul_berita;
             $informasi->isi_berita = $request->isi_berita;
             $informasi->status_info = $request->status_info;
+            $informasi->video_link = $request->video_link; // Tambahkan video_link
             $informasi->kategori_berita = $request->kategori_berita;
             $informasi->kd_kecamatan = $request->kd_kecamatan;
 
