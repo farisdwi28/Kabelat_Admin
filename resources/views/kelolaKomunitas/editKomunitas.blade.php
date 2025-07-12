@@ -41,8 +41,13 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="status">Status</label>
-                                    <input type="text" class="form-control" id="status" name="status"
-                                        value="{{ $Komunitas->status }}" disabled>
+                                    <select class="form-control @error('status') is-invalid @enderror" id="status" name="status" required>
+                                        <option value="Aktif" {{ old('status', $Komunitas->status) == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                                        <option value="Tidak Aktif" {{ old('status', $Komunitas->status) == 'Tidak Aktif' ? 'selected' : '' }}>Tidak Aktif</option>
+                                    </select>
+                                    @error('status')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

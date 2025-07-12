@@ -50,13 +50,6 @@ class kelolaKomunitasController extends Controller
             $Komunitas->kd_komunitas = $this->generateKodeKomunitas();
             $Komunitas->save();
 
-            // if ($ketua) {
-            //     $memberKomunitas = new MemberKomunitas();
-            //     $memberKomunitas->kd_komunitas = $Komunitas->kd_komunitas;
-            //     $memberKomunitas->kd_jabatan = 'KETUA';
-            //     $memberKomunitas->nm_member = $ketua->nm_member;
-            //     $memberKomunitas->save();
-            // }
 
             return redirect()->route('kelolaKomunitas')->with('success', 'Komunitas berhasil ditambahkan.');
         } catch (\Exception $e) {
@@ -95,7 +88,6 @@ class kelolaKomunitasController extends Controller
             $imageContent = file_get_contents($image);
             $mimeType = $image->getMimeType();
 
-            // Encode ke Base64
             return 'data:' . $mimeType . ';base64,' . base64_encode($imageContent);
         } catch (\Exception $e) {
             throw new \Exception('Gagal mengonversi gambar: ' . $e->getMessage());
@@ -126,11 +118,13 @@ class kelolaKomunitasController extends Controller
             $validatedData = $request->validate([
                 'nm_komunitas' => 'required|string|max:50|unique:komunitas,nm_komunitas,' . $kd_komunitas . ',kd_komunitas',
                 'desk_komunitas' => 'required|string',
+                'status' => 'required|in:Aktif,Tidak Aktif',
                 'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
             ]);
 
             $Komunitas->nm_komunitas = $validatedData['nm_komunitas'];
             $Komunitas->desk_komunitas = $validatedData['desk_komunitas'];
+            $Komunitas->status = $validatedData['status'];
             if ($request->hasFile('foto')) {
                 $logoBase64 = $this->convertImageToBase64($request->file('foto'));
                 $Komunitas->logo = $logoBase64;
