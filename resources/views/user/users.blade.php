@@ -15,8 +15,18 @@
                         </div>
                         <div class="col-auto">
                             <a href="{{ route('second', ['user', 'tambahUsers']) }}">
-                                <button class="btn bg-primary-subtle text-primary">
+                                <button class="btn bg-primary-subtle text-primary me-2">
                                     <i class="fas fa-plus me-1"></i>Tambah Penduduk
+                                </button>
+                            </a>
+                            <a href="{{ route('penduduk.import') }}">
+                                <button class="btn bg-success-subtle text-success me-2">
+                                    <i class="fas fa-file-csv me-1"></i>Import CSV
+                                </button>
+                            </a>
+                            <a href="{{ route('penduduk.template') }}">
+                                <button class="btn bg-info-subtle text-info">
+                                    <i class="fas fa-download me-1"></i>Download Template
                                 </button>
                             </a>
                         </div>

@@ -22,6 +22,178 @@ class PendudukController extends Controller
         return view('user.tambahUsers');
     }
 
+    public function importCsv()
+    {
+        return view('user.importCsv');
+    }
+
+    public function storeCsv(Request $request)
+    {
+        try {
+            $request->validate([
+                'csv_file' => 'required|file|mimes:csv,txt|max:2048',
+            ]);
+
+            $file = $request->file('csv_file');
+            $path = $file->getRealPath();
+            
+            $data = array_map('str_getcsv', file($path));
+            $header = array_shift($data); // Remove header row
+            
+            $successCount = 0;
+            $errorCount = 0;
+            $errors = [];
+
+            foreach ($data as $index => $row) {
+                try {
+                    // Skip empty rows
+                    if (empty(array_filter($row))) {
+                        continue;
+                    }
+
+                    // Map CSV columns to database fields
+                    $pendudukData = array_combine($header, $row);
+                    
+                    // Validate required fields
+                    $requiredFields = ['nm_pen', 'jk', 'no_ktp', 'tgl_lahir', 'tempat_lahir', 'alamat', 'no_hp', 'RT', 'RW', 'desa', 'kecamatan'];
+                    foreach ($requiredFields as $field) {
+                        if (empty($pendudukData[$field])) {
+                            throw new \Exception("Field {$field} is required on row " . ($index + 2));
+                        }
+                    }
+
+                    // Validate KTP format
+                    if (!preg_match('/^\d{16}$/', $pendudukData['no_ktp'])) {
+                        throw new \Exception("Invalid KTP format on row " . ($index + 2));
+                    }
+
+                    // Check if KTP already exists
+                    if (Penduduk::where('no_ktp', $pendudukData['no_ktp'])->exists()) {
+                        throw new \Exception("KTP already exists on row " . ($index + 2));
+                    }
+
+                    // Validate gender
+                    if (!in_array($pendudukData['jk'], ['Laki-laki', 'Perempuan'])) {
+                        throw new \Exception("Invalid gender value on row " . ($index + 2));
+                    }
+
+                    // Validate date format
+                    if (!strtotime($pendudukData['tgl_lahir'])) {
+                        throw new \Exception("Invalid date format on row " . ($index + 2));
+                    }
+
+                    // Validate RT/RW
+                    if (!is_numeric($pendudukData['RT']) || !is_numeric($pendudukData['RW'])) {
+                        throw new \Exception("RT/RW must be numeric on row " . ($index + 2));
+                    }
+
+                    // Create new penduduk record
+                    $penduduk = new Penduduk();
+                    $penduduk->kd_pen = $this->generateKodePenduduk();
+                    $penduduk->nm_pen = $pendudukData['nm_pen'];
+                    $penduduk->jk = $pendudukData['jk'];
+                    $penduduk->tgl_lahir = $pendudukData['tgl_lahir'];
+                    $penduduk->tempat_lahir = $pendudukData['tempat_lahir'];
+                    $penduduk->alamat = $pendudukData['alamat'];
+                    $penduduk->no_ktp = $pendudukData['no_ktp'];
+                    $penduduk->no_hp = $pendudukData['no_hp'];
+                    $penduduk->RT = (int)$pendudukData['RT'];
+                    $penduduk->RW = (int)$pendudukData['RW'];
+                    $penduduk->desa = $pendudukData['desa'];
+                    $penduduk->kecamatan = $pendudukData['kecamatan'];
+                    
+                    // Set default photo if not provided
+                    $penduduk->foto_pen = $pendudukData['foto_pen'] ?? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
+
+                    $penduduk->save();
+                    $successCount++;
+
+                } catch (\Exception $e) {
+                    $errorCount++;
+                    $errors[] = "Row " . ($index + 2) . ": " . $e->getMessage();
+                }
+            }
+
+            $message = "Import completed. Success: {$successCount}, Errors: {$errorCount}";
+            
+            if ($errorCount > 0) {
+                return redirect()
+                    ->route('penduduk')
+                    ->with('swal_error', [
+                        'title' => 'Import Completed with Errors',
+                        'text' => $message . '. Check the following errors: ' . implode('; ', array_slice($errors, 0, 5)),
+                        'icon' => 'warning'
+                    ]);
+            }
+
+            return redirect()
+                ->route('penduduk')
+                ->with('swal_success', [
+                    'title' => 'Import Successful!',
+                    'text' => $message,
+                    'icon' => 'success'
+                ]);
+
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('swal_error', [
+                    'title' => 'Import Failed',
+                    'text' => 'Error: ' . $e->getMessage(),
+                    'icon' => 'error'
+                ]);
+        }
+    }
+
+    public function downloadCsvTemplate()
+    {
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="template_penduduk.csv"',
+        ];
+
+        $callback = function() {
+            $file = fopen('php://output', 'w');
+            
+            // Add BOM for UTF-8
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+            
+            // Header row
+            fputcsv($file, [
+                'nm_pen',
+                'jk', 
+                'no_ktp',
+                'tgl_lahir',
+                'tempat_lahir',
+                'alamat',
+                'no_hp',
+                'RT',
+                'RW',
+                'desa',
+                'kecamatan'
+            ]);
+            
+            // Example data row
+            fputcsv($file, [
+                'Ahmad Fahri',
+                'Laki-laki',
+                '1234567890123456',
+                '1990-01-01',
+                'Bandung',
+                'Jl. Raya Cimareme No.123, Cimareme, Kec. Ngamprah, Kabupaten Bandung, Jawa Barat',
+                '081234567890',
+                '001',
+                '002',
+                'Cimareme',
+                'Ngamprah'
+            ]);
+            
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
     public function store(Request $request)
     {
         try {

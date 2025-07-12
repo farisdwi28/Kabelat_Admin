@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/users', [PendudukController::class, 'index'])->name('penduduk');
             Route::get('/tambahUsers', [PendudukController::class, 'create'])->name('penduduk.create');
             Route::post('/tambahUsers', [PendudukController::class, 'store'])->name('penduduk.store');
+            Route::get('/import-csv', [PendudukController::class, 'importCsv'])->name('penduduk.import');
+            Route::post('/import-csv', [PendudukController::class, 'storeCsv'])->name('penduduk.import.store');
+            Route::get('/download-csv-template', [PendudukController::class, 'downloadCsvTemplate'])->name('penduduk.template');
             Route::delete('/users/{kd_pen}', [PendudukController::class, 'destroy'])->name('penduduk.delete');
             Route::get('/edit/{kd_pen}', [PendudukController::class, 'edit'])->name('penduduk.edit');
             Route::put('/edit/{kd_pen}', [PendudukController::class, 'update'])->name('penduduk.update');
