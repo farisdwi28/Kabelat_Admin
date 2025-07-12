@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penduduk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PendudukController extends Controller
 {
@@ -37,8 +38,42 @@ class PendudukController extends Controller
             $file = $request->file('csv_file');
             $path = $file->getRealPath();
             
-            $data = array_map('str_getcsv', file($path));
+            // Read file content and handle encoding
+            $content = file_get_contents($path);
+            
+            // Remove BOM if present
+            $bom = pack('H*','EFBBBF');
+            $content = preg_replace("/^$bom/", '', $content);
+            
+            // Convert to UTF-8 if needed
+            if (!mb_check_encoding($content, 'UTF-8')) {
+                $content = mb_convert_encoding($content, 'UTF-8', 'ISO-8859-1');
+            }
+            
+            // Parse CSV with proper handling
+            $lines = explode("\n", $content);
+            $data = [];
+            
+            foreach ($lines as $line) {
+                if (trim($line) !== '') {
+                    $data[] = str_getcsv($line);
+                }
+            }
+            
+            if (empty($data)) {
+                throw new \Exception('CSV file is empty or invalid');
+            }
+            
             $header = array_shift($data); // Remove header row
+            
+            // Clean header names (remove BOM and whitespace)
+            $header = array_map(function($col) {
+                return trim(str_replace("\xEF\xBB\xBF", '', $col));
+            }, $header);
+            
+            // Debug: Log header and first few rows
+            Log::info('CSV Header: ' . json_encode($header));
+            Log::info('First row: ' . json_encode($data[0] ?? []));
             
             $successCount = 0;
             $errorCount = 0;
@@ -51,13 +86,23 @@ class PendudukController extends Controller
                         continue;
                     }
 
+                    // Ensure row has same number of columns as header
+                    if (count($row) !== count($header)) {
+                        throw new \Exception("Row " . ($index + 2) . " has " . count($row) . " columns, expected " . count($header));
+                    }
+
                     // Map CSV columns to database fields
                     $pendudukData = array_combine($header, $row);
+                    
+                    // Clean data values
+                    $pendudukData = array_map(function($value) {
+                        return trim($value);
+                    }, $pendudukData);
                     
                     // Validate required fields
                     $requiredFields = ['nm_pen', 'jk', 'no_ktp', 'tgl_lahir', 'tempat_lahir', 'alamat', 'no_hp', 'RT', 'RW', 'desa', 'kecamatan'];
                     foreach ($requiredFields as $field) {
-                        if (empty($pendudukData[$field])) {
+                        if (!isset($pendudukData[$field]) || trim($pendudukData[$field]) === '') {
                             throw new \Exception("Field {$field} is required on row " . ($index + 2));
                         }
                     }
@@ -147,51 +192,21 @@ class PendudukController extends Controller
 
     public function downloadCsvTemplate()
     {
-        $headers = [
+        $templatePath = storage_path('app/template_penduduk.csv');
+        
+        if (!file_exists($templatePath)) {
+            // Create template if it doesn't exist
+            $content = "nm_pen,jk,no_ktp,tgl_lahir,tempat_lahir,alamat,no_hp,RT,RW,desa,kecamatan\n";
+            $content .= "Ahmad Fahri,Laki-laki,1234567890123456,1990-01-01,Bandung,\"Jl. Raya Cimareme No.123, Cimareme, Kec. Ngamprah, Kabupaten Bandung, Jawa Barat\",081234567890,001,002,Cimareme,Ngamprah\n";
+            $content .= "Siti Nurhaliza,Perempuan,2345678901234567,1985-05-15,Jakarta,\"Jl. Sudirman No.45, Jakarta Pusat, DKI Jakarta\",081234567891,003,004,Sudirman,Jakarta Pusat\n";
+            $content .= "Budi Santoso,Laki-laki,3456789012345678,1992-12-20,Surabaya,\"Jl. Ahmad Yani No.78, Surabaya, Jawa Timur\",081234567892,005,006,Ahmad Yani,Surabaya";
+            
+            file_put_contents($templatePath, $content);
+        }
+        
+        return response()->download($templatePath, 'template_penduduk.csv', [
             'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="template_penduduk.csv"',
-        ];
-
-        $callback = function() {
-            $file = fopen('php://output', 'w');
-            
-            // Add BOM for UTF-8
-            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
-            
-            // Header row
-            fputcsv($file, [
-                'nm_pen',
-                'jk', 
-                'no_ktp',
-                'tgl_lahir',
-                'tempat_lahir',
-                'alamat',
-                'no_hp',
-                'RT',
-                'RW',
-                'desa',
-                'kecamatan'
-            ]);
-            
-            // Example data row
-            fputcsv($file, [
-                'Ahmad Fahri',
-                'Laki-laki',
-                '1234567890123456',
-                '1990-01-01',
-                'Bandung',
-                'Jl. Raya Cimareme No.123, Cimareme, Kec. Ngamprah, Kabupaten Bandung, Jawa Barat',
-                '081234567890',
-                '001',
-                '002',
-                'Cimareme',
-                'Ngamprah'
-            ]);
-            
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        ]);
     }
 
     public function store(Request $request)
